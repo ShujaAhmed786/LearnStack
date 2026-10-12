@@ -1,14 +1,14 @@
 # LearnStack API - production image
 FROM node:22-alpine AS builder
 WORKDIR /app
-COPY package.json pnpm-workspace.yaml pnpm-lock.yaml tsconfig.base.json ./
-COPY packages ./packages
-COPY apps/api ./apps/api
+# Copy everything first (simpler and more reliable than layer optimization)
+COPY . .
 RUN corepack enable && pnpm install --frozen-lockfile
 RUN pnpm --filter db exec prisma generate
 RUN pnpm --filter db build
 RUN pnpm --filter @learnstack/shared build
-RUN pnpm --filter api exec tsc --skipLibCheck || pnpm --filter api exec tsc --noEmitOnError false
+# Build API - use --skipLibCheck to ignore node_modules type errors
+RUN cd apps/api && npx tsc --skipLibCheck || npx tsc --skipLibCheck --noEmitOnError false
 
 FROM node:22-alpine AS runner
 RUN addgroup -S app && adduser -S app -G app
