@@ -10,22 +10,25 @@ RUN pnpm --filter db exec prisma generate
 RUN pnpm --filter db exec tsc --skipLibCheck || true
 RUN pnpm --filter @learnstack/shared exec tsc --skipLibCheck || true
 RUN cd apps/api && npx tsc --skipLibCheck || true
-RUN ls -la apps/api/dist/ || (echo "API dist not created" && exit 1)
-RUN pnpm --filter api deploy --prod /app/deploy
-COPY packages/db/prisma /app/deploy/prisma
-# Copy Prisma generated client (pnpm deploy doesn't include it)
-RUN mkdir -p /app/deploy/node_modules/.prisma && cp -r /app/node_modules/.prisma/client /app/deploy/node_modules/.prisma/ 2>/dev/null || echo "Prisma client copy skipped"
 
-FROM node:22-alpine
+FROM node:22-alpine AS runner
 WORKDIR /app
 RUN addgroup -S app && adduser -S app -G app
 RUN corepack enable && corepack prepare pnpm@12.9.1 --activate
-COPY --from=builder /app/deploy/dist ./dist
-COPY --from=builder /app/deploy/node_modules ./node_modules
-COPY --from=builder /app/deploy/package.json ./
-COPY --from=builder /app/deploy/prisma ./prisma
-COPY --from=builder /app/deploy/pnpm-workspace.yaml ./
+# Copy source files needed for production install
+COPY package.json pnpm-workspace.yaml pnpm-lock.yaml ./
+COPY packages/db/package.json ./packages/db/
+COPY packages/db/prisma ./packages/db/prisma/
+COPY packages/db/dist ./packages/db/dist/
+COPY packages/shared/package.json ./packages/shared/
+COPY packages/shared/dist ./packages/shared/dist/
+COPY apps/api/package.json ./apps/api/
+COPY apps/api/dist ./apps/api/dist/
+# Install production dependencies only
+RUN pnpm install --frozen-lockfile --prod
+# Generate Prisma client for production
+RUN pnpm --filter db exec prisma generate
 USER app
 EXPOSE 3001
-# Generate Prisma client at startup then run the app
+WORKDIR /app/apps/api
 CMD ["node", "dist/index.js"]
