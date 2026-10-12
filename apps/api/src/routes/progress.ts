@@ -232,7 +232,13 @@ export async function progressRoutes(fastify: FastifyInstance) {
     }));
 
     // Find last accessed topic for "Continue Learning"
-    let lastAccessedTopic = null;
+    let lastAccessedTopic: {
+      topicId: string;
+      topicTitle: string;
+      subjectName: string;
+      lastPosition: number;
+      updatedAt: Date;
+    } | null = null;
     if (userProgress.length > 0) {
       const lastProg = userProgress[0];
       const matchedTopic = allTopics.find((t) => t.id === lastProg.topicId);
