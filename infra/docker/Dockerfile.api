@@ -15,7 +15,6 @@ FROM node:22-alpine AS runner
 WORKDIR /app
 RUN addgroup -S app && adduser -S app -G app
 RUN corepack enable && corepack prepare pnpm@12.9.1 --activate
-# Copy source files needed for production install
 COPY package.json pnpm-workspace.yaml pnpm-lock.yaml ./
 COPY packages/db/package.json ./packages/db/
 COPY packages/db/prisma ./packages/db/prisma/
@@ -24,10 +23,11 @@ COPY packages/shared/package.json ./packages/shared/
 COPY packages/shared/dist ./packages/shared/dist/
 COPY apps/api/package.json ./apps/api/
 COPY apps/api/dist ./apps/api/dist/
-# Install production dependencies only
-RUN pnpm install --frozen-lockfile --prod
-# Generate Prisma client for production
+# Install ALL deps first (need prisma CLI for generate)
+RUN pnpm install --frozen-lockfile
 RUN pnpm --filter db exec prisma generate
+# Now prune to production only
+RUN pnpm prune --prod
 USER app
 EXPOSE 3001
 WORKDIR /app/apps/api
