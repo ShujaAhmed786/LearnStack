@@ -7,22 +7,20 @@ COPY packages/shared ./packages/shared
 COPY apps/api ./apps/api
 RUN corepack enable && pnpm install --frozen-lockfile
 RUN pnpm --filter db exec prisma generate
-# Build all TS packages, ignore type errors for Docker build
 RUN pnpm --filter db exec tsc --skipLibCheck || true
 RUN pnpm --filter @learnstack/shared exec tsc --skipLibCheck || true
 RUN cd apps/api && npx tsc --skipLibCheck || true
-# Verify dist was created
 RUN ls -la apps/api/dist/ || (echo "API dist not created" && exit 1)
+# Create self-contained production deployment
+RUN pnpm --filter api deploy --prod /app/deploy
 
 FROM node:22-alpine
 WORKDIR /app
 RUN addgroup -S app && adduser -S app -G app
-COPY --from=builder /app/apps/api/dist ./dist
-COPY --from=builder /app/apps/api/package.json ./
-COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/deploy/dist ./dist
+COPY --from=builder /app/deploy/node_modules ./node_modules
+COPY --from=builder /app/deploy/package.json ./
 COPY --from=builder /app/packages/db/prisma ./prisma
-# Ensure db package dist exists for runtime
-COPY --from=builder /app/packages/db/dist ./node_modules/db/dist
 USER app
 EXPOSE 3001
 CMD ["node", "dist/index.js"]
