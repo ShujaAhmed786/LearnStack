@@ -554,7 +554,7 @@ export async function analyticsRoutes(app: FastifyInstance) {
     },
     async (request, reply) => {
       const orgId = request.user!.orgId;
-      const days = [];
+      const days: { date: string; activeLearners: number }[] = [];
 
       for (let i = 29; i >= 0; i--) {
         const d = new Date();
