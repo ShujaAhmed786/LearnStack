@@ -1,12 +1,8 @@
 # LearnStack Web - static build served by nginx
 FROM node:22-alpine AS builder
 WORKDIR /app
-COPY package.json pnpm-workspace.yaml pnpm-lock.yaml tsconfig.base.json ./
-COPY packages/shared/package.json ./packages/shared/
-COPY apps/web/package.json ./apps/web/
+COPY . .
 RUN corepack enable && pnpm install --frozen-lockfile
-COPY packages/shared ./packages/shared
-COPY apps/web ./apps/web
 RUN pnpm --filter @learnstack/shared build
 RUN pnpm --filter web build
 
