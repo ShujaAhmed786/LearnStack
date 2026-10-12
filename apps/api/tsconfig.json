@@ -1,15 +1,24 @@
 {
-    "extends":  "../../tsconfig.base.json",
-    "compilerOptions":  {
-                            "outDir":  "./dist",
-                            "rootDir":  "./src",
-                            "module":  "NodeNext",
-                            "moduleResolution":  "NodeNext",
-                            "declaration":  false,
-                            "declarationMap":  false,
-                            "noImplicitAny":  false
-                        },
-    "include":  [
-                    "src/**/*"
-                ]
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "declaration": false,
+    "declarationMap": false,
+    "noImplicitAny": false,
+    "baseUrl": ".",
+    "paths": {
+      "db": [
+        "../../packages/db/src/index.ts"
+      ],
+      "@learnstack/shared": [
+        "../../packages/shared/src/index.ts"
+      ]
+    }
+  },
+  "include": [
+    "src/**/*"
+  ]
 }
