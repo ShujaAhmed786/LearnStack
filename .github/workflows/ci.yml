@@ -21,6 +21,7 @@ jobs:
         node-version: 22
         cache: pnpm
     - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter db build
     - run: pnpm -r exec tsc --noEmit
     - run: pnpm -r exec eslint . --max-warnings=0
 
