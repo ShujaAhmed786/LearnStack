@@ -21,7 +21,7 @@ jobs:
         node-version: 22
         cache: pnpm
     - run: pnpm install --frozen-lockfile
-    - run: pnpm --filter db build
+    - run: pnpm --filter db --filter @learnstack/shared build
     - run: pnpm -r exec tsc --noEmit
       continue-on-error: true
     - run: pnpm -r exec eslint . --max-warnings=0
