@@ -10,6 +10,11 @@ env:
   REGISTRY: ghcr.io
   IMAGE_PREFIX: shujaahmed786/learnstack
 
+permissions:
+  contents: read
+  packages: write
+  security-events: write
+
 jobs:
   typecheck-lint:
     runs-on: ubuntu-latest
