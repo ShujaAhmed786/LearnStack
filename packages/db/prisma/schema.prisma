@@ -1,0 +1,410 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Organization {
+  id           String       @id @default(cuid())
+  name         String
+  slug         String       @unique
+  logoUrl      String?
+  primaryColor String       @default("#14B8A6")
+  createdAt    DateTime     @default(now())
+  users        User[]
+  categories   Category[]
+}
+
+model User {
+  id                String             @id @default(cuid())
+  email             String             @unique
+  passwordHash      String
+  name              String
+  role              Role               @default(LEARNER)
+  orgId             String
+  org               Organization       @relation(fields: [orgId], references: [id])
+  emailVerified     Boolean            @default(false)
+  active            Boolean            @default(true)
+  deletedAt         DateTime?
+  createdAt         DateTime           @default(now())
+  attempts          QuizAttempt[]
+  progress          Progress[]
+  emailVerification EmailVerification?
+  topicProgress     TopicProgress[]
+  threads           DiscussionThread[]
+  posts             DiscussionPost[]
+  oauthAccounts     OAuthAccount[]
+}
+
+enum Role {
+  SUPER_ADMIN
+  ORG_ADMIN
+  INSTRUCTOR
+  LEARNER
+}
+
+model Category {
+  id          String       @id @default(cuid())
+  name        String
+  description String?
+  orgId       String
+  org         Organization @relation(fields: [orgId], references: [id])
+  collections Collection[]
+  createdAt   DateTime     @default(now())
+
+  @@unique([orgId, name])
+}
+
+model Collection {
+  id          String    @id @default(cuid())
+  name        String
+  description String?
+  categoryId  String
+  category    Category  @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  orgId       String
+  subjects    Subject[]
+  createdAt   DateTime  @default(now())
+}
+
+model Subject {
+  id           String     @id @default(cuid())
+  name         String
+  description  String?
+  collectionId String
+  collection   Collection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
+  orgId        String
+  topics       Topic[]
+  createdAt    DateTime   @default(now())
+}
+
+model Topic {
+  id          String     @id @default(cuid())
+  title       String
+  content     String     @db.Text
+  subjectId   String
+  subject     Subject    @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  orgId       String
+  order       Int        @default(0)
+  youtubeUrl  String?
+  videoUrl    String?
+  materials   Material[]
+  quizzes     Quiz[]
+  progress    Progress[]
+  createdAt   DateTime   @default(now())
+}
+
+model Material {
+  id        String   @id @default(cuid())
+  name      String
+  url       String
+  mimeType  String
+  sizeBytes Int
+  topicId   String
+  topic     Topic    @relation(fields: [topicId], references: [id], onDelete: Cascade)
+  orgId     String
+  createdAt DateTime @default(now())
+}
+
+model Quiz {
+  id               String        @id @default(cuid())
+  title            String
+  description      String?
+  topicId          String?
+  topic            Topic?        @relation(fields: [topicId], references: [id], onDelete: SetNull)
+  orgId            String
+  questions        Question[]
+  attempts         QuizAttempt[]
+  timeLimitMinutes Int?
+  passingScore     Int           @default(70)
+  createdAt        DateTime      @default(now())
+}
+
+model Question {
+  id            String       @id @default(cuid())
+  quizId        String
+  quiz          Quiz         @relation(fields: [quizId], references: [id], onDelete: Cascade)
+  text          String       @db.Text
+  type          QuestionType @default(MULTIPLE_CHOICE)
+  options       String[]
+  correctAnswer String
+  explanation   String?
+  points        Int          @default(1)
+  order         Int          @default(0)
+}
+
+enum QuestionType {
+  MULTIPLE_CHOICE
+  TRUE_FALSE
+  SHORT_ANSWER
+}
+
+model QuizAttempt {
+  id          String    @id @default(cuid())
+  quizId      String
+  quiz        Quiz      @relation(fields: [quizId], references: [id], onDelete: Cascade)
+  userId      String
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  orgId       String
+  answers     Json
+  score       Float?
+  passed      Boolean?
+  startedAt   DateTime  @default(now())
+  completedAt DateTime?
+}
+
+model Progress {
+  id           String   @id @default(cuid())
+  userId       String
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  topicId      String
+  topic        Topic    @relation(fields: [topicId], references: [id], onDelete: Cascade)
+  orgId        String
+  completed    Boolean  @default(false)
+  lastPosition Int      @default(0)
+  updatedAt    DateTime @updatedAt
+
+  @@unique([userId, topicId])
+}
+
+model UploadedFile {
+  id           String   @id @default(cuid())
+  filename     String   @unique
+  originalName String
+  mimeType     String
+  sizeBytes    Int
+  orgId        String
+  createdAt    DateTime @default(now())
+}
+
+model EmailVerification {
+  id         String   @id @default(cuid())
+  userId     String   @unique
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  hashedCode String
+  expiresAt  DateTime
+  attempts   Int      @default(0)
+  createdAt  DateTime @default(now())
+}
+
+model Roadmap {
+  id          String         @id @default(cuid())
+  title       String
+  slug        String         @unique
+  description String?        @db.Text
+  icon        String?
+  orgId       String?
+  stages      RoadmapStage[]
+  createdAt   DateTime       @default(now())
+}
+
+model RoadmapStage {
+  id        String         @id @default(cuid())
+  roadmapId String
+  roadmap   Roadmap        @relation(fields: [roadmapId], references: [id], onDelete: Cascade)
+  title     String
+  order     Int
+  topics    RoadmapTopic[]
+}
+
+model RoadmapTopic {
+  id          String          @id @default(cuid())
+  stageId     String
+  stage       RoadmapStage    @relation(fields: [stageId], references: [id], onDelete: Cascade)
+  title       String
+  description String?         @db.Text
+  youtubeUrl  String?
+  quizId      String?
+  order       Int
+  progress    TopicProgress[]
+}
+
+model TopicProgress {
+  id        String       @id @default(cuid())
+  topicId   String
+  topic     RoadmapTopic @relation(fields: [topicId], references: [id], onDelete: Cascade)
+  userId    String
+  user      User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  completed Boolean      @default(false)
+  updatedAt DateTime     @updatedAt
+
+  @@unique([userId, topicId])
+}
+
+enum GuideCategory {
+  TEAM_COMMUNICATION
+  DEV_WORKFLOW
+  REAL_INCIDENTS
+  COST_CUTTING
+  AUTOMATION
+  RELIABILITY
+  SCALABILITY
+}
+
+model Guide {
+  id              String        @id @default(cuid())
+  title           String
+  slug            String        @unique
+  category        GuideCategory
+  summary         String        @db.Text
+  content         String        @db.Text
+  difficulty      String        @default("Beginner")
+  readTimeMinutes Int           @default(5)
+  published       Boolean       @default(false)
+  orgId           String?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+}
+
+model Tactic {
+  id              String        @id @default(cuid())
+  title           String
+  category        GuideCategory
+  description     String        @db.Text
+  impact          String
+  effort          String
+  savingsEstimate String?
+  published       Boolean       @default(false)
+  orgId           String?
+  howToUse        String?       @db.Text
+  howToImplement  String?       @db.Text
+  whenUseful      String?       @db.Text
+  createdAt       DateTime      @default(now())
+}
+
+model Product {
+  id          String   @id @default(cuid())
+  courseId    String
+  priceCents  Int
+  currency    String   @default("usd")
+  active      Boolean  @default(true)
+  orgId       String
+  createdAt   DateTime @default(now())
+}
+
+model Purchase {
+  id              String         @id @default(cuid())
+  userId          String
+  productId       String
+  stripeSessionId String         @unique
+  stripePaymentId String?
+  amountCents     Int
+  currency        String
+  status          PurchaseStatus @default(PENDING)
+  createdAt       DateTime       @default(now())
+}
+
+enum PurchaseStatus {
+  PENDING
+  COMPLETED
+  FAILED
+  REFUNDED
+}
+
+model Enrollment {
+  id        String   @id @default(cuid())
+  userId    String
+  courseId  String
+  orgId     String
+  createdAt DateTime @default(now())
+
+  @@unique([userId, courseId])
+}
+
+model Certificate {
+  id                String   @id @default(cuid())
+  userId            String
+  courseId          String
+  orgId             String
+  certificateNumber String   @unique
+  issuedAt          DateTime @default(now())
+  pdfUrl            String?
+
+  @@unique([userId, courseId])
+}
+
+model LiveSession {
+  id              String            @id @default(cuid())
+  title           String
+  description     String?           @db.Text
+  courseId        String?
+  orgId           String
+  scheduledAt     DateTime
+  durationMinutes Int               @default(60)
+  meetingUrl      String?
+  meetingId       String?
+  status          LiveSessionStatus @default(SCHEDULED)
+  createdById     String
+  createdAt       DateTime          @default(now())
+}
+
+enum LiveSessionStatus {
+  SCHEDULED
+  LIVE
+  ENDED
+  CANCELLED
+}
+
+model SessionRegistration {
+  id        String   @id @default(cuid())
+  sessionId String
+  userId    String
+  createdAt DateTime @default(now())
+
+  @@unique([sessionId, userId])
+}
+
+model DiscussionThread {
+  id        String           @id @default(cuid())
+  title     String
+  lessonId  String?
+  courseId  String?
+  orgId     String
+  authorId  String
+  author    User             @relation(fields: [authorId], references: [id])
+  pinned    Boolean          @default(false)
+  locked    Boolean          @default(false)
+  posts     DiscussionPost[]
+  createdAt DateTime         @default(now())
+  updatedAt DateTime         @updatedAt
+}
+
+model DiscussionPost {
+  id        String           @id @default(cuid())
+  threadId  String
+  thread    DiscussionThread @relation(fields: [threadId], references: [id], onDelete: Cascade)
+  authorId  String
+  author    User             @relation(fields: [authorId], references: [id])
+  content   String           @db.Text
+  isAnswer  Boolean          @default(false)
+  orgId     String
+  createdAt DateTime         @default(now())
+  updatedAt DateTime         @updatedAt
+}
+
+model OAuthAccount {
+  id         String   @id @default(cuid())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  provider   String
+  providerId String
+  createdAt  DateTime @default(now())
+
+  @@unique([provider, providerId])
+}
+
+model AnalyticsEvent {
+  id        String   @id @default(cuid())
+  userId    String
+  orgId     String
+  eventType String
+  lessonId  String?
+  courseId  String?
+  metadata  Json?
+  createdAt DateTime @default(now())
+
+  @@index([orgId, eventType, createdAt])
+}
+

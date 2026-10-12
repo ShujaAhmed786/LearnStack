@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #F8FAFC;
+  --surface: #FFFFFF;
+  --surface-hover: #F1F5F9;
+  --border: #E2E8F0;
+  --border-hover: #CBD5E1;
+  --text: #0F172A;
+  --text-muted: #64748B;
+  --primary: #14B8A6;
+  --primary-hover: #0D9488;
+  --accent: #14B8A6;
+  --success: #16A34A;
+  --warning: #F59E0B;
+  --danger: #EF4444;
+}
+
+html.dark {
+  --bg: #0A1628;
+  --surface: #111E32;
+  --surface-hover: #1A2C46;
+  --border: #1E314B;
+  --border-hover: #2A4365;
+  --text: #F1F5F9;
+  --text-muted: #94A3B8;
+  --primary: #14B8A6;
+  --primary-hover: #0D9488;
+  --accent: #14B8A6;
+  --success: #22C55E;
+  --warning: #F59E0B;
+  --danger: #EF4444;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+code, pre {
+  font-family: 'JetBrains Mono', monospace;
+}

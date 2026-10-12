@@ -1,0 +1,18 @@
+{
+  "name": "learnstack",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@12.9.1",
+  "scripts": {
+    "dev": "concurrently -k -p \"[{name}]\" -n \"api,web\" -c \"cyan,magenta\" \"pnpm --filter @learnstack/api dev\" \"pnpm --filter @learnstack/web dev\"",
+    "build": "pnpm --filter @learnstack/shared build && pnpm --filter db build && pnpm --filter @learnstack/api build && pnpm --filter @learnstack/web build",
+    "typecheck": "pnpm -r --parallel exec tsc --noEmit",
+    "db:migrate": "pnpm --filter db exec prisma migrate dev",
+    "db:generate": "pnpm --filter db exec prisma generate",
+    "db:studio": "pnpm --filter db exec prisma studio"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "typescript": "^5.7.3"
+  }
+}
