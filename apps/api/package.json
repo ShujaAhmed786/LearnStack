@@ -12,6 +12,9 @@
   "dependencies": {
     "picomatch": "4.0.7",
     "sigstore": "4.1.1",
+    "ip-address": "10.3.1",
+    "pacote": "21.5.1",
+    "http-cache-semantics": "4.3.0",
     "@fastify/cookie": "^11.0.2",
     "@fastify/cors": "^10.1.0",
     "@fastify/helmet": "^13.0.1",
