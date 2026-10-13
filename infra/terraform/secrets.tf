@@ -15,7 +15,7 @@ resource "aws_secretsmanager_secret_version" "db_url" {
     port           = aws_db_instance.main.port
     dbname         = aws_db_instance.main.db_name
     username       = aws_db_instance.main.username
-    rds_secret_arn = one(aws_db_instance.main.master_user_secret).secret_arn
+    # rds_secret_arn available after apply: aws_db_instance.main.master_user_secret[0].secret_arn
   })
 }
 
