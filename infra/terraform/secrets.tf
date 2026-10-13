@@ -1,5 +1,10 @@
 # Secrets Manager: never put passwords in code or env files
 
+# C3: Read the RDS-managed master password
+data "aws_secretsmanager_secret_version" "rds_password" {
+  secret_id = one(aws_db_instance.main.master_user_secret).secret_arn
+}
+
 # Database connection URL
 # Note: password comes from RDS-managed secret, not Terraform vars
 resource "aws_secretsmanager_secret" "db_url" {
