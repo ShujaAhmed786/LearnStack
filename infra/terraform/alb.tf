@@ -18,7 +18,7 @@ resource "aws_lb_target_group" "api" {
   target_type = "instance" # EC2 launch type uses instance targets
 
   health_check {
-    path                = "/v1/health"
+    path                = "/health"
     healthy_threshold   = 2
     unhealthy_threshold = 3
     timeout             = 5
