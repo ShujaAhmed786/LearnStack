@@ -19,16 +19,22 @@ resource "aws_iam_role_policy_attachment" "ecs_instance" {
 }
 
 # Allow reading secrets from Secrets Manager
+# C4: Task execution role needs secrets access (not the EC2 instance role)
+# ECS resolves container secrets using the execution role
 resource "aws_iam_role_policy" "secrets" {
   name = "learnstack-secrets-read"
-  role = aws_iam_role.ecs_instance.id
+  role = aws_iam_role.ecs_task_execution.id
 
   policy = jsonencode({
     Version = "2012-10-17"
     Statement = [{
-      Effect   = "Allow"
-      Action   = ["secretsmanager:GetSecretValue"]
-      Resource = "arn:aws:secretsmanager:us-east-1:639283101421:secret:rds-db-credentials/*"
+      Effect = "Allow"
+      Action = ["secretsmanager:GetSecretValue"]
+      Resource = [
+        aws_secretsmanager_secret.db_url.arn,
+        aws_secretsmanager_secret.session_secret.arn,
+        "${one(aws_db_instance.main.master_user_secret).secret_arn}",
+      ]
     }]
   })
 }
