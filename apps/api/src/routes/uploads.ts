@@ -208,12 +208,15 @@ export async function uploadRoutes(fastify: FastifyInstance) {
       const stat = await fs.promises.stat(filePath);
       const stream = fs.createReadStream(filePath);
 
-      reply.header('Content-Type', fileRecord.mimeType);
+      // C8: Serve as attachment (not inline) to prevent stored XSS
+      // Never trust client-supplied MIME type for inline rendering
+      reply.header('Content-Type', 'application/octet-stream');
       reply.header('Content-Length', stat.size);
       reply.header(
         'Content-Disposition',
-        `inline; filename="${encodeURIComponent(fileRecord.originalName)}"`
+        `attachment; filename="${encodeURIComponent(fileRecord.originalName)}"`
       );
+      reply.header('X-Content-Type-Options', 'nosniff');
 
       return reply.send(stream);
     }
