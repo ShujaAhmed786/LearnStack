@@ -144,7 +144,6 @@ export async function authRoutes(fastify: FastifyInstance) {
           },
         });
       }
-      }
 
       const verification = user.emailVerification;
       if (!verification) {
