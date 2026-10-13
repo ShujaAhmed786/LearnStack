@@ -337,25 +337,9 @@ export async function adminRoutes(fastify: FastifyInstance) {
       orderBy: { createdAt: 'asc' },
     });
 
-    const products = await prisma.product.findMany({
-      where: {
-        courseId: { in: roadmaps.map((r) => r.id) },
-        active: true,
-      },
-    });
     const productMap = new Map(products.map((p) => [p.courseId, p]));
 
-    const enriched = roadmaps.map((rm) => {
-      const product = productMap.get(rm.id);
-      return {
-        ...rm,
-        priceCents: product?.priceCents ?? 0,
-        currency: product?.currency ?? 'usd',
-        isFree: !product || product.priceCents === 0,
-      };
-    });
-
-    return reply.send(enriched);
+    return reply.send(roadmaps);
   });
 
   // POST /v1/admin/roadmaps - create roadmap
@@ -432,63 +416,6 @@ export async function adminRoutes(fastify: FastifyInstance) {
     }
   );
 
-  // PATCH /v1/admin/roadmaps/:id/price - update course pricing controls
-  app.patch(
-    '/admin/roadmaps/:id/price',
-    {
-      schema: {
-        params: z.object({ id: z.string() }).strict(),
-        body: z
-          .object({
-            priceCents: z.number().int().min(0),
-          })
-          .strict(),
-      },
-    },
-    async (request, reply) => {
-      const { id: courseId } = request.params;
-      const { priceCents } = request.body;
-      const orgId = request.orgId!;
-
-      const roadmap = await prisma.roadmap.findUnique({
-        where: { id: courseId },
-      });
-
-      if (!roadmap) {
-        return reply.status(404).send({
-          error: { message: 'Course not found', code: 'NOT_FOUND' },
-        });
-      }
-
-      // Check if product exists for this course
-      const existingProduct = await prisma.product.findFirst({
-        where: { courseId, active: true },
-      });
-
-      let product;
-      if (existingProduct) {
-        product = await prisma.product.update({
-          where: { id: existingProduct.id },
-          data: {
-            priceCents,
-            active: true,
-          },
-        });
-      } else {
-        product = await prisma.product.create({
-          data: {
-            courseId,
-            priceCents,
-            currency: 'usd',
-            active: true,
-            orgId: roadmap.orgId || orgId,
-          },
-        });
-      }
-
-      return reply.send(product);
-    }
-  );
 
   // DELETE /v1/admin/roadmaps/:id - cascade delete
   app.delete(
