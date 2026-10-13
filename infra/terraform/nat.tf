@@ -70,11 +70,24 @@ resource "aws_route" "private_nat" {
   network_interface_id = data.aws_network_interface.nat.id
 }
 
-# Look up the NAT instance's network interface (populated after ASG creates it)
-data "aws_network_interface" "nat" {
+# Get the NAT instance ID from the ASG
+data "aws_instances" "nat" {
   filter {
     name   = "tag:Name"
     values = ["learnstack-nat"]
   }
+  filter {
+    name   = "instance-state-name"
+    values = ["running"]
+  }
   depends_on = [aws_autoscaling_group.nat]
+}
+
+# Look up the NAT instance's primary network interface
+data "aws_network_interface" "nat" {
+  filter {
+    name   = "attachment.instance-id"
+    values = [data.aws_instances.nat.ids[0]]
+  }
+  depends_on = [data.aws_instances.nat]
 }
