@@ -14,7 +14,7 @@ COPY packages/db ./packages/db
 COPY apps/api ./apps/api
 # Build shared package then API
 RUN pnpm --filter @learnstack/shared build
-RUN pnpm --filter db build
+RUN DATABASE_URL=postgresql://dummy:dummy@localhost:5432/dummy pnpm --filter db build
 RUN pnpm --filter @learnstack/api build
 
 # Stage 2: Production image (smaller, no dev deps)
