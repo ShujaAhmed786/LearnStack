@@ -11,8 +11,6 @@ const envSchema = z.object({
   NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
   EMAIL_USER: z.string().optional(),
   EMAIL_PASS: z.string().optional(),
-  STRIPE_SECRET_KEY: z.string().default('sk_test_placeholder_key'),
-  STRIPE_WEBHOOK_SECRET: z.string().default('whsec_placeholder_secret'),
   GOOGLE_CLIENT_ID: z.string().optional().default(''),
   GOOGLE_CLIENT_SECRET: z.string().optional().default(''),
   MICROSOFT_CLIENT_ID: z.string().optional().default(''),
