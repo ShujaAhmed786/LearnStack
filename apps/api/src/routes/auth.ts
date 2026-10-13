@@ -135,12 +135,14 @@ export async function authRoutes(fastify: FastifyInstance) {
       }
 
       if (user.emailVerified) {
-        // Already verified: set session and return user
-        setSessionCookie(
-          reply,
-          { userId: user.id, orgId: user.orgId },
-          env.NODE_ENV === 'production'
-        );
+        // C1: Already verified - do NOT grant session here, require login
+        // (prevents account takeover via email enumeration)
+        return reply.status(400).send({
+          error: {
+            message: 'Email already verified. Please log in.',
+            code: 'ALREADY_VERIFIED',
+          },
+        });
 
         return reply.send({
           user: {
