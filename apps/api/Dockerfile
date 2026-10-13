@@ -32,6 +32,4 @@ RUN mkdir -p /app/uploads && chown -R node:node /app
 # Run as non-root for security
 USER node
 EXPOSE 3001
-# Run Prisma migrations on startup, then start the app
-# (migrations are idempotent - safe to run on every startup)
-CMD ["sh", "-c", "npx prisma migrate deploy --schema=/app/packages/db/prisma/schema.prisma && node apps/api/dist/index.js"]
+CMD ["node", "apps/api/dist/index.js"]
