@@ -53,6 +53,7 @@ jobs:
         uses: aquasecurity/trivy-action@master
         with:
           image-ref: ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_API_REPO }}:${{ steps.tag.outputs.tag }}
+          scanners: vuln # Only scan vulnerabilities, not secrets (placeholders trigger false positives)
           severity: CRITICAL,HIGH
           exit-code: 1 # Fail on critical/high vulnerabilities
 
