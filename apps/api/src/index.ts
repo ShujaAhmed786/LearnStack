@@ -1,4 +1,4 @@
-import fastify, { FastifyError } from 'fastify';
+import fastify, { FastifyError, FastifyRequest } from 'fastify';
 import helmet from '@fastify/helmet';
 import cors from '@fastify/cors';
 import rateLimit from '@fastify/rate-limit';
@@ -27,7 +27,7 @@ import { analyticsRoutes } from './routes/analytics.js';
 async function bootstrap() {
   const app = fastify({
     logger: {
-      level: env.NODE_ENV === 'production' ? 'info' : 'info',
+      level: env.NODE_ENV === 'production' ? 'info' : 'debug',
       redact: [
         'req.headers.authorization',
         'req.headers.cookie',
@@ -54,7 +54,7 @@ async function bootstrap() {
 
   app.addContentTypeParser('application/json', { parseAs: 'buffer' }, (req, body, done) => {
     try {
-      (req as any).rawBody = body;
+      (req as FastifyRequest & { rawBody: Buffer }).rawBody = body as Buffer;
       const json = JSON.parse(body.toString());
       done(null, json);
     } catch (err: any) {
@@ -108,7 +108,9 @@ async function bootstrap() {
   });
 
   await app.register(cors, {
-    origin: [env.CORS_ORIGIN, 'http://localhost:5173', 'http://127.0.0.1:5173'],
+    origin: env.NODE_ENV === 'production'
+      ? [env.CORS_ORIGIN]
+      : [env.CORS_ORIGIN, 'http://localhost:5173', 'http://127.0.0.1:5173'],
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   });
@@ -148,8 +150,16 @@ async function bootstrap() {
   await app.register(discussionRoutes, { prefix: '/v1' });
   await app.register(analyticsRoutes, { prefix: '/v1' });
 
-  // Health check
-  app.get('/health', async () => ({ status: 'ok' }));
+  // Health check (tests DB connectivity)
+  app.get('/health', async () => {
+    try {
+      const { prisma } = await import('db');
+      await prisma.$queryRaw`SELECT 1`;
+      return { status: 'ok', database: 'connected' };
+    } catch {
+      return { status: 'degraded', database: 'disconnected' };
+    }
+  });
 
   try {
     await app.listen({ port: env.PORT, host: '0.0.0.0' });
@@ -158,6 +168,22 @@ async function bootstrap() {
     app.log.error(err);
     process.exit(1);
   }
+
+  // Graceful shutdown for ECS
+  const shutdown = async (signal: string) => {
+    app.log.info(`Received ${signal}, shutting down gracefully`);
+    try {
+      await app.close();
+      app.log.info('Server closed');
+      process.exit(0);
+    } catch (err) {
+      app.log.error('Error during shutdown', err);
+      process.exit(1);
+    }
+  };
+
+  process.on('SIGTERM', () => shutdown('SIGTERM'));
+  process.on('SIGINT', () => shutdown('SIGINT'));
 }
 
 bootstrap();
