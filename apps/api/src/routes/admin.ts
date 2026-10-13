@@ -337,8 +337,6 @@ export async function adminRoutes(fastify: FastifyInstance) {
       orderBy: { createdAt: 'asc' },
     });
 
-    const productMap = new Map(products.map((p) => [p.courseId, p]));
-
     return reply.send(roadmaps);
   });
 
