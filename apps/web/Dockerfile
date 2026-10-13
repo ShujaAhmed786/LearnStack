@@ -16,5 +16,9 @@ FROM nginx:alpine AS production
 COPY --from=builder /app/apps/web/dist /usr/share/nginx/html
 # Copy nginx config for SPA routing
 COPY apps/web/nginx.conf /etc/nginx/conf.d/default.conf
+# Run as non-root for security
+RUN chown -R nginx:nginx /usr/share/nginx/html /var/cache/nginx /var/run /var/log/nginx && \
+    chmod -R 755 /usr/share/nginx/html
+USER nginx
 EXPOSE 8080
 CMD ["nginx", "-g", "daemon off;"]
