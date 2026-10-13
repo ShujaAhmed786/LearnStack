@@ -1,7 +1,7 @@
 # Stage 1: Build the React app
 FROM node:22-alpine AS builder
 WORKDIR /app
-COPY package.json pnpm-workspace.yaml pnpm-lock.yaml ./
+COPY package.json pnpm-workspace.yaml pnpm-lock.yaml tsconfig.base.json ./
 COPY packages/shared/package.json ./packages/shared/
 COPY apps/web/package.json ./apps/web/
 RUN corepack enable && pnpm install --frozen-lockfile
