@@ -22,7 +22,7 @@ export function setSessionCookie(reply: FastifyReply, data: SessionData, isProdu
     path: '/',
     httpOnly: true,
     secure: isProduction,
-    sameSite: 'strict',
+    sameSite: 'lax',
     signed: true,
     maxAge: 7 * 24 * 60 * 60, // 7 days
   });
@@ -32,7 +32,7 @@ export function clearSessionCookie(reply: FastifyReply) {
   reply.clearCookie('session', {
     path: '/',
     httpOnly: true,
-    sameSite: 'strict',
+    sameSite: 'lax',
   });
 }
 
@@ -87,8 +87,11 @@ const authPlugin: FastifyPluginAsync = async (fastify) => {
         request.user = user;
         request.orgId = user.orgId;
       }
-    } catch {
-      // Ignore invalid session
+    } catch (err) {
+      // Invalid session, ignore but don't swallow silently in dev
+      if (process.env.NODE_ENV !== 'production') {
+        console.debug('Invalid session:', err);
+      }
     }
   });
 
