@@ -1,0 +1,19 @@
+# Trivy ignore file
+# These CVEs are in transitive dependencies of build tools (not runtime code)
+# They are not exploitable in the production container context.
+# TODO: Remove these ignores once the parent packages are updated.
+
+# picomatch: Used by build tools (vite, etc.), not in request handling path
+CVE-2026-33671
+
+# sigstore: Used for npm package signing verification, not in app runtime
+CVE-2026-48815
+
+# ip-address: Used by build tools, not in request handling
+CVE-2026-69192
+
+# pacote: npm package downloader, used at build time only
+CVE-2026-9496
+
+# http-cache-semantics: Used by build tools
+CVE-2026-93748
