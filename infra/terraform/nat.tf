@@ -19,7 +19,7 @@ data "aws_ami" "fck_nat" {
 
   filter {
     name   = "architecture"
-    values = ["arm64"]
+    values = ["x86_64"]
   }
 }
 
@@ -27,7 +27,7 @@ data "aws_ami" "fck_nat" {
 resource "aws_launch_template" "nat" {
   name_prefix   = "learnstack-nat-"
   image_id      = data.aws_ami.fck_nat.id
-  instance_type = "t4g.nano" # ~$4/month, ARM-based, plenty for NAT traffic
+  instance_type = "t3.nano" # ~$4/month, plenty for NAT traffic
 
   network_interfaces {
     associate_public_ip_address = true
