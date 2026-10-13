@@ -1,8 +1,0 @@
-FROM node:20-alpine
-WORKDIR /app
-COPY apps/api/package.json pnpm-lock.yaml pnpm-workspace.yaml ./
-COPY apps/api/ ./apps/api/
-WORKDIR /app/apps/api
-RUN npm install -g pnpm && pnpm install --frozen-lockfile && pnpm build && pnpm install --prod --frozen-lockfile
-EXPOSE 3001
-CMD ["node", "dist/index.js"]
