@@ -16,7 +16,7 @@ jobs:
 
       - uses: pnpm/action-setup@v4
         with:
-          version: 9
+          version: 12
 
       - uses: actions/setup-node@v4
         with:
@@ -26,14 +26,32 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Lint
-        run: pnpm --filter @learnstack/api exec eslint . || echo "No eslint config, skipping"
-
       - name: Typecheck API
         run: pnpm --filter @learnstack/api exec tsc --noEmit
 
       - name: Typecheck Web
         run: pnpm --filter @learnstack/web exec tsc --noEmit
 
+      - name: Typecheck Shared
+        run: pnpm --filter @learnstack/shared exec tsc --noEmit
+
+      - name: Typecheck DB
+        run: pnpm --filter db exec tsc --noEmit
+
       - name: Run API tests
         run: pnpm --filter @learnstack/api test || echo "No tests yet"
+
+  semgrep:
+    name: Semgrep SAST scan
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run Semgrep
+        uses: semgrep/semgrep-action@v1
+        with:
+          config: >-
+            p/security-audit
+            p/secrets
+            p/typescript
