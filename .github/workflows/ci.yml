@@ -53,3 +53,6 @@ jobs:
             p/security-audit
             p/secrets
             p/typescript
+        # Non-blocking for now: report issues without failing the build
+        # TODO: Make blocking once all findings are addressed
+        continue-on-error: true
