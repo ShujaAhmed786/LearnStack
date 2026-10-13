@@ -16,6 +16,11 @@ data "aws_ami" "fck_nat" {
     name   = "name"
     values = ["fck-nat-al2023-*"]
   }
+
+  filter {
+    name   = "architecture"
+    values = ["arm64"]
+  }
 }
 
 # Launch template for fck-nat
