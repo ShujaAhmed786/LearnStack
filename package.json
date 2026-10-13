@@ -13,6 +13,8 @@
   },
   "devDependencies": {
     "concurrently": "^9.1.2",
-    "typescript": "^5.7.3"
+    "typescript": "^5.7.3",
+    "picomatch": "4.0.7",
+    "sigstore": "4.1.1"
   }
 }
