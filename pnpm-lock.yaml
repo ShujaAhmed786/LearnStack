@@ -163,7 +163,7 @@ settings:
   excludeLinksFromLockfile: false
 
 overrides:
-  picomatch: 4.0.6
+  picomatch: 4.0.7
   sigstore: 4.1.1
 
 importers:
@@ -1803,8 +1803,8 @@ packages:
   picocolors@1.1.1:
     resolution: {integrity: sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==}
 
-  picomatch@4.0.6:
-    resolution: {integrity: sha512-bXCx4Swq84mgU01b/0qifY6DMxlxszBpLJ8z8elFD5gdpJ758VsAr8UzGvnDszOPHfV1p/292BOYv18XuDs+iA==}
+  picomatch@4.0.7:
+    resolution: {integrity: sha512-qcJu88Q2IWqJsDD529JKMdwGm/dvInW4HvQnRwiH9JtihJvzGOscDtHE3x1pBKeUOTysQ8kVmLnJ2kJu7yhcGA==}
     engines: {node: '>=12'}
 
   pino-abstract-transport@3.0.0:
@@ -2920,7 +2920,7 @@ snapshots:
   anymatch@3.1.3:
     dependencies:
       normalize-path: 3.0.0
-      picomatch: 4.0.6
+      picomatch: 4.0.7
 
   arg@5.0.2: {}
 
@@ -3284,9 +3284,9 @@ snapshots:
     dependencies:
       reusify: 1.1.0
 
-  fdir@6.5.0(picomatch@4.0.6):
+  fdir@6.5.0(picomatch@4.0.7):
     optionalDependencies:
-      picomatch: 4.0.6
+      picomatch: 4.0.7
 
   fflate@0.8.3: {}
 
@@ -3435,7 +3435,7 @@ snapshots:
   micromatch@4.0.8:
     dependencies:
       braces: 3.0.3
-      picomatch: 4.0.6
+      picomatch: 4.0.7
 
   minimist@1.2.8: {}
 
@@ -3513,7 +3513,7 @@ snapshots:
 
   picocolors@1.1.1: {}
 
-  picomatch@4.0.6: {}
+  picomatch@4.0.7: {}
 
   pino-abstract-transport@3.0.0:
     dependencies:
@@ -3670,7 +3670,7 @@ snapshots:
 
   readdirp@3.6.0:
     dependencies:
-      picomatch: 4.0.6
+      picomatch: 4.0.7
 
   readdirp@4.1.2: {}
 
@@ -3861,8 +3861,8 @@ snapshots:
 
   tinyglobby@0.2.17:
     dependencies:
-      fdir: 6.5.0(picomatch@4.0.6)
-      picomatch: 4.0.6
+      fdir: 6.5.0(picomatch@4.0.7)
+      picomatch: 4.0.7
 
   to-regex-range@5.0.1:
     dependencies:
@@ -3937,8 +3937,8 @@ snapshots:
   vite@6.4.4(@types/node@22.20.5)(jiti@1.21.7)(tsx@4.23.15):
     dependencies:
       esbuild: 0.25.12
-      fdir: 6.5.0(picomatch@4.0.6)
-      picomatch: 4.0.6
+      fdir: 6.5.0(picomatch@4.0.7)
+      picomatch: 4.0.7
       postcss: 8.5.29
       rollup: 4.64.5
       tinyglobby: 0.2.17
