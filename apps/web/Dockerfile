@@ -1,6 +1,10 @@
 # Stage 1: Build the React app
 FROM node:22-alpine AS builder
 WORKDIR /app
+# API URL for frontend (Vite embeds at build time)
+# The ALB routes /v1/* to the API
+ARG VITE_API_BASE_URL=https://app.shujaahmed.dev
+ENV VITE_API_BASE_URL=$VITE_API_BASE_URL
 COPY package.json pnpm-workspace.yaml pnpm-lock.yaml tsconfig.base.json ./
 COPY packages/shared/package.json ./packages/shared/
 COPY apps/web/package.json ./apps/web/
