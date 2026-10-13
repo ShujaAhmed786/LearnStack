@@ -52,7 +52,6 @@ async function bootstrap() {
   app.setValidatorCompiler(validatorCompiler);
   app.setSerializerCompiler(serializerCompiler);
 
-  // Preserve raw buffer on requests for Stripe webhook verification
   app.addContentTypeParser('application/json', { parseAs: 'buffer' }, (req, body, done) => {
     try {
       (req as any).rawBody = body;
