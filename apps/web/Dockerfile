@@ -16,9 +16,13 @@ FROM nginx:alpine AS production
 COPY --from=builder /app/apps/web/dist /usr/share/nginx/html
 # Copy nginx config for SPA routing
 COPY apps/web/nginx.conf /etc/nginx/conf.d/default.conf
-# Run as non-root for security
-RUN chown -R nginx:nginx /usr/share/nginx/html /var/cache/nginx /var/run /var/log/nginx && \
-    chmod -R 755 /usr/share/nginx/html
+# Fix for non-root: nginx needs writable pid file and directories
+# Create nginx cache and run directories with correct permissions
+RUN mkdir -p /var/cache/nginx /var/run /var/log/nginx /tmp/nginx && \
+    chown -R nginx:nginx /usr/share/nginx/html /var/cache/nginx /var/run /var/log/nginx /tmp/nginx && \
+    chmod -R 755 /usr/share/nginx/html && \
+    # Change pid file location to writable /tmp
+    sed -i 's|pid /run/nginx.pid;|pid /tmp/nginx/nginx.pid;|' /etc/nginx/nginx.conf
 USER nginx
 EXPOSE 8080
 CMD ["nginx", "-g", "daemon off;"]
