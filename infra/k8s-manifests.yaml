@@ -3,6 +3,16 @@ kind: Namespace
 metadata:
   name: learnstack
 ---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: learnstack-secrets
+  namespace: learnstack
+type: Opaque
+stringData:
+  DATABASE_URL: "postgresql://learnstack:LearnStack2026Secure!@10.1.2.181:5432/learnstack"
+  JWT_SECRET: "learnstack-jwt-secret-change-in-production"
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -18,11 +28,6 @@ spec:
       labels:
         app: learnstack-api
     spec:
-      securityContext:
-        runAsNonRoot: true
-        runAsUser: 1000
-        seccompProfile:
-          type: RuntimeDefault
       containers:
       - name: api
         image: ghcr.io/shujaahmed786/learnstack-api:latest
@@ -33,43 +38,21 @@ spec:
           valueFrom:
             secretKeyRef:
               name: learnstack-secrets
-              key: database-url
-        - name: SESSION_SECRET
+              key: DATABASE_URL
+        - name: JWT_SECRET
           valueFrom:
             secretKeyRef:
               name: learnstack-secrets
-              key: session-secret
-        - name: CORS_ORIGIN
-          value: "https://learnstack.yourdomain.com"
-        - name: NODE_ENV
-          value: "production"
+              key: JWT_SECRET
         - name: PORT
           value: "3001"
         resources:
           requests:
-            memory: "128Mi"
-            cpu: "100m"
-          limits:
             memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
             cpu: "500m"
-        livenessProbe:
-          httpGet:
-            path: /health
-            port: 3001
-          initialDelaySeconds: 15
-          periodSeconds: 20
-        readinessProbe:
-          httpGet:
-            path: /health
-            port: 3001
-          initialDelaySeconds: 5
-          periodSeconds: 10
-        securityContext:
-          allowPrivilegeEscalation: false
-          readOnlyRootFilesystem: true
-          capabilities:
-            drop:
-            - ALL
 ---
 apiVersion: v1
 kind: Service
@@ -80,7 +63,7 @@ spec:
   selector:
     app: learnstack-api
   ports:
-  - port: 80
+  - port: 3001
     targetPort: 3001
 ---
 apiVersion: apps/v1
@@ -98,29 +81,18 @@ spec:
       labels:
         app: learnstack-web
     spec:
-      securityContext:
-        runAsNonRoot: true
-        runAsUser: 1000
-        seccompProfile:
-          type: RuntimeDefault
       containers:
       - name: web
         image: ghcr.io/shujaahmed786/learnstack-web:latest
         ports:
-        - containerPort: 8080
+        - containerPort: 80
         resources:
           requests:
-            memory: "64Mi"
-            cpu: "50m"
-          limits:
             memory: "128Mi"
-            cpu: "200m"
-        securityContext:
-          allowPrivilegeEscalation: false
-          readOnlyRootFilesystem: true
-          capabilities:
-            drop:
-            - ALL
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "250m"
 ---
 apiVersion: v1
 kind: Service
@@ -132,4 +104,4 @@ spec:
     app: learnstack-web
   ports:
   - port: 80
-    targetPort: 8080
+    targetPort: 80
