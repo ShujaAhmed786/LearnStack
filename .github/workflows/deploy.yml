@@ -39,13 +39,15 @@ jobs:
 
       - name: Build and push API image
         run: |
-          docker build -f apps/api/Dockerfile -t ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_API_REPO }}:${{ steps.tag.outputs.tag }} .
+          docker build -f apps/api/Dockerfile -t ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_API_REPO }}:${{ steps.tag.outputs.tag }} -t ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_API_REPO }}:latest .
           docker push ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_API_REPO }}:${{ steps.tag.outputs.tag }}
+          docker push ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_API_REPO }}:latest
 
       - name: Build and push Web image
         run: |
-          docker build -f apps/web/Dockerfile -t ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_WEB_REPO }}:${{ steps.tag.outputs.tag }} .
+          docker build -f apps/web/Dockerfile -t ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_WEB_REPO }}:${{ steps.tag.outputs.tag }} -t ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_WEB_REPO }}:latest .
           docker push ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_WEB_REPO }}:${{ steps.tag.outputs.tag }}
+          docker push ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_WEB_REPO }}:latest
 
       - name: Scan API image with Trivy
         uses: aquasecurity/trivy-action@master
