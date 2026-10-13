@@ -1,0 +1,30 @@
+# Stage 1: Build the API
+FROM node:22-alpine AS builder
+WORKDIR /app
+# Copy workspace config first for better layer caching
+COPY package.json pnpm-workspace.yaml pnpm-lock.yaml ./
+COPY packages/shared/package.json ./packages/shared/
+COPY apps/api/package.json ./apps/api/
+# Install all dependencies (including dev)
+RUN corepack enable && pnpm install --frozen-lockfile
+# Copy source code
+COPY packages/shared ./packages/shared
+COPY apps/api ./apps/api
+# Build shared package then API
+RUN pnpm --filter @learnstack/shared build
+RUN pnpm --filter @learnstack/api build
+
+# Stage 2: Production image (smaller, no dev deps)
+FROM node:22-alpine AS production
+WORKDIR /app
+COPY package.json pnpm-workspace.yaml pnpm-lock.yaml ./
+COPY packages/shared/package.json ./packages/shared/
+COPY apps/api/package.json ./apps/api/
+RUN corepack enable && pnpm install --frozen-lockfile --prod
+# Copy only the built output from builder stage
+COPY --from=builder /app/packages/shared/dist ./packages/shared/dist
+COPY --from=builder /app/apps/api/dist ./apps/api/dist
+# Run as non-root for security
+USER node
+EXPOSE 3001
+CMD ["node", "apps/api/dist/index.js"]
