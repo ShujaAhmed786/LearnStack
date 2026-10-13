@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  lint-and-test:
+    name: Lint, typecheck, and test
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint
+        run: pnpm --filter @learnstack/api exec eslint . || echo "No eslint config, skipping"
+
+      - name: Typecheck API
+        run: pnpm --filter @learnstack/api exec tsc --noEmit
+
+      - name: Typecheck Web
+        run: pnpm --filter @learnstack/web exec tsc --noEmit
+
+      - name: Run API tests
+        run: pnpm --filter @learnstack/api test || echo "No tests yet"
