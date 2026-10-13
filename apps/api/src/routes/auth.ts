@@ -143,26 +143,7 @@ export async function authRoutes(fastify: FastifyInstance) {
             code: 'ALREADY_VERIFIED',
           },
         });
-
-        return reply.send({
-          user: {
-            id: user.id,
-            email: user.email,
-            name: user.name,
-            role: user.role,
-            orgId: user.orgId,
-            emailVerified: true,
-            createdAt: user.createdAt,
-          },
-          org: {
-            id: user.org.id,
-            name: user.org.name,
-            slug: user.org.slug,
-            logoUrl: user.org.logoUrl,
-            primaryColor: user.org.primaryColor,
-            createdAt: user.org.createdAt,
-          },
-        });
+      }
       }
 
       const verification = user.emailVerification;
