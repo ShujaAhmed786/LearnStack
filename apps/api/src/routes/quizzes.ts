@@ -711,8 +711,23 @@ export async function quizRoutes(fastify: FastifyInstance) {
           })
         : null;
 
-      return reply.send({
+      // C7: Strip correct answers from questions unless completed or staff
+      // (prevents learners from reading answers before submitting)
+      const canSeeAnswers = !!attempt.completedAt || isInstructorOrAdmin;
+      const sanitizedAttempt = {
         ...attempt,
+        quiz: {
+          ...attempt.quiz,
+          questions: attempt.quiz.questions.map((q) => {
+            if (canSeeAnswers) return q;
+            const { correctAnswer, explanation, ...rest } = q;
+            return rest;
+          }),
+        },
+      };
+
+      return reply.send({
+        ...sanitizedAttempt,
         feedback,
       });
     }
