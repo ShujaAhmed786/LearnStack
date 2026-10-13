@@ -119,12 +119,13 @@ resource "aws_ecs_task_definition" "api" {
 
     environment = [
       { name = "NODE_ENV", value = "production" },
-      { name = "PORT", value = "3001" }
+      { name = "PORT", value = "3001" },
+      { name = "CORS_ORIGIN", value = "https://app.shujaahmed.dev" }
     ]
 
     # Health check for ALB target group
     healthCheck = {
-      command     = ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost:3001/v1/health || exit 1"]
+      command     = ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost:3001/health || exit 1"]
       interval    = 30
       timeout     = 5
       retries     = 3
