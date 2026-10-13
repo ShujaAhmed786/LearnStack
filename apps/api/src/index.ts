@@ -19,7 +19,6 @@ import { progressRoutes } from './routes/progress.js';
 import { roadmapRoutes } from './routes/roadmaps.js';
 import { practiceRoutes } from './routes/practices.js';
 import { adminRoutes } from './routes/admin.js';
-import { paymentRoutes } from './routes/payments.js';
 import { certificateRoutes } from './routes/certificates.js';
 import { liveSessionRoutes } from './routes/live-sessions.js';
 import { discussionRoutes } from './routes/discussions.js';
@@ -145,7 +144,6 @@ async function bootstrap() {
   await app.register(roadmapRoutes, { prefix: '/v1' });
   await app.register(practiceRoutes, { prefix: '/v1' });
   await app.register(adminRoutes, { prefix: '/v1' });
-  await app.register(paymentRoutes, { prefix: '/v1' });
   await app.register(certificateRoutes, { prefix: '/v1' });
   await app.register(liveSessionRoutes, { prefix: '/v1' });
   await app.register(discussionRoutes, { prefix: '/v1' });
