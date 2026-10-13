@@ -8,3 +8,7 @@ allowBuilds:
   'argon2': true
   'esbuild': true
   'prisma': true
+
+overrides:
+  picomatch: 4.0.6
+  sigstore: 4.1.1
