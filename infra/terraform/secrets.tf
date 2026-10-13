@@ -10,12 +10,7 @@ resource "aws_secretsmanager_secret" "db_url" {
 resource "aws_secretsmanager_secret_version" "db_url" {
   secret_id = aws_secretsmanager_secret.db_url.id
   secret_string = jsonencode({
-    # Connection details (password from RDS-managed secret at runtime)
-    host           = aws_db_instance.main.address
-    port           = aws_db_instance.main.port
-    dbname         = aws_db_instance.main.db_name
-    username       = aws_db_instance.main.username
-    # rds_secret_arn available after apply: aws_db_instance.main.master_user_secret[0].secret_arn
+    DATABASE_URL = "postgresql://${aws_db_instance.main.username}:${jsondecode(data.aws_secretsmanager_secret_version.rds_password.secret_string)["password"]}@${aws_db_instance.main.address}:${aws_db_instance.main.port}/${aws_db_instance.main.db_name}"
   })
 }
 
