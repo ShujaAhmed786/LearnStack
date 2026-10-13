@@ -29,9 +29,9 @@ RUN corepack enable && pnpm install --frozen-lockfile --prod
 COPY --from=builder /app/packages/shared/dist ./packages/shared/dist
 COPY --from=builder /app/packages/db/dist ./packages/db/dist
 COPY --from=builder /app/apps/api/dist ./apps/api/dist
-# C5: Copy Prisma Client (generated in builder, needed at runtime)
-COPY --from=builder /app/node_modules/.prisma ./node_modules/.prisma
-COPY --from=builder /app/node_modules/@prisma ./node_modules/@prisma
+# C5: Copy Prisma schema and generate client in production stage
+# (prisma CLI is dev-only, so we copy the generated client from builder)
+COPY --from=builder /app/packages/db/prisma ./packages/db/prisma
 # C6: Create uploads dir with correct permissions before switching user
 RUN mkdir -p /app/uploads && chown -R node:node /app
 # Run as non-root for security
