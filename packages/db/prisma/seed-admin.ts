@@ -31,7 +31,10 @@ export async function seedAdminUser() {
 
   // 2. Hash password with argon2id
   const email = 'shujaahmed198@gmail.com';
-  const password = 'shuja123';
+  const password = process.env.SEED_ADMIN_PASSWORD;
+if (!password) {
+  throw new Error('SEED_ADMIN_PASSWORD env var is required for seeding admin');
+};
   const passwordHash = await argon2.hash(password, {
     type: argon2.argon2id,
   });
