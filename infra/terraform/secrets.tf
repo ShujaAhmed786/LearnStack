@@ -1,6 +1,7 @@
 # Secrets Manager: never put passwords in code or env files
 
-# Database connection URL (constructed from RDS outputs)
+# Database connection URL
+# Note: password comes from RDS-managed secret, not Terraform vars
 resource "aws_secretsmanager_secret" "db_url" {
   name = "learnstack/db-url"
   tags = { Name = "learnstack-db-url" }
@@ -31,13 +32,7 @@ resource "aws_secretsmanager_secret_version" "session_secret" {
   })
 }
 
-# Database master password (also stored for reference)
-resource "aws_secretsmanager_secret" "db_password" {
-  name = "learnstack/db-password"
-  tags = { Name = "learnstack-db-password" }
-}
-
-resource "aws_secretsmanager_secret_version" "db_password" {
-  secret_id     = aws_secretsmanager_secret.db_password.id
-  secret_string = jsonencode({ password = var.db_password })
-}
+# Note: RDS master password is now managed by RDS itself
+# (manage_master_user_password = true). The secret ARN is available as:
+# aws_db_instance.main.master_user_secret[0].secret_arn
+# ECS tasks should read the password from there.
