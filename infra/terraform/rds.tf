@@ -21,7 +21,7 @@ resource "aws_db_instance" "main" {
 
   db_name  = "learnstack"
   username = "postgres"
-  password = var.db_password # Set via TF_VAR_db_password, stored in Secrets Manager too
+  manage_master_user_password = true # Set via TF_VAR_db_password, stored in Secrets Manager too
 
   # Multi-AZ: standby replica in another AZ, auto-failover in 60-120 seconds
   multi_az = true
