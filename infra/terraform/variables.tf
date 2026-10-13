@@ -16,12 +16,6 @@ variable "app_subdomain" {
   default     = "app"
 }
 
-variable "db_password" {
-  description = "RDS master password (set via TF_VAR_db_password, never commit)"
-  type        = string
-  sensitive   = true
-}
-
 variable "ecs_instance_type" {
   description = "EC2 instance type for ECS cluster"
   type        = string
