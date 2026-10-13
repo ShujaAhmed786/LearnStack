@@ -11,11 +11,6 @@ const envSchema = z.object({
   NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
   EMAIL_USER: z.string().optional(),
   EMAIL_PASS: z.string().optional(),
-  GOOGLE_CLIENT_ID: z.string().optional().default(''),
-  GOOGLE_CLIENT_SECRET: z.string().optional().default(''),
-  MICROSOFT_CLIENT_ID: z.string().optional().default(''),
-  MICROSOFT_CLIENT_SECRET: z.string().optional().default(''),
-  OAUTH_CALLBACK_URL: z.string().optional().default('http://localhost:3001'),
 });
 
 const parsed = envSchema.safeParse(process.env);
