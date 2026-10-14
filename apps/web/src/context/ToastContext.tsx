@@ -1,1 +1,36 @@
-aW1wb3J0IFJlYWN0LCB7IGNyZWF0ZUNvbnRleHQsIHVzZUNvbnRleHQsIHVzZVN0YXRlLCB1c2VDYWxsYmFjayB9IGZyb20gJ3JlYWN0JzsKaW1wb3J0IHsgVG9hc3RDb250YWluZXIsIFRvYXN0RGF0YSwgVG9hc3RUeXBlIH0gZnJvbSAnLi4vY29tcG9uZW50cy9Ub2FzdCc7CgppbnRlcmZhY2UgVG9hc3RDb250ZXh0VHlwZSB7CiAgc2hvd1RvYXN0OiAobWVzc2FnZTogc3RyaW5nLCB0eXBlPzogVG9hc3RUeXBlKSA9PiB2b2lkOwp9Cgpjb25zdCBUb2FzdENvbnRleHQgPSBjcmVhdGVDb250ZXh0PFRvYXN0Q29udGV4dFR5cGUgfCB1bmRlZmluZWQ+KHVuZGVmaW5lZCk7CgpsZXQgdG9hc3RJZCA9IDA7CgpleHBvcnQgZnVuY3Rpb24gVG9hc3RQcm92aWRlcih7IGNoaWxkcmVuIH06IHsgY2hpbGRyZW46IFJlYWN0LlJlYWN0Tm9kZSB9KSB7CiAgY29uc3QgW3RvYXN0cywgc2V0VG9hc3RzXSA9IHVzZVN0YXRlPFRvYXN0RGF0YVtdPihbXSk7CgogIGNvbnN0IGRpc21pc3MgPSB1c2VDYWxsYmFjaygoaWQ6IG51bWJlcikgPT4gewogICAgc2V0VG9hc3RzKChwcmV2KSA9PiBwcmV2LmZpbHRlcigodCkgPT4gdC5pZCAhPT0gaWQpKTsKICB9LCBbXSk7CgogIGNvbnN0IHNob3dUb2FzdCA9IHVzZUNhbGxiYWNrKChtZXNzYWdlOiBzdHJpbmcsIHR5cGU6IFRvYXN0VHlwZSA9ICdlcnJvcicpID0+IHsKICAgIGNvbnN0IGlkID0gKyt0b2FzdElkOwogICAgc2V0VG9hc3RzKChwcmV2KSA9PiBbLi4ucHJldi5zbGljZSgtMiksIHsgaWQsIG1lc3NhZ2UsIHR5cGUgfV0pOwogIH0sIFtdKTsKCiAgcmV0dXJuICgKICAgIDxUb2FzdENvbnRleHQuUHJvdmlkZXIgdmFsdWU9e3sgc2hvd1RvYXN0IH19PgogICAgICB7Y2hpbGRyZW59CiAgICAgIDxUb2FzdENvbnRhaW5lciB0b2FzdHM9e3RvYXN0c30gb25EaXNtaXNzPXtkaXNtaXNzfSAvPgogICAgPC9Ub2FzdENvbnRleHQuUHJvdmlkZXI+CiAgKTsKfQoKZXhwb3J0IGZ1bmN0aW9uIHVzZVRvYXN0KCk6IFRvYXN0Q29udGV4dFR5cGUgewogIGNvbnN0IGN0eCA9IHVzZUNvbnRleHQoVG9hc3RDb250ZXh0KTsKICBpZiAoIWN0eCkgewogICAgdGhyb3cgbmV3IEVycm9yKCd1c2VUb2FzdCBtdXN0IGJlIHVzZWQgd2l0aGluIGEgVG9hc3RQcm92aWRlcicpOwogIH0KICByZXR1cm4gY3R4Owp9Cg==
+import React, { createContext, useContext, useState, useCallback } from 'react';
+import Toast, { ToastType } from '../components/Toast';
+
+interface ToastContextType {
+  showToast: (message: string, type?: ToastType) => void;
+}
+
+const ToastContext = createContext<ToastContextType | undefined>(undefined);
+
+export function useToast() {
+  const ctx = useContext(ToastContext);
+  if (!ctx) throw new Error('useToast must be used within ToastProvider');
+  return ctx;
+}
+
+export function ToastProvider({ children }: { children: React.ReactNode }) {
+  const [toasts, setToasts] = useState<Array<{ id: number; message: string; type: ToastType }>>([]);
+
+  const showToast = useCallback((message: string, type: ToastType = 'info') => {
+    const id = Date.now() + Math.random();
+    setToasts(prev => [...prev, { id, message, type }]);
+  }, []);
+
+  const removeToast = useCallback((id: number) => {
+    setToasts(prev => prev.filter(t => t.id !== id));
+  }, []);
+
+  return (
+    <ToastContext.Provider value={{ showToast }}>
+      {children}
+      {toasts.map(t => (
+        <Toast key={t.id} message={t.message} type={t.type} onClose={() => removeToast(t.id)} />
+      ))}
+    </ToastContext.Provider>
+  );
+}
