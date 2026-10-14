@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useSearchParams, Link } from 'react-router-dom';
 import { Layout } from '../components/Layout';
 import { Card } from '../components/Card';
-import { Button } from '../components/Button';
 import { Skeleton } from '../components/Skeleton';
 import { apiFetch } from '../lib/api';
 import { QuestionFeedback, QuizAttempt } from '@learnstack/shared';
@@ -57,8 +56,11 @@ export const QuizResults: React.FC = () => {
         <div className="text-center py-16 bg-surface rounded-xl border border-border p-8 max-w-md mx-auto">
           <h3 className="text-20 font-semibold text-text mb-2">Results Not Found</h3>
           <p className="text-14 text-text-muted mb-4">{error || 'Unable to retrieve quiz results.'}</p>
-          <Link to={`/quizzes/${id || ''}`}>
-            <Button variant="secondary">Back to Quiz</Button>
+          <Link
+            to={`/quizzes/${id || ''}`}
+            className="inline-flex items-center justify-center font-medium rounded-lg transition-colors px-5 py-2.5 text-14 bg-surface border border-border text-text hover:bg-surface-hover shadow-sm"
+          >
+            Back to Quiz
           </Link>
         </div>
       </Layout>
@@ -98,11 +100,12 @@ export const QuizResults: React.FC = () => {
                 </p>
               </div>
             </div>
-            <Link to={`/courses/${courseSlug}`}>
-              <Button variant="primary" className="shrink-0 flex items-center gap-2 w-full sm:w-auto justify-center font-semibold">
-                <span>Return to Course</span>
-                <ArrowRight size={15} />
-              </Button>
+            <Link
+              to={`/courses/${courseSlug}`}
+              className="inline-flex items-center justify-center font-medium rounded-lg transition-colors px-5 py-2.5 text-14 bg-primary text-[#0A1628] hover:bg-primary-hover font-semibold shadow-sm shrink-0 gap-2 w-full sm:w-auto"
+            >
+              <span>Return to Course</span>
+              <ArrowRight size={15} />
             </Link>
           </div>
         )}
@@ -140,25 +143,28 @@ export const QuizResults: React.FC = () => {
           </p>
 
           <div className="flex items-center justify-center gap-4 flex-wrap">
-            <Link to={`/quizzes/${id}${courseSlug ? `?from=course&courseSlug=${courseSlug}` : ''}`}>
-              <Button variant="secondary" className="flex items-center gap-2">
-                <RotateCcw size={16} />
-                <span>Retake Quiz</span>
-              </Button>
+            <Link
+              to={`/quizzes/${id}${courseSlug ? `?from=course&courseSlug=${courseSlug}` : ''}`}
+              className="inline-flex items-center justify-center font-medium rounded-lg transition-colors px-5 py-2.5 text-14 bg-surface border border-border text-text hover:bg-surface-hover shadow-sm gap-2"
+            >
+              <RotateCcw size={16} />
+              <span>Retake Quiz</span>
             </Link>
             {courseSlug ? (
-              <Link to={`/courses/${courseSlug}`}>
-                <Button variant="primary" className="flex items-center gap-2 font-semibold">
-                  <BookOpen size={16} />
-                  <span>Return to Course</span>
-                </Button>
+              <Link
+                to={`/courses/${courseSlug}`}
+                className="inline-flex items-center justify-center font-medium rounded-lg transition-colors px-5 py-2.5 text-14 bg-primary text-[#0A1628] hover:bg-primary-hover font-semibold shadow-sm gap-2"
+              >
+                <BookOpen size={16} />
+                <span>Return to Course</span>
               </Link>
             ) : (
-              <Link to="/quizzes">
-                <Button variant="primary" className="flex items-center gap-2 font-semibold">
-                  <span>All Quizzes</span>
-                  <ArrowRight size={16} />
-                </Button>
+              <Link
+                to="/quizzes"
+                className="inline-flex items-center justify-center font-medium rounded-lg transition-colors px-5 py-2.5 text-14 bg-primary text-[#0A1628] hover:bg-primary-hover font-semibold shadow-sm gap-2"
+              >
+                <span>All Quizzes</span>
+                <ArrowRight size={16} />
               </Link>
             )}
           </div>

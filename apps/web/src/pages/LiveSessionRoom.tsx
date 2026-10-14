@@ -280,10 +280,11 @@ export const LiveSessionRoom: React.FC = () => {
                 Thank you for participating! Check upcoming live classes on the calendar.
               </p>
             </div>
-            <Link to="/live">
-              <Button variant="secondary" className="mt-2 font-medium">
-                View All Live Classes
-              </Button>
+            <Link
+              to="/live"
+              className="inline-flex items-center justify-center font-medium rounded-lg transition-colors px-5 py-2.5 text-14 bg-surface border border-border text-text hover:bg-surface-hover shadow-sm mt-2"
+            >
+              View All Live Classes
             </Link>
           </Card>
         ) : (

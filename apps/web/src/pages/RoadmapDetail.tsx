@@ -32,8 +32,6 @@ import {
   AlertCircle,
   Layers,
   Lock,
-  CreditCard,
-  Sparkles,
   Award,
   Video,
   MessageSquare,
@@ -70,7 +68,6 @@ export const RoadmapDetail: React.FC = () => {
   } | null>(null);
   const [updatingLessonId, setUpdatingLessonId] = useState<string | null>(null);
   const [expandedModules, setExpandedModules] = useState<Set<string>>(new Set());
-  const [enrolling, setEnrolling] = useState(false);
   const [claimedCert, setClaimedCert] = useState<Certificate | null>(null);
   const [claimingCert, setClaimingCert] = useState(false);
   const [liveSessions, setLiveSessions] = useState<LiveSession[]>([]);
@@ -80,23 +77,6 @@ export const RoadmapDetail: React.FC = () => {
   const [newQuestionTitle, setNewQuestionTitle] = useState('');
   const [newQuestionContent, setNewQuestionContent] = useState('');
   const [postingQuestion, setPostingQuestion] = useState(false);
-
-  const handleEnroll = async () => {
-    if (!slug) return;
-    try {
-      setEnrolling(true);
-      const res = await api.post<{ url?: string; enrolled?: boolean }>('/v1/courses/' + slug + '/checkout');
-      if (res.url) {
-        window.location.href = res.url;
-      } else {
-        window.location.reload();
-      }
-    } catch (err: any) {
-      alert(err.message || 'Failed to initiate enrollment checkout');
-    } finally {
-      setEnrolling(false);
-    }
-  };
 
   const handleClaimCertificate = async () => {
     if (!slug) return;
@@ -355,30 +335,6 @@ export const RoadmapDetail: React.FC = () => {
           ]}
         />
 
-        {/* Premium Enrollment Banner */}
-        {!course.isEnrolled && !course.isFree && (
-          <div className="p-6 rounded-2xl bg-gradient-to-r from-primary/10 via-teal-500/10 to-primary/5 border border-primary/25 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-sm">
-            <div className="space-y-1">
-              <div className="flex items-center gap-2 text-primary font-bold text-14">
-                <Sparkles size={16} />
-                <span>Premium Course Enrollment</span>
-              </div>
-              <h3 className="text-20 font-bold text-text">Unlock Full Access to {displayTitle}</h3>
-              <p className="text-14 text-text-muted">
-                Enroll now to access all {overallTotal} lessons, interactive code examples, and pass-certified quizzes.
-              </p>
-            </div>
-            <button
-              onClick={handleEnroll}
-              disabled={enrolling}
-              className="px-6 py-3 rounded-xl bg-primary hover:bg-primary-hover text-[#0A1628] font-bold text-15 shadow-md flex items-center justify-center gap-2 whitespace-nowrap transition-colors shrink-0"
-            >
-              <CreditCard size={18} />
-              <span>{enrolling ? 'Connecting to Stripe...' : `Enroll Now for $${((course.priceCents || 0) / 100).toFixed(0)}`}</span>
-            </button>
-          </div>
-        )}
-
         {/* Top Header Card with Overall Progress */}
         <Card className="p-6 bg-surface border-border">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
@@ -533,7 +489,7 @@ export const RoadmapDetail: React.FC = () => {
 
             {course.stages?.map((module, moduleIdx) => {
               const modulePercent = module.percentComplete ?? 0;
-              const moduleTotal = module.totalTopics ?? module.topics.length;
+              const moduleTotal = module.totalTopics ?? module.topics?.length ?? 0;
               const moduleCompleted =
                 module.completedTopics ??
                 module.topics.filter((t) => t.completed).length;
@@ -750,18 +706,6 @@ export const RoadmapDetail: React.FC = () => {
                         This lesson is part of a premium course. Enroll now to unlock all modules, video lessons, and interactive quizzes.
                       </p>
                     </div>
-                    <button
-                      onClick={handleEnroll}
-                      disabled={enrolling}
-                      className="w-full py-3 px-4 rounded-xl bg-primary text-[#0A1628] hover:bg-primary-hover font-bold text-14 shadow-sm flex items-center justify-center gap-2 transition-all"
-                    >
-                      <CreditCard size={16} />
-                      <span>
-                        {enrolling
-                          ? 'Redirecting to checkout...'
-                          : `Enroll Now ${course.priceCents ? `• $${(course.priceCents / 100).toFixed(2)}` : '• $49.00'}`}
-                      </span>
-                    </button>
                   </div>
                 ) : drawerTab === 'discussion' ? (
                   /* Discussion Tab Content */

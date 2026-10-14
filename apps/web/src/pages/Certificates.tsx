@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { Layout } from '../components/Layout';
 import { Header } from '../components/Header';
 import { Card } from '../components/Card';
-import { Button } from '../components/Button';
 import { Skeleton } from '../components/Skeleton';
 import { api } from '../lib/api';
 import { Certificate } from '@learnstack/shared';
@@ -90,11 +89,12 @@ export const Certificates: React.FC = () => {
               </p>
             </div>
             <div className="pt-2">
-              <Link to="/courses">
-                <Button className="bg-primary text-[#0A1628] hover:bg-primary-hover font-semibold">
-                  <BookOpen size={16} className="mr-2" />
-                  <span>Browse Courses</span>
-                </Button>
+              <Link
+                to="/courses"
+                className="inline-flex items-center justify-center font-medium rounded-lg transition-colors px-5 py-2.5 text-14 bg-primary text-[#0A1628] hover:bg-primary-hover font-semibold shadow-sm"
+              >
+                <BookOpen size={16} className="mr-2" />
+                <span>Browse Courses</span>
               </Link>
             </div>
           </Card>
