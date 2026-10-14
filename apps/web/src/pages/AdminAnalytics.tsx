@@ -30,6 +30,7 @@ import {
 } from 'lucide-react';
 
 export const AdminAnalytics: React.FC = () => {
+  const { showToast } = useToast();
   const [activeTab, setActiveTab] = useState<'overview' | 'funnel' | 'quizzes' | 'at-risk'>('overview');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
