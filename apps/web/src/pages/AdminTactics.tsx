@@ -1,1 +1,349 @@
-aW1wb3J0IFJlYWN0LCB7IHVzZUVmZmVjdCwgdXNlU3RhdGUgfSBmcm9tICdyZWFjdCc7CmltcG9ydCB7IEFkbWluTGF5b3V0IH0gZnJvbSAnLi4vY29tcG9uZW50cy9BZG1pbkxheW91dCc7CmltcG9ydCB7IENhcmQgfSBmcm9tICcuLi9jb21wb25lbnRzL0NhcmQnOwppbXBvcnQgeyBTa2VsZXRvbiB9IGZyb20gJy4uL2NvbXBvbmVudHMvU2tlbGV0b24nOwppbXBvcnQgeyBCdXR0b24gfSBmcm9tICcuLi9jb21wb25lbnRzL0J1dHRvbic7CmltcG9ydCB7IElucHV0IH0gZnJvbSAnLi4vY29tcG9uZW50cy9JbnB1dCc7CmltcG9ydCB7IGFwaSB9IGZyb20gJy4uL2xpYi9hcGknOwppbXBvcnQgeyBUYWN0aWMsIEd1aWRlQ2F0ZWdvcnkgfSBmcm9tICdAbGVhcm5zdGFjay9zaGFyZWQnOwppbXBvcnQgeyB1c2VUb2FzdCB9IGZyb20gJy4uL2NvbnRleHQvVG9hc3RDb250ZXh0JzsKaW1wb3J0IHsKICBaYXAsCiAgUGx1cywKICBFZGl0MiwKICBUcmFzaDIsCiAgWCwKfSBmcm9tICdsdWNpZGUtcmVhY3QnOwoKY29uc3QgQ0FURUdPUklFUzogR3VpZGVDYXRlZ29yeVtdID0gWwogICdDT1NUX0NVVFRJTkcnLAogICdTQ0FMQUJJTElUWScsCiAgJ1JFTElBQklMSVRZJywKICAnQVVUT01BVElPTicsCiAgJ0RFVl9XT1JLRkxPVycsCiAgJ1RFQU1fQ09NTVVOSUNBVElPTicsCiAgJ1JFQUxfSU5DSURFTlRTJywKXTsKCmV4cG9ydCBjb25zdCBBZG1pblRhY3RpY3M6IFJlYWN0LkZDID0gKCkgPT4gewogIGNvbnN0IHsgc2hvd1RvYXN0IH0gPSB1c2VUb2FzdCgpOwogIGNvbnN0IFt0YWN0aWNzLCBzZXRUYWN0aWNzXSA9IHVzZVN0YXRlPFRhY3RpY1tdPihbXSk7CiAgY29uc3QgW2xvYWRpbmcsIHNldExvYWRpbmddID0gdXNlU3RhdGUodHJ1ZSk7CiAgY29uc3QgW2Vycm9yLCBzZXRFcnJvcl0gPSB1c2VTdGF0ZTxzdHJpbmcgfCBudWxsPihudWxsKTsKCiAgLy8gTW9kYWwgU3RhdGUKICBjb25zdCBbZWRpdGluZ1RhY3RpYywgc2V0RWRpdGluZ1RhY3RpY10gPSB1c2VTdGF0ZTxUYWN0aWMgfCBudWxsPihudWxsKTsKICBjb25zdCBbaXNDcmVhdGluZywgc2V0SXNDcmVhdGluZ10gPSB1c2VTdGF0ZShmYWxzZSk7CgogIC8vIEZvcm0gRmllbGRzCiAgY29uc3QgW2Zvcm1UaXRsZSwgc2V0Rm9ybVRpdGxlXSA9IHVzZVN0YXRlKCcnKTsKICBjb25zdCBbZm9ybUNhdGVnb3J5LCBzZXRGb3JtQ2F0ZWdvcnldID0gdXNlU3RhdGU8R3VpZGVDYXRlZ29yeT4oJ0NPU1RfQ1VUVElORycpOwogIGNvbnN0IFtmb3JtRGVzY3JpcHRpb24sIHNldEZvcm1EZXNjcmlwdGlvbl0gPSB1c2VTdGF0ZSgnJyk7CiAgY29uc3QgW2Zvcm1JbXBhY3QsIHNldEZvcm1JbXBhY3RdID0gdXNlU3RhdGUoJ0hpZ2gnKTsKICBjb25zdCBbZm9ybUVmZm9ydCwgc2V0Rm9ybUVmZm9ydF0gPSB1c2VTdGF0ZSgnSG91cnMnKTsKICBjb25zdCBbZm9ybVNhdmluZ3MsIHNldEZvcm1TYXZpbmdzXSA9IHVzZVN0YXRlKCcnKTsKICBjb25zdCBbZm9ybVB1Ymxpc2hlZCwgc2V0Rm9ybVB1Ymxpc2hlZF0gPSB1c2VTdGF0ZSh0cnVlKTsKCiAgY29uc3QgZmV0Y2hUYWN0aWNzID0gYXN5bmMgKCkgPT4gewogICAgdHJ5IHsKICAgICAgc2V0TG9hZGluZyh0cnVlKTsKICAgICAgY29uc3QgZGF0YSA9IGF3YWl0IGFwaS5nZXQ8VGFjdGljW10+KCcvdjEvYWRtaW4vdGFjdGljcycpOwogICAgICBzZXRUYWN0aWNzKGRhdGEpOwogICAgfSBjYXRjaCAoZXJyOiBhbnkpIHsKICAgICAgc2V0RXJyb3IoZXJyLm1lc3NhZ2UgfHwgJ0ZhaWxlZCB0byBsb2FkIHRhY3RpY3MnKTsKICAgIH0gZmluYWxseSB7CiAgICAgIHNldExvYWRpbmcoZmFsc2UpOwogICAgfQogIH07CgogIHVzZUVmZmVjdCgoKSA9PiB7CiAgICBmZXRjaFRhY3RpY3MoKTsKICB9LCBbXSk7CgogIGNvbnN0IG9wZW5DcmVhdGVNb2RhbCA9ICgpID0+IHsKICAgIHNldEVkaXRpbmdUYWN0aWMobnVsbCk7CiAgICBzZXRJc0NyZWF0aW5nKHRydWUpOwogICAgc2V0Rm9ybVRpdGxlKCcnKTsKICAgIHNldEZvcm1DYXRlZ29yeSgnQ09TVF9DVVRUSU5HJyk7CiAgICBzZXRGb3JtRGVzY3JpcHRpb24oJycpOwogICAgc2V0Rm9ybUltcGFjdCgnSGlnaCcpOwogICAgc2V0Rm9ybUVmZm9ydCgnSG91cnMnKTsKICAgIHNldEZvcm1TYXZpbmdzKCcnKTsKICAgIHNldEZvcm1QdWJsaXNoZWQodHJ1ZSk7CiAgfTsKCiAgY29uc3Qgb3BlbkVkaXRNb2RhbCA9ICh0YWN0aWM6IFRhY3RpYykgPT4gewogICAgc2V0RWRpdGluZ1RhY3RpYyh0YWN0aWMpOwogICAgc2V0SXNDcmVhdGluZyhmYWxzZSk7CiAgICBzZXRGb3JtVGl0bGUodGFjdGljLnRpdGxlKTsKICAgIHNldEZvcm1DYXRlZ29yeSh0YWN0aWMuY2F0ZWdvcnkpOwogICAgc2V0Rm9ybURlc2NyaXB0aW9uKHRhY3RpYy5kZXNjcmlwdGlvbik7CiAgICBzZXRGb3JtSW1wYWN0KHRhY3RpYy5pbXBhY3QpOwogICAgc2V0Rm9ybUVmZm9ydCh0YWN0aWMuZWZmb3J0KTsKICAgIHNldEZvcm1TYXZpbmdzKHRhY3RpYy5zYXZpbmdzRXN0aW1hdGUgfHwgJycpOwogICAgc2V0Rm9ybVB1Ymxpc2hlZCh0YWN0aWMucHVibGlzaGVkKTsKICB9OwoKICBjb25zdCBjbG9zZU1vZGFsID0gKCkgPT4gewogICAgc2V0RWRpdGluZ1RhY3RpYyhudWxsKTsKICAgIHNldElzQ3JlYXRpbmcoZmFsc2UpOwogIH07CgogIGNvbnN0IGhhbmRsZVNhdmVUYWN0aWMgPSBhc3luYyAoZTogUmVhY3QuRm9ybUV2ZW50KSA9PiB7CiAgICBlLnByZXZlbnREZWZhdWx0KCk7CiAgICB0cnkgewogICAgICBpZiAoZWRpdGluZ1RhY3RpYykgewogICAgICAgIC8vIFVwZGF0ZQogICAgICAgIGNvbnN0IHVwZGF0ZWQgPSBhd2FpdCBhcGkucGF0Y2g8VGFjdGljPihgL3YxL2FkbWluL3RhY3RpY3MvJHtlZGl0aW5nVGFjdGljLmlkfWAsIHsKICAgICAgICAgIHRpdGxlOiBmb3JtVGl0bGUsCiAgICAgICAgICBjYXRlZ29yeTogZm9ybUNhdGVnb3J5LAogICAgICAgICAgZGVzY3JpcHRpb246IGZvcm1EZXNjcmlwdGlvbiwKICAgICAgICAgIGltcGFjdDogZm9ybUltcGFjdCwKICAgICAgICAgIGVmZm9ydDogZm9ybUVmZm9ydCwKICAgICAgICAgIHNhdmluZ3NFc3RpbWF0ZTogZm9ybVNhdmluZ3MgfHwgbnVsbCwKICAgICAgICAgIHB1Ymxpc2hlZDogZm9ybVB1Ymxpc2hlZCwKICAgICAgICB9KTsKCiAgICAgICAgc2V0VGFjdGljcygocHJldikgPT4KICAgICAgICAgIHByZXYubWFwKCh0KSA9PiAodC5pZCA9PT0gZWRpdGluZ1RhY3RpYy5pZCA/IHVwZGF0ZWQgOiB0KSkKICAgICAgICApOwogICAgICB9IGVsc2UgewogICAgICAgIC8vIENyZWF0ZQogICAgICAgIGNvbnN0IGNyZWF0ZWQgPSBhd2FpdCBhcGkucG9zdDxUYWN0aWM+KCcvdjEvYWRtaW4vdGFjdGljcycsIHsKICAgICAgICAgIHRpdGxlOiBmb3JtVGl0bGUsCiAgICAgICAgICBjYXRlZ29yeTogZm9ybUNhdGVnb3J5LAogICAgICAgICAgZGVzY3JpcHRpb246IGZvcm1EZXNjcmlwdGlvbiwKICAgICAgICAgIGltcGFjdDogZm9ybUltcGFjdCwKICAgICAgICAgIGVmZm9ydDogZm9ybUVmZm9ydCwKICAgICAgICAgIHNhdmluZ3NFc3RpbWF0ZTogZm9ybVNhdmluZ3MgfHwgbnVsbCwKICAgICAgICAgIHB1Ymxpc2hlZDogZm9ybVB1Ymxpc2hlZCwKICAgICAgICB9KTsKCiAgICAgICAgc2V0VGFjdGljcygocHJldikgPT4gW2NyZWF0ZWQsIC4uLnByZXZdKTsKICAgICAgfQogICAgICBjbG9zZU1vZGFsKCk7CiAgICB9IGNhdGNoIChlcnI6IGFueSkgewogICAgICBzaG93VG9hc3QoZXJyLm1lc3NhZ2UgfHwgJ0ZhaWxlZCB0byBzYXZlIHRhY3RpYycsICdlcnJvcicpOwogICAgfQogIH07CgogIGNvbnN0IGhhbmRsZURlbGV0ZVRhY3RpYyA9IGFzeW5jIChpZDogc3RyaW5nKSA9PiB7CiAgICBpZiAoIWNvbmZpcm0oJ0FyZSB5b3Ugc3VyZSB5b3Ugd2FudCB0byBkZWxldGUgdGhpcyB0YWN0aWM/JykpIHJldHVybjsKICAgIHRyeSB7CiAgICAgIGF3YWl0IGFwaS5kZWxldGUoYC92MS9hZG1pbi90YWN0aWNzLyR7aWR9YCk7CiAgICAgIHNldFRhY3RpY3MoKHByZXYpID0+IHByZXYuZmlsdGVyKCh0KSA9PiB0LmlkICE9PSBpZCkpOwogICAgfSBjYXRjaCAoZXJyOiBhbnkpIHsKICAgICAgc2hvd1RvYXN0KGVyci5tZXNzYWdlIHx8ICdGYWlsZWQgdG8gZGVsZXRlIHRhY3RpYycsICdlcnJvcicpOwogICAgfQogIH07CgogIHJldHVybiAoCiAgICA8QWRtaW5MYXlvdXQ+CiAgICAgIDxkaXYgY2xhc3NOYW1lPSJzcGFjZS15LTYgbWF4LXctNnhsIG14LWF1dG8iPgogICAgICAgIHsvKiBIZWFkZXIgKi99CiAgICAgICAgPGRpdiBjbGFzc05hbWU9ImZsZXggZmxleC1jb2wgc206ZmxleC1yb3cgc206aXRlbXMtY2VudGVyIGp1c3RpZnktYmV0d2VlbiBnYXAtNCI+CiAgICAgICAgICA8ZGl2PgogICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0iZmxleCBpdGVtcy1jZW50ZXIgZ2FwLTIiPgogICAgICAgICAgICAgIDxaYXAgc2l6ZT17MjJ9IGNsYXNzTmFtZT0idGV4dC1wcmltYXJ5IiAvPgogICAgICAgICAgICAgIDxoMSBjbGFzc05hbWU9InRleHQtMjQgZm9udC1ib2xkIHRleHQtdGV4dCI+VGFjdGljcyBNYW5hZ2VtZW50PC9oMT4KICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgIDxwIGNsYXNzTmFtZT0idGV4dC0xNCB0ZXh0LXRleHQtbXV0ZWQgbXQtMSI+CiAgICAgICAgICAgICAgQ3JlYXRlIGFuZCBtYW5hZ2UgYWN0aW9uYWJsZSBoaWdoLWxldmVyYWdlIHRhY3RpY2FsIGVuZ2luZWVyaW5nIHBsYXlib29rcy4KICAgICAgICAgICAgPC9wPgogICAgICAgICAgPC9kaXY+CgogICAgICAgICAgPEJ1dHRvbiBvbkNsaWNrPXtvcGVuQ3JlYXRlTW9kYWx9IGNsYXNzTmFtZT0iZmxleCBpdGVtcy1jZW50ZXIgZ2FwLTIiPgogICAgICAgICAgICA8UGx1cyBzaXplPXsxNn0gLz4gQWRkIFRhY3RpYwogICAgICAgICAgPC9CdXR0b24+CiAgICAgICAgPC9kaXY+CgogICAgICAgIHtlcnJvciAmJiAoCiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0icC00IHJvdW5kZWQtbGcgYmctZXJyb3IvMTAgYm9yZGVyIGJvcmRlci1lcnJvci8yMCB0ZXh0LWVycm9yIHRleHQtMTQiPgogICAgICAgICAgICB7ZXJyb3J9CiAgICAgICAgICA8L2Rpdj4KICAgICAgICApfQoKICAgICAgICB7LyogVGFjdGljcyBHcmlkICovfQogICAgICAgIHtsb2FkaW5nID8gKAogICAgICAgICAgPGRpdiBjbGFzc05hbWU9ImdyaWQgZ3JpZC1jb2xzLTEgbWQ6Z3JpZC1jb2xzLTIgZ2FwLTQiPgogICAgICAgICAgICA8U2tlbGV0b24gaGVpZ2h0PSIxODBweCIgLz4KICAgICAgICAgICAgPFNrZWxldG9uIGhlaWdodD0iMTgwcHgiIC8+CiAgICAgICAgICA8L2Rpdj4KICAgICAgICApIDogKAogICAgICAgICAgPGRpdiBjbGFzc05hbWU9ImdyaWQgZ3JpZC1jb2xzLTEgbWQ6Z3JpZC1jb2xzLTIgZ2FwLTQiPgogICAgICAgICAgICB7dGFjdGljcy5tYXAoKHRhY3RpYykgPT4gKAogICAgICAgICAgICAgIDxDYXJkCiAgICAgICAgICAgICAgICBrZXk9e3RhY3RpYy5pZH0KICAgICAgICAgICAgICAgIGNsYXNzTmFtZT0icC01IGJnLXN1cmZhY2UgYm9yZGVyLWJvcmRlciBob3Zlcjpib3JkZXItYm9yZGVyLWhvdmVyIHRyYW5zaXRpb24tY29sb3JzIGZsZXggZmxleC1jb2wganVzdGlmeS1iZXR3ZWVuIgogICAgICAgICAgICAgID4KICAgICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSJzcGFjZS15LTMiPgogICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0iZmxleCBpdGVtcy1jZW50ZXIganVzdGlmeS1iZXR3ZWVuIGdhcC0yIj4KICAgICAgICAgICAgICAgICAgICA8c3BhbiBjbGFzc05hbWU9InRleHQtMTEgZm9udC1tZWRpdW0gdGV4dC10ZXh0LW11dGVkIHVwcGVyY2FzZSB0cmFja2luZy13aWRlciI+CiAgICAgICAgICAgICAgICAgICAgICB7dGFjdGljLmNhdGVnb3J5LnJlcGxhY2UoL18vZywgJyAnKX0KICAgICAgICAgICAgICAgICAgICA8L3NwYW4+CiAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9ImZsZXggaXRlbXMtY2VudGVyIGdhcC0yIj4KICAgICAgICAgICAgICAgICAgICAgIDxzcGFuIGNsYXNzTmFtZT0idGV4dC0xMSBweC0yIHB5LTAuNSByb3VuZGVkIGJnLXN1cmZhY2UtaG92ZXIgYm9yZGVyIGJvcmRlci1ib3JkZXIgdGV4dC10ZXh0Ij4KICAgICAgICAgICAgICAgICAgICAgICAge3RhY3RpYy5pbXBhY3R9IEltcGFjdAogICAgICAgICAgICAgICAgICAgICAgPC9zcGFuPgogICAgICAgICAgICAgICAgICAgICAgPHNwYW4gY2xhc3NOYW1lPSJ0ZXh0LTExIHB4LTIgcHktMC41IHJvdW5kZWQgYmctc3VyZmFjZS1ob3ZlciBib3JkZXIgYm9yZGVyLWJvcmRlciB0ZXh0LXRleHQiPgogICAgICAgICAgICAgICAgICAgICAgICB7dGFjdGljLmVmZm9ydH0KICAgICAgICAgICAgICAgICAgICAgIDwvc3Bhbj4KICAgICAgICAgICAgICAgICAgICAgIDxzcGFuCiAgICAgICAgICAgICAgICAgICAgICAgIGNsYXNzTmFtZT17YHRleHQtMTEgcHgtMiBweS0wLjUgcm91bmRlZC1mdWxsIGJvcmRlciBmb250LW1lZGl1bSAkewogICAgICAgICAgICAgICAgICAgICAgICAgIHRhY3RpYy5wdWJsaXNoZWQKICAgICAgICAgICAgICAgICAgICAgICAgICAgID8gJ3RleHQtZW1lcmFsZC00MDAgYmctZW1lcmFsZC00MDAvMTAgYm9yZGVyLWVtZXJhbGQtNDAwLzIwJwogICAgICAgICAgICAgICAgICAgICAgICAgICAgOiAndGV4dC10ZXh0LW11dGVkIGJnLXN1cmZhY2UtaG92ZXIgYm9yZGVyLWJvcmRlcicKICAgICAgICAgICAgICAgICAgICAgICAgfWB9CiAgICAgICAgICAgICAgICAgICAgICA+CiAgICAgICAgICAgICAgICAgICAgICAgIHt0YWN0aWMucHVibGlzaGVkID8gJ1B1Ymxpc2hlZCcgOiAnRHJhZnQnfQogICAgICAgICAgICAgICAgICAgICAgPC9zcGFuPgogICAgICAgICAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICAgICAgICA8L2Rpdj4KCiAgICAgICAgICAgICAgICAgIDxkaXY+CiAgICAgICAgICAgICAgICAgICAgPGgyIGNsYXNzTmFtZT0idGV4dC0xNiBmb250LWJvbGQgdGV4dC10ZXh0Ij57dGFjdGljLnRpdGxlfTwvaDI+CiAgICAgICAgICAgICAgICAgICAgPHAgY2xhc3NOYW1lPSJ0ZXh0LTEzIHRleHQtdGV4dC1tdXRlZCBtdC0xIGxlYWRpbmctcmVsYXhlZCI+CiAgICAgICAgICAgICAgICAgICAgICB7dGFjdGljLmRlc2NyaXB0aW9ufQogICAgICAgICAgICAgICAgICAgIDwvcD4KICAgICAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgICAgICA8L2Rpdj4KCiAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0ibXQtNCBwdC0zIGJvcmRlci10IGJvcmRlci1ib3JkZXIgZmxleCBpdGVtcy1jZW50ZXIganVzdGlmeS1iZXR3ZWVuIHRleHQtMTIiPgogICAgICAgICAgICAgICAgICA8c3BhbiBjbGFzc05hbWU9InRleHQtcHJpbWFyeSBmb250LW1lZGl1bSI+CiAgICAgICAgICAgICAgICAgICAge3RhY3RpYy5zYXZpbmdzRXN0aW1hdGUgfHwgJ04vQSd9CiAgICAgICAgICAgICAgICAgIDwvc3Bhbj4KICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9ImZsZXggaXRlbXMtY2VudGVyIGdhcC0yIj4KICAgICAgICAgICAgICAgICAgICA8YnV0dG9uCiAgICAgICAgICAgICAgICAgICAgICBvbkNsaWNrPXsoKSA9PiBvcGVuRWRpdE1vZGFsKHRhY3RpYyl9CiAgICAgICAgICAgICAgICAgICAgICBjbGFzc05hbWU9InAtMSByb3VuZGVkIHRleHQtdGV4dC1tdXRlZCBob3Zlcjp0ZXh0LXByaW1hcnkgaG92ZXI6Ymctc3VyZmFjZS1ob3ZlciB0cmFuc2l0aW9uLWNvbG9ycyIKICAgICAgICAgICAgICAgICAgICAgIHRpdGxlPSJFZGl0IgogICAgICAgICAgICAgICAgICAgID4KICAgICAgICAgICAgICAgICAgICAgIDxFZGl0MiBzaXplPXsxNX0gLz4KICAgICAgICAgICAgICAgICAgICA8L2J1dHRvbj4KICAgICAgICAgICAgICAgICAgICA8YnV0dG9uCiAgICAgICAgICAgICAgICAgICAgICBvbkNsaWNrPXsoKSA9PiBoYW5kbGVEZWxldGVUYWN0aWModGFjdGljLmlkKX0KICAgICAgICAgICAgICAgICAgICAgIGNsYXNzTmFtZT0icC0xIHJvdW5kZWQgdGV4dC10ZXh0LW11dGVkIGhvdmVyOnRleHQtZXJyb3IgaG92ZXI6Ymctc3VyZmFjZS1ob3ZlciB0cmFuc2l0aW9uLWNvbG9ycyIKICAgICAgICAgICAgICAgICAgICAgIHRpdGxlPSJEZWxldGUiCiAgICAgICAgICAgICAgICAgICAgPgogICAgICAgICAgICAgICAgICAgICAgPFRyYXNoMiBzaXplPXsxNX0gLz4KICAgICAgICAgICAgICAgICAgICA8L2J1dHRvbj4KICAgICAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgICA8L0NhcmQ+CiAgICAgICAgICAgICkpfQogICAgICAgICAgPC9kaXY+CiAgICAgICAgKX0KCiAgICAgICAgey8qIE1vZGFsOiBDcmVhdGUgLyBFZGl0IFRhY3RpYyAqL30KICAgICAgICB7KGlzQ3JlYXRpbmcgfHwgZWRpdGluZ1RhY3RpYykgJiYgKAogICAgICAgICAgPGRpdiBjbGFzc05hbWU9ImZpeGVkIGluc2V0LTAgei01MCBmbGV4IGl0ZW1zLWNlbnRlciBqdXN0aWZ5LWNlbnRlciBwLTQgYmctYmxhY2svNjAgYmFja2Ryb3AtYmx1ci1zbSI+CiAgICAgICAgICAgIDxDYXJkIGNsYXNzTmFtZT0idy1mdWxsIG1heC13LWxnIHAtNiBiZy1zdXJmYWNlIGJvcmRlci1ib3JkZXIgc3BhY2UteS00IHNoYWRvdy0yeGwiPgogICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSJmbGV4IGl0ZW1zLWNlbnRlciBqdXN0aWZ5LWJldHdlZW4gcGItMyBib3JkZXItYiBib3JkZXItYm9yZGVyIj4KICAgICAgICAgICAgICAgIDxoMyBjbGFzc05hbWU9InRleHQtMTggZm9udC1ib2xkIHRleHQtdGV4dCI+CiAgICAgICAgICAgICAgICAgIHtlZGl0aW5nVGFjdGljID8gJ0VkaXQgVGFjdGljJyA6ICdBZGQgVGFjdGljJ30KICAgICAgICAgICAgICAgIDwvaDM+CiAgICAgICAgICAgICAgICA8YnV0dG9uIG9uQ2xpY2s9e2Nsb3NlTW9kYWx9IGNsYXNzTmFtZT0idGV4dC10ZXh0LW11dGVkIGhvdmVyOnRleHQtdGV4dCI+CiAgICAgICAgICAgICAgICAgIDxYIHNpemU9ezE4fSAvPgogICAgICAgICAgICAgICAgPC9idXR0b24+CiAgICAgICAgICAgICAgPC9kaXY+CgogICAgICAgICAgICAgIDxmb3JtIG9uU3VibWl0PXtoYW5kbGVTYXZlVGFjdGljfSBjbGFzc05hbWU9InNwYWNlLXktNCI+CiAgICAgICAgICAgICAgICA8SW5wdXQKICAgICAgICAgICAgICAgICAgbGFiZWw9IlRhY3RpYyBUaXRsZSIKICAgICAgICAgICAgICAgICAgdmFsdWU9e2Zvcm1UaXRsZX0KICAgICAgICAgICAgICAgICAgb25DaGFuZ2U9eyhlKSA9PiBzZXRGb3JtVGl0bGUoZS50YXJnZXQudmFsdWUpfQogICAgICAgICAgICAgICAgICBwbGFjZWhvbGRlcj0iZS5nLiBmY2stbmF0IGluc3RhbmNlIHJlcGxhY2VtZW50IgogICAgICAgICAgICAgICAgICByZXF1aXJlZAogICAgICAgICAgICAgICAgLz4KCiAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0iZ3JpZCBncmlkLWNvbHMtMSBzbTpncmlkLWNvbHMtMyBnYXAtMyI+CiAgICAgICAgICAgICAgICAgIDxkaXY+CiAgICAgICAgICAgICAgICAgICAgPGxhYmVsIGNsYXNzTmFtZT0iYmxvY2sgdGV4dC0xMyBmb250LW1lZGl1bSB0ZXh0LXRleHQgbWItMS41Ij5DYXRlZ29yeTwvbGFiZWw+CiAgICAgICAgICAgICAgICAgICAgPHNlbGVjdAogICAgICAgICAgICAgICAgICAgICAgdmFsdWU9e2Zvcm1DYXRlZ29yeX0KICAgICAgICAgICAgICAgICAgICAgIG9uQ2hhbmdlPXsoZSkgPT4gc2V0Rm9ybUNhdGVnb3J5KGUudGFyZ2V0LnZhbHVlIGFzIEd1aWRlQ2F0ZWdvcnkpfQogICAgICAgICAgICAgICAgICAgICAgY2xhc3NOYW1lPSJ3LWZ1bGwgcm91bmRlZC1sZyBiZy1iZyBib3JkZXIgYm9yZGVyLWJvcmRlciBwLTIgdGV4dC0xMyB0ZXh0LXRleHQgZm9jdXM6b3V0bGluZS1ub25lIGZvY3VzOmJvcmRlci1wcmltYXJ5IgogICAgICAgICAgICAgICAgICAgID4KICAgICAgICAgICAgICAgICAgICAgIHtDQVRFR09SSUVTLm1hcCgoYykgPT4gKAogICAgICAgICAgICAgICAgICAgICAgICA8b3B0aW9uIGtleT17Y30gdmFsdWU9e2N9PgogICAgICAgICAgICAgICAgICAgICAgICAgIHtjLnJlcGxhY2UoL18vZywgJyAnKX0KICAgICAgICAgICAgICAgICAgICAgICAgPC9vcHRpb24+CiAgICAgICAgICAgICAgICAgICAgICApKX0KICAgICAgICAgICAgICAgICAgICA8L3NlbGVjdD4KICAgICAgICAgICAgICAgICAgPC9kaXY+CgogICAgICAgICAgICAgICAgICA8ZGl2PgogICAgICAgICAgICAgICAgICAgIDxsYWJlbCBjbGFzc05hbWU9ImJsb2NrIHRleHQtMTMgZm9udC1tZWRpdW0gdGV4dC10ZXh0IG1iLTEuNSI+SW1wYWN0PC9sYWJlbD4KICAgICAgICAgICAgICAgICAgICA8c2VsZWN0CiAgICAgICAgICAgICAgICAgICAgICB2YWx1ZT17Zm9ybUltcGFjdH0KICAgICAgICAgICAgICAgICAgICAgIG9uQ2hhbmdlPXsoZSkgPT4gc2V0Rm9ybUltcGFjdChlLnRhcmdldC52YWx1ZSl9CiAgICAgICAgICAgICAgICAgICAgICBjbGFzc05hbWU9InctZnVsbCByb3VuZGVkLWxnIGJnLWJnIGJvcmRlciBib3JkZXItYm9yZGVyIHAtMiB0ZXh0LTEzIHRleHQtdGV4dCBmb2N1czpvdXRsaW5lLW5vbmUgZm9jdXM6Ym9yZGVyLXByaW1hcnkiCiAgICAgICAgICAgICAgICAgICAgPgogICAgICAgICAgICAgICAgICAgICAgPG9wdGlvbiB2YWx1ZT0iSGlnaCI+SGlnaDwvb3B0aW9uPgogICAgICAgICAgICAgICAgICAgICAgPG9wdGlvbiB2YWx1ZT0iTWVkaXVtIj5NZWRpdW08L29wdGlvbj4KICAgICAgICAgICAgICAgICAgICAgIDxvcHRpb24gdmFsdWU9IkxvdyI+TG93PC9vcHRpb24+CiAgICAgICAgICAgICAgICAgICAgPC9zZWxlY3Q+CiAgICAgICAgICAgICAgICAgIDwvZGl2PgoKICAgICAgICAgICAgICAgICAgPGRpdj4KICAgICAgICAgICAgICAgICAgICA8bGFiZWwgY2xhc3NOYW1lPSJibG9jayB0ZXh0LTEzIGZvbnQtbWVkaXVtIHRleHQtdGV4dCBtYi0xLjUiPkVmZm9ydDwvbGFiZWw+CiAgICAgICAgICAgICAgICAgICAgPHNlbGVjdAogICAgICAgICAgICAgICAgICAgICAgdmFsdWU9e2Zvcm1FZmZvcnR9CiAgICAgICAgICAgICAgICAgICAgICBvbkNoYW5nZT17KGUpID0+IHNldEZvcm1FZmZvcnQoZS50YXJnZXQudmFsdWUpfQogICAgICAgICAgICAgICAgICAgICAgY2xhc3NOYW1lPSJ3LWZ1bGwgcm91bmRlZC1sZyBiZy1iZyBib3JkZXIgYm9yZGVyLWJvcmRlciBwLTIgdGV4dC0xMyB0ZXh0LXRleHQgZm9jdXM6b3V0bGluZS1ub25lIGZvY3VzOmJvcmRlci1wcmltYXJ5IgogICAgICAgICAgICAgICAgICAgID4KICAgICAgICAgICAgICAgICAgICAgIDxvcHRpb24gdmFsdWU9IkhvdXJzIj5Ib3Vyczwvb3B0aW9uPgogICAgICAgICAgICAgICAgICAgICAgPG9wdGlvbiB2YWx1ZT0iRGF5cyI+RGF5czwvb3B0aW9uPgogICAgICAgICAgICAgICAgICAgICAgPG9wdGlvbiB2YWx1ZT0iV2Vla3MiPldlZWtzPC9vcHRpb24+CiAgICAgICAgICAgICAgICAgICAgPC9zZWxlY3Q+CiAgICAgICAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICAgICAgPC9kaXY+CgogICAgICAgICAgICAgICAgPGRpdj4KICAgICAgICAgICAgICAgICAgPGxhYmVsIGNsYXNzTmFtZT0iYmxvY2sgdGV4dC0xMyBmb250LW1lZGl1bSB0ZXh0LXRleHQgbWItMS41Ij5EZXNjcmlwdGlvbjwvbGFiZWw+CiAgICAgICAgICAgICAgICAgIDx0ZXh0YXJlYQogICAgICAgICAgICAgICAgICAgIHZhbHVlPXtmb3JtRGVzY3JpcHRpb259CiAgICAgICAgICAgICAgICAgICAgb25DaGFuZ2U9eyhlKSA9PiBzZXRGb3JtRGVzY3JpcHRpb24oZS50YXJnZXQudmFsdWUpfQogICAgICAgICAgICAgICAgICAgIHJvd3M9ezN9CiAgICAgICAgICAgICAgICAgICAgY2xhc3NOYW1lPSJ3LWZ1bGwgcm91bmRlZC1sZyBiZy1iZyBib3JkZXIgYm9yZGVyLWJvcmRlciBwLTIuNSB0ZXh0LTEzIHRleHQtdGV4dCBmb2N1czpvdXRsaW5lLW5vbmUgZm9jdXM6Ym9yZGVyLXByaW1hcnkiCiAgICAgICAgICAgICAgICAgICAgcGxhY2Vob2xkZXI9IjItMyBzZW50ZW5jZSB0ZWNobmljYWwgZGVzY3JpcHRpb24gb2YgdGhlIHRhY3RpY2FsIGRlY2lzaW9uLi4uIgogICAgICAgICAgICAgICAgICAgIHJlcXVpcmVkCiAgICAgICAgICAgICAgICAgIC8+CiAgICAgICAgICAgICAgICA8L2Rpdj4KCiAgICAgICAgICAgICAgICA8SW5wdXQKICAgICAgICAgICAgICAgICAgbGFiZWw9IkVzdGltYXRlZCBTYXZpbmdzIC8gUk9JIChPcHRpb25hbCkiCiAgICAgICAgICAgICAgICAgIHZhbHVlPXtmb3JtU2F2aW5nc30KICAgICAgICAgICAgICAgICAgb25DaGFuZ2U9eyhlKSA9PiBzZXRGb3JtU2F2aW5ncyhlLnRhcmdldC52YWx1ZSl9CiAgICAgICAgICAgICAgICAgIHBsYWNlaG9sZGVyPSJlLmcuICQzMC9tb250aCBwZXIgVlBDIG9yIDIwJSBvZmYgY29tcHV0ZSIKICAgICAgICAgICAgICAgIC8+CgogICAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9ImZsZXggaXRlbXMtY2VudGVyIGdhcC0yIHB0LTEiPgogICAgICAgICAgICAgICAgICA8aW5wdXQKICAgICAgICAgICAgICAgICAgICB0eXBlPSJjaGVja2JveCIKICAgICAgICAgICAgICAgICAgICBpZD0iZm9ybVRhY3RpY1B1Ymxpc2hlZCIKICAgICAgICAgICAgICAgICAgICBjaGVja2VkPXtmb3JtUHVibGlzaGVkfQogICAgICAgICAgICAgICAgICAgIG9uQ2hhbmdlPXsoZSkgPT4gc2V0Rm9ybVB1Ymxpc2hlZChlLnRhcmdldC5jaGVja2VkKX0KICAgICAgICAgICAgICAgICAgICBjbGFzc05hbWU9InctNCBoLTQgcm91bmRlZCB0ZXh0LXByaW1hcnkgZm9jdXM6cmluZy1wcmltYXJ5IGJvcmRlci1ib3JkZXIgYmctYmciCiAgICAgICAgICAgICAgICAgIC8+CiAgICAgICAgICAgICAgICAgIDxsYWJlbCBodG1sRm9yPSJmb3JtVGFjdGljUHVibGlzaGVkIiBjbGFzc05hbWU9InRleHQtMTMgZm9udC1tZWRpdW0gdGV4dC10ZXh0Ij4KICAgICAgICAgICAgICAgICAgICBQdWJsaXNoIGltbWVkaWF0ZWx5ICh2aXNpYmxlIHRvIGFsbCBsZWFybmVycykKICAgICAgICAgICAgICAgICAgPC9sYWJlbD4KICAgICAgICAgICAgICAgIDwvZGl2PgoKICAgICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSJmbGV4IGl0ZW1zLWNlbnRlciBqdXN0aWZ5LWVuZCBnYXAtMyBwdC0zIGJvcmRlci10IGJvcmRlci1ib3JkZXIiPgogICAgICAgICAgICAgICAgICA8QnV0dG9uIHZhcmlhbnQ9Imdob3N0IiBvbkNsaWNrPXtjbG9zZU1vZGFsfT4KICAgICAgICAgICAgICAgICAgICBDYW5jZWwKICAgICAgICAgICAgICAgICAgPC9CdXR0b24+CiAgICAgICAgICAgICAgICAgIDxCdXR0b24gdHlwZT0ic3VibWl0Ij4KICAgICAgICAgICAgICAgICAgICB7ZWRpdGluZ1RhY3RpYyA/ICdTYXZlIENoYW5nZXMnIDogJ0FkZCBUYWN0aWMnfQogICAgICAgICAgICAgICAgICA8L0J1dHRvbj4KICAgICAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICAgIDwvZm9ybT4KICAgICAgICAgICAgPC9DYXJkPgogICAgICAgICAgPC9kaXY+CiAgICAgICAgKX0KICAgICAgPC9kaXY+CiAgICA8L0FkbWluTGF5b3V0PgogICk7Cn07Cg==
+import React, { useEffect, useState } from 'react';
+import { AdminLayout } from '../components/AdminLayout';
+import { Card } from '../components/Card';
+import { Skeleton } from '../components/Skeleton';
+import { Button } from '../components/Button';
+import { Input } from '../components/Input';
+import { api } from '../lib/api';
+import { Tactic, GuideCategory } from '@learnstack/shared';
+import { useToast } from '../context/ToastContext';
+import {
+  Zap,
+  Plus,
+  Edit2,
+  Trash2,
+  X,
+} from 'lucide-react';
+
+const CATEGORIES: GuideCategory[] = [
+  'COST_CUTTING',
+  'SCALABILITY',
+  'RELIABILITY',
+  'AUTOMATION',
+  'DEV_WORKFLOW',
+  'TEAM_COMMUNICATION',
+  'REAL_INCIDENTS',
+];
+
+export const AdminTactics: React.FC = () => {
+  const { showToast } = useToast();
+  const [tactics, setTactics] = useState<Tactic[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  // Modal State
+  const [editingTactic, setEditingTactic] = useState<Tactic | null>(null);
+  const [isCreating, setIsCreating] = useState(false);
+
+  // Form Fields
+  const [formTitle, setFormTitle] = useState('');
+  const [formCategory, setFormCategory] = useState<GuideCategory>('COST_CUTTING');
+  const [formDescription, setFormDescription] = useState('');
+  const [formImpact, setFormImpact] = useState('High');
+  const [formEffort, setFormEffort] = useState('Hours');
+  const [formSavings, setFormSavings] = useState('');
+  const [formPublished, setFormPublished] = useState(true);
+
+  const fetchTactics = async () => {
+    try {
+      setLoading(true);
+      const data = await api.get<Tactic[]>('/v1/admin/tactics');
+      setTactics(data);
+    } catch (err: any) {
+      setError(err.message || 'Failed to load tactics');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchTactics();
+  }, []);
+
+  const openCreateModal = () => {
+    setEditingTactic(null);
+    setIsCreating(true);
+    setFormTitle('');
+    setFormCategory('COST_CUTTING');
+    setFormDescription('');
+    setFormImpact('High');
+    setFormEffort('Hours');
+    setFormSavings('');
+    setFormPublished(true);
+  };
+
+  const openEditModal = (tactic: Tactic) => {
+    setEditingTactic(tactic);
+    setIsCreating(false);
+    setFormTitle(tactic.title);
+    setFormCategory(tactic.category);
+    setFormDescription(tactic.description);
+    setFormImpact(tactic.impact);
+    setFormEffort(tactic.effort);
+    setFormSavings(tactic.savingsEstimate || '');
+    setFormPublished(tactic.published);
+  };
+
+  const closeModal = () => {
+    setEditingTactic(null);
+    setIsCreating(false);
+  };
+
+  const handleSaveTactic = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      if (editingTactic) {
+        // Update
+        const updated = await api.patch<Tactic>(`/v1/admin/tactics/${editingTactic.id}`, {
+          title: formTitle,
+          category: formCategory,
+          description: formDescription,
+          impact: formImpact,
+          effort: formEffort,
+          savingsEstimate: formSavings || null,
+          published: formPublished,
+        });
+
+        setTactics((prev) =>
+          prev.map((t) => (t.id === editingTactic.id ? updated : t))
+        );
+      } else {
+        // Create
+        const created = await api.post<Tactic>('/v1/admin/tactics', {
+          title: formTitle,
+          category: formCategory,
+          description: formDescription,
+          impact: formImpact,
+          effort: formEffort,
+          savingsEstimate: formSavings || null,
+          published: formPublished,
+        });
+
+        setTactics((prev) => [created, ...prev]);
+      }
+      closeModal();
+    } catch (err: any) {
+      showToast(err.message || 'Failed to save tactic', 'error');
+    }
+  };
+
+  const handleDeleteTactic = async (id: string) => {
+    if (!confirm('Are you sure you want to delete this tactic?')) return;
+    try {
+      await api.delete(`/v1/admin/tactics/${id}`);
+      setTactics((prev) => prev.filter((t) => t.id !== id));
+    } catch (err: any) {
+      showToast(err.message || 'Failed to delete tactic', 'error');
+    }
+  };
+
+  return (
+    <AdminLayout>
+      <div className="space-y-6 max-w-6xl mx-auto">
+        {/* Header */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <div className="flex items-center gap-2">
+              <Zap size={22} className="text-primary" />
+              <h1 className="text-24 font-bold text-text">Tactics Management</h1>
+            </div>
+            <p className="text-14 text-text-muted mt-1">
+              Create and manage actionable high-leverage tactical engineering playbooks.
+            </p>
+          </div>
+
+          <Button onClick={openCreateModal} className="flex items-center gap-2">
+            <Plus size={16} /> Add Tactic
+          </Button>
+        </div>
+
+        {error && (
+          <div className="p-4 rounded-lg bg-error/10 border border-error/20 text-error text-14">
+            {error}
+          </div>
+        )}
+
+        {/* Tactics Grid */}
+        {loading ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <Skeleton height="180px" />
+            <Skeleton height="180px" />
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {tactics.map((tactic) => (
+              <Card
+                key={tactic.id}
+                className="p-5 bg-surface border-border hover:border-border-hover transition-colors flex flex-col justify-between"
+              >
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-11 font-medium text-text-muted uppercase tracking-wider">
+                      {tactic.category.replace(/_/g, ' ')}
+                    </span>
+                    <div className="flex items-center gap-2">
+                      <span className="text-11 px-2 py-0.5 rounded bg-surface-hover border border-border text-text">
+                        {tactic.impact} Impact
+                      </span>
+                      <span className="text-11 px-2 py-0.5 rounded bg-surface-hover border border-border text-text">
+                        {tactic.effort}
+                      </span>
+                      <span
+                        className={`text-11 px-2 py-0.5 rounded-full border font-medium ${
+                          tactic.published
+                            ? 'text-emerald-400 bg-emerald-400/10 border-emerald-400/20'
+                            : 'text-text-muted bg-surface-hover border-border'
+                        }`}
+                      >
+                        {tactic.published ? 'Published' : 'Draft'}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h2 className="text-16 font-bold text-text">{tactic.title}</h2>
+                    <p className="text-13 text-text-muted mt-1 leading-relaxed">
+                      {tactic.description}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="mt-4 pt-3 border-t border-border flex items-center justify-between text-12">
+                  <span className="text-primary font-medium">
+                    {tactic.savingsEstimate || 'N/A'}
+                  </span>
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={() => openEditModal(tactic)}
+                      className="p-1 rounded text-text-muted hover:text-primary hover:bg-surface-hover transition-colors"
+                      title="Edit"
+                    >
+                      <Edit2 size={15} />
+                    </button>
+                    <button
+                      onClick={() => handleDeleteTactic(tactic.id)}
+                      className="p-1 rounded text-text-muted hover:text-error hover:bg-surface-hover transition-colors"
+                      title="Delete"
+                    >
+                      <Trash2 size={15} />
+                    </button>
+                  </div>
+                </div>
+              </Card>
+            ))}
+          </div>
+        )}
+
+        {/* Modal: Create / Edit Tactic */}
+        {(isCreating || editingTactic) && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+            <Card className="w-full max-w-lg p-6 bg-surface border-border space-y-4 shadow-2xl">
+              <div className="flex items-center justify-between pb-3 border-b border-border">
+                <h3 className="text-18 font-bold text-text">
+                  {editingTactic ? 'Edit Tactic' : 'Add Tactic'}
+                </h3>
+                <button onClick={closeModal} className="text-text-muted hover:text-text">
+                  <X size={18} />
+                </button>
+              </div>
+
+              <form onSubmit={handleSaveTactic} className="space-y-4">
+                <Input
+                  label="Tactic Title"
+                  value={formTitle}
+                  onChange={(e) => setFormTitle(e.target.value)}
+                  placeholder="e.g. fck-nat instance replacement"
+                  required
+                />
+
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  <div>
+                    <label className="block text-13 font-medium text-text mb-1.5">Category</label>
+                    <select
+                      value={formCategory}
+                      onChange={(e) => setFormCategory(e.target.value as GuideCategory)}
+                      className="w-full rounded-lg bg-bg border border-border p-2 text-13 text-text focus:outline-none focus:border-primary"
+                    >
+                      {CATEGORIES.map((c) => (
+                        <option key={c} value={c}>
+                          {c.replace(/_/g, ' ')}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-13 font-medium text-text mb-1.5">Impact</label>
+                    <select
+                      value={formImpact}
+                      onChange={(e) => setFormImpact(e.target.value)}
+                      className="w-full rounded-lg bg-bg border border-border p-2 text-13 text-text focus:outline-none focus:border-primary"
+                    >
+                      <option value="High">High</option>
+                      <option value="Medium">Medium</option>
+                      <option value="Low">Low</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-13 font-medium text-text mb-1.5">Effort</label>
+                    <select
+                      value={formEffort}
+                      onChange={(e) => setFormEffort(e.target.value)}
+                      className="w-full rounded-lg bg-bg border border-border p-2 text-13 text-text focus:outline-none focus:border-primary"
+                    >
+                      <option value="Hours">Hours</option>
+                      <option value="Days">Days</option>
+                      <option value="Weeks">Weeks</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-13 font-medium text-text mb-1.5">Description</label>
+                  <textarea
+                    value={formDescription}
+                    onChange={(e) => setFormDescription(e.target.value)}
+                    rows={3}
+                    className="w-full rounded-lg bg-bg border border-border p-2.5 text-13 text-text focus:outline-none focus:border-primary"
+                    placeholder="2-3 sentence technical description of the tactical decision..."
+                    required
+                  />
+                </div>
+
+                <Input
+                  label="Estimated Savings / ROI (Optional)"
+                  value={formSavings}
+                  onChange={(e) => setFormSavings(e.target.value)}
+                  placeholder="e.g. $30/month per VPC or 20% off compute"
+                />
+
+                <div className="flex items-center gap-2 pt-1">
+                  <input
+                    type="checkbox"
+                    id="formTacticPublished"
+                    checked={formPublished}
+                    onChange={(e) => setFormPublished(e.target.checked)}
+                    className="w-4 h-4 rounded text-primary focus:ring-primary border-border bg-bg"
+                  />
+                  <label htmlFor="formTacticPublished" className="text-13 font-medium text-text">
+                    Publish immediately (visible to all learners)
+                  </label>
+                </div>
+
+                <div className="flex items-center justify-end gap-3 pt-3 border-t border-border">
+                  <Button variant="ghost" onClick={closeModal}>
+                    Cancel
+                  </Button>
+                  <Button type="submit">
+                    {editingTactic ? 'Save Changes' : 'Add Tactic'}
+                  </Button>
+                </div>
+              </form>
+            </Card>
+          </div>
+        )}
+      </div>
+    </AdminLayout>
+  );
+};
