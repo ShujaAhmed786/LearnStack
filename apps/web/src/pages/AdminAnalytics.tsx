@@ -4,6 +4,7 @@ import { Card } from '../components/Card';
 import { Button } from '../components/Button';
 import { Skeleton } from '../components/Skeleton';
 import { apiFetch } from '../lib/api';
+import { useToast } from '../context/ToastContext';
 import {
   AnalyticsOverviewResponse,
   CourseFunnelResponse,
@@ -131,7 +132,7 @@ export const AdminAnalytics: React.FC = () => {
       await apiFetch(`/v1/admin/analytics/nudge/${userId}`, { method: 'POST' });
       setNudgedLearners((prev) => new Set(prev).add(userId));
     } catch (err) {
-      alert('Failed to send nudge');
+      showToast('Failed to send nudge', 'error');
     }
   };
 
