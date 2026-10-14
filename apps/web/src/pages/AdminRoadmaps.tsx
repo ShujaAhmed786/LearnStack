@@ -17,7 +17,6 @@ import {
   HelpCircle,
   X,
   Layers,
-  CreditCard,
 } from 'lucide-react';
 
 export const AdminRoadmaps: React.FC = () => {
@@ -48,10 +47,6 @@ export const AdminRoadmaps: React.FC = () => {
   const [lessonQuizId, setLessonQuizId] = useState<string>('');
   const [lessonOrder, setLessonOrder] = useState(0);
 
-  // Pricing controls state
-  const [priceInputs, setPriceInputs] = useState<Record<string, string>>({});
-  const [savingPriceCourseId, setSavingPriceCourseId] = useState<string | null>(null);
-
   const fetchCourses = async () => {
     try {
       setLoading(true);
@@ -74,29 +69,6 @@ export const AdminRoadmaps: React.FC = () => {
   useEffect(() => {
     fetchCourses();
   }, []);
-
-  const handleUpdateCoursePrice = async (courseId: string, priceCents: number) => {
-    try {
-      setSavingPriceCourseId(courseId);
-      await api.patch(`/v1/admin/roadmaps/${courseId}/price`, { priceCents });
-
-      setCourses((prev) =>
-        prev.map((c) =>
-          c.id === courseId
-            ? { ...c, priceCents, isFree: priceCents === 0 }
-            : c
-        )
-      );
-      setPriceInputs((prev) => ({
-        ...prev,
-        [courseId]: (priceCents / 100).toString(),
-      }));
-    } catch (err: any) {
-      alert(err.message || 'Failed to update course price');
-    } finally {
-      setSavingPriceCourseId(null);
-    }
-  };
 
   // Create Course
   const handleCreateCourse = async (e: React.FormEvent) => {
@@ -358,99 +330,6 @@ export const AdminRoadmaps: React.FC = () => {
                   {/* Expanded Modules Body */}
                   {isExpanded && (
                     <div className="p-5 border-t border-border bg-surface-hover/20 space-y-6">
-                      {/* Course Pricing Controls */}
-                      <div className="p-4 rounded-xl bg-surface border border-border shadow-sm flex flex-col lg:flex-row lg:items-center justify-between gap-4">
-                        <div className="space-y-1">
-                          <div className="flex items-center gap-2">
-                            <h4 className="text-14 font-semibold text-text flex items-center gap-1.5">
-                              <CreditCard size={15} className="text-primary" />
-                              <span>Course Pricing & Checkout Access</span>
-                            </h4>
-                            {(!course.priceCents || course.priceCents === 0) ? (
-                              <span className="text-11 px-2 py-0.5 rounded font-bold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
-                                Free
-                              </span>
-                            ) : (
-                              <span className="text-11 px-2 py-0.5 rounded font-bold bg-primary/10 text-primary border border-primary/20">
-                                ${course.priceCents / 100}
-                              </span>
-                            )}
-                          </div>
-                          <p className="text-12 text-text-muted">
-                            Toggle course between Free and Paid to demonstrate Stripe Checkout gating.
-                          </p>
-                        </div>
-
-                        <div className="flex flex-wrap items-center gap-3">
-                          {/* Quick toggles */}
-                          <div className="flex items-center gap-1.5">
-                            <button
-                              type="button"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                handleUpdateCoursePrice(course.id, 0);
-                              }}
-                              disabled={savingPriceCourseId === course.id}
-                              className={`px-3 py-1.5 rounded-lg text-12 font-medium border transition-colors ${
-                                !course.priceCents || course.priceCents === 0
-                                  ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/30 font-semibold'
-                                  : 'bg-surface border-border text-text-muted hover:text-text hover:border-border-hover'
-                              }`}
-                            >
-                              Make free
-                            </button>
-
-                            <button
-                              type="button"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                handleUpdateCoursePrice(course.id, 4900);
-                              }}
-                              disabled={savingPriceCourseId === course.id}
-                              className={`px-3 py-1.5 rounded-lg text-12 font-medium border transition-colors ${
-                                course.priceCents === 4900
-                                  ? 'bg-primary/10 text-primary border-primary/30 font-semibold'
-                                  : 'bg-surface border-border text-text-muted hover:text-text hover:border-border-hover'
-                              }`}
-                            >
-                              Set paid ($49)
-                            </button>
-                          </div>
-
-                          {/* Price (USD) input & Save */}
-                          <div className="flex items-center gap-2 pl-2 border-l border-border">
-                            <label className="text-12 text-text-muted font-medium whitespace-nowrap">
-                              Price (USD):
-                            </label>
-                            <div className="relative w-24">
-                              <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-13 text-text-muted font-bold">$</span>
-                              <input
-                                type="number"
-                                min="0"
-                                step="1"
-                                placeholder="0"
-                                value={priceInputs[course.id] ?? ((course.priceCents ?? 0) / 100)}
-                                onChange={(e) => setPriceInputs({ ...priceInputs, [course.id]: e.target.value })}
-                                className="w-full pl-6 pr-2 py-1 rounded-lg bg-surface border border-border text-13 font-mono text-text focus:outline-none focus:ring-2 focus:ring-primary/20"
-                              />
-                            </div>
-                            <Button
-                              size="sm"
-                              variant="primary"
-                              disabled={savingPriceCourseId === course.id}
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                const val = parseFloat(priceInputs[course.id] ?? `${(course.priceCents ?? 0) / 100}`);
-                                const cents = isNaN(val) ? 0 : Math.max(0, Math.round(val * 100));
-                                handleUpdateCoursePrice(course.id, cents);
-                              }}
-                            >
-                              {savingPriceCourseId === course.id ? 'Saving...' : 'Save'}
-                            </Button>
-                          </div>
-                        </div>
-                      </div>
-
                       <div className="flex items-center justify-between">
                         <h3 className="text-14 font-semibold text-text uppercase tracking-wider flex items-center gap-1.5">
                           <Layers size={15} className="text-primary" />

@@ -34,7 +34,15 @@ export async function apiFetch<T>(
   const contentType = response.headers.get('content-type');
   const isJson = contentType && contentType.includes('application/json');
 
-  const data = isJson ? await response.json() : null;
+  let data: unknown = null;
+  if (isJson) {
+    try {
+      const text = await response.text();
+      data = text ? JSON.parse(text) : null;
+    } catch {
+      data = null;
+    }
+  }
 
   if (!response.ok) {
     const errorData = data as ApiError | null;
