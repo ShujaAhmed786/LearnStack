@@ -54,8 +54,13 @@ async function bootstrap() {
 
   app.addContentTypeParser('application/json', { parseAs: 'buffer' }, (req, body, done) => {
     try {
+      const str = body.toString();
+      if (!str.trim()) {
+        done(null, undefined);
+        return;
+      }
       (req as FastifyRequest & { rawBody: Buffer }).rawBody = body as Buffer;
-      const json = JSON.parse(body.toString());
+      const json = JSON.parse(str);
       done(null, json);
     } catch (err: any) {
       err.statusCode = 400;

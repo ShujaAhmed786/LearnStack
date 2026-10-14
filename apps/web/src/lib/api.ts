@@ -21,9 +21,11 @@ export async function apiFetch<T>(
   const url = `${BASE_URL}${endpoint}`;
 
   const headers: Record<string, string> = {
-    'Content-Type': 'application/json',
     ...(options.headers as Record<string, string>),
   };
+  if (options.body !== undefined) {
+    headers['Content-Type'] = 'application/json';
+  }
 
   const response = await fetch(url, {
     ...options,
