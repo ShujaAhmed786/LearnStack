@@ -103,11 +103,12 @@ jobs:
               --region ${{ env.AWS_REGION }} \
               --query "services[].[runningCount==desiredCount]" \
               --output text)
-            if [ "$STATUS" = "True True" ]; then
+            if echo "$STATUS" | grep -q "False"; then
+              echo "Waiting for services to stabilize... attempt $i/80"
+            else
               echo "Services are stable"
               exit 0
             fi
-            echo "Waiting for services to stabilize... attempt $i/80"
             sleep 15
           done
           echo "Services did not stabilize in 20 minutes"
