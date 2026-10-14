@@ -38,7 +38,7 @@ export async function apiFetch<T>(
   if (isJson) {
     try {
       const text = await response.text();
-      data = text ? JSON.parse(text) : null;
+      data = text && text.trim() ? JSON.parse(text) : null;
     } catch {
       data = null;
     }

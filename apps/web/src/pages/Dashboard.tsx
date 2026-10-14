@@ -310,29 +310,29 @@ export const Dashboard: React.FC = () => {
                 return (
                   <Card
                     key={course.id}
-                    className="p-6 bg-surface border-border hover:border-primary/40 transition-all duration-200 flex flex-col justify-between"
+                    className="p-4 sm:p-6 bg-surface border-border hover:border-primary/40 transition-all duration-200 flex flex-col justify-between"
                   >
                     <div className="flex items-start justify-between gap-4">
-                      <div className="space-y-2 flex-1">
+                      <div className="space-y-2 flex-1 min-w-0">
                         <div className="flex items-center gap-2.5">
                           <div className="w-10 h-10 rounded-xl bg-surface-hover border border-border flex items-center justify-center shrink-0">
                             {getCourseIcon(course.slug)}
                           </div>
-                          <div>
-                            <div className="flex items-center gap-2">
-                              <h4 className="text-16 font-bold text-text">
+                          <div className="min-w-0">
+                            <div className="flex items-center gap-2 min-w-0">
+                              <h4 className="text-16 font-bold text-text truncate">
                                 {displayTitle}
                               </h4>
                               {course.isEnrolled ? (
-                                <span className="text-10 font-bold px-2 py-0.5 rounded-full bg-teal-500/15 text-teal-600 dark:text-teal-400 border border-teal-500/30">
+                                <span className="text-10 font-bold px-2 py-0.5 rounded-full bg-teal-500/15 text-teal-600 dark:text-teal-400 border border-teal-500/30 shrink-0">
                                   Enrolled
                                 </span>
                               ) : course.isFree ? (
-                                <span className="text-10 font-bold px-2 py-0.5 rounded-full bg-surface-hover text-text-muted border border-border">
+                                <span className="text-10 font-bold px-2 py-0.5 rounded-full bg-surface-hover text-text-muted border border-border shrink-0">
                                   Free
                                 </span>
                               ) : (
-                                <span className="text-10 font-bold px-2 py-0.5 rounded-full bg-primary/15 text-primary border border-primary/30">
+                                <span className="text-10 font-bold px-2 py-0.5 rounded-full bg-primary/15 text-primary border border-primary/30 shrink-0">
                                   ${((course.priceCents || 4900) / 100).toFixed(0)}
                                 </span>
                               )}
