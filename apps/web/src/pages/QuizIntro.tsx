@@ -85,11 +85,12 @@ export const QuizIntro: React.FC = () => {
           <p className="text-14 text-text-muted mb-6">
             {error || 'The quiz could not be loaded.'}
           </p>
-          <Link to={courseSlug ? `/courses/${courseSlug}` : '/quizzes'}>
-            <Button variant="secondary" className="inline-flex items-center gap-2">
-              <ArrowLeft size={16} />
-              <span>{courseSlug ? 'Back to Course' : 'Back to Quizzes'}</span>
-            </Button>
+          <Link
+            to={courseSlug ? `/courses/${courseSlug}` : '/quizzes'}
+            className="inline-flex items-center justify-center gap-2 px-5 py-2.5 text-14 font-medium rounded-lg transition-colors bg-surface border border-border text-text hover:bg-surface-hover shadow-sm"
+          >
+            <ArrowLeft size={16} />
+            <span>{courseSlug ? 'Back to Course' : 'Back to Quizzes'}</span>
           </Link>
         </div>
       </Layout>

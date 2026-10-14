@@ -4,7 +4,6 @@ import { useAuth } from '../lib/auth-context';
 import { Layout } from '../components/Layout';
 import { Header } from '../components/Header';
 import { Card } from '../components/Card';
-import { Button } from '../components/Button';
 import { Skeleton } from '../components/Skeleton';
 import { api, apiFetch } from '../lib/api';
 import { ProgressSummary, Quiz, Roadmap } from '@learnstack/shared';
@@ -138,16 +137,18 @@ export const Dashboard: React.FC = () => {
               </div>
 
               <div className="flex items-center gap-3 shrink-0">
-                <Link to={nextLessonUrl}>
-                  <Button variant="primary" className="flex items-center gap-2 px-6 py-3">
-                    <span>{summary?.lastAccessedTopic ? 'Resume Lesson' : 'Continue Course'}</span>
-                    <ArrowRight size={16} />
-                  </Button>
+                <Link
+                  to={nextLessonUrl}
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3 text-14 font-medium rounded-lg transition-colors bg-primary text-[#0A1628] hover:bg-primary-hover font-semibold shadow-sm"
+                >
+                  <span>{summary?.lastAccessedTopic ? 'Resume Lesson' : 'Continue Course'}</span>
+                  <ArrowRight size={16} />
                 </Link>
-                <Link to={`/courses/${activeCourse.slug}`}>
-                  <Button variant="secondary" className="px-4 py-3">
-                    View Course
-                  </Button>
+                <Link
+                  to={`/courses/${activeCourse.slug}`}
+                  className="inline-flex items-center justify-center px-4 py-3 text-14 font-medium rounded-lg transition-colors bg-surface border border-border text-text hover:bg-surface-hover shadow-sm"
+                >
+                  View Course
                 </Link>
               </div>
             </div>
@@ -163,11 +164,12 @@ export const Dashboard: React.FC = () => {
                   Explore curriculum courses, watch structured lessons, and pass quizzes to advance your career.
                 </p>
               </div>
-              <Link to="/courses">
-                <Button variant="primary" className="flex items-center gap-2">
-                  <BookOpen size={16} />
-                  <span>Explore Courses</span>
-                </Button>
+              <Link
+                to="/courses"
+                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 text-14 font-medium rounded-lg transition-colors bg-primary text-[#0A1628] hover:bg-primary-hover font-semibold shadow-sm"
+              >
+                <BookOpen size={16} />
+                <span>Explore Courses</span>
               </Link>
             </div>
           </Card>
@@ -384,11 +386,16 @@ export const Dashboard: React.FC = () => {
                       <span className="text-12 text-text-muted">
                         {completedLessons} of {totalLessons} completed
                       </span>
-                      <Link to={`/courses/${course.slug}`}>
-                        <Button size="sm" variant={completedLessons > 0 ? 'primary' : 'secondary'}>
-                          <span>{completedLessons > 0 ? 'Continue' : 'Start'}</span>
-                          <ArrowRight size={14} className="ml-1" />
-                        </Button>
+                      <Link
+                        to={`/courses/${course.slug}`}
+                        className={`inline-flex items-center justify-center px-3 py-1.5 text-12 font-medium rounded-lg transition-colors shadow-sm ${
+                          completedLessons > 0
+                            ? 'bg-primary text-[#0A1628] hover:bg-primary-hover font-semibold'
+                            : 'bg-surface border border-border text-text hover:bg-surface-hover'
+                        }`}
+                      >
+                        <span>{completedLessons > 0 ? 'Continue' : 'Start'}</span>
+                        <ArrowRight size={14} className="ml-1" />
                       </Link>
                     </div>
                   </Card>
@@ -452,10 +459,11 @@ export const Dashboard: React.FC = () => {
                         </span>
                       )}
 
-                      <Link to={`/quizzes/${q.id}`}>
-                        <Button size="sm" variant="secondary">
-                          {hasScore ? 'Review' : 'Take'}
-                        </Button>
+                      <Link
+                        to={`/quizzes/${q.id}`}
+                        className="inline-flex items-center justify-center px-3 py-1.5 text-12 font-medium rounded-lg transition-colors bg-surface border border-border text-text hover:bg-surface-hover shadow-sm"
+                      >
+                        {hasScore ? 'Review' : 'Take'}
                       </Link>
                     </div>
                   </Card>

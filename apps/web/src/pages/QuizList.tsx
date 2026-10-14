@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Layout } from '../components/Layout';
 import { Card } from '../components/Card';
-import { Button } from '../components/Button';
 import { Skeleton } from '../components/Skeleton';
 import { Breadcrumbs } from '../components/Breadcrumbs';
 import { apiFetch } from '../lib/api';
@@ -128,11 +127,12 @@ export const QuizList: React.FC = () => {
                     <span>Pass: {quiz.passingScore}%</span>
                   </div>
 
-                  <Link to={`/quizzes/${quiz.id}`}>
-                    <Button variant="primary" size="sm" className="flex items-center gap-1">
-                      <span>{hasAttempts ? 'Retake' : 'Start'}</span>
-                      <ArrowRight size={14} />
-                    </Button>
+                  <Link
+                    to={`/quizzes/${quiz.id}`}
+                    className="inline-flex items-center justify-center gap-1 px-3 py-1.5 text-12 font-medium rounded-lg transition-colors bg-primary text-[#0A1628] hover:bg-primary-hover font-semibold shadow-sm"
+                  >
+                    <span>{hasAttempts ? 'Retake' : 'Start'}</span>
+                    <ArrowRight size={14} />
                   </Link>
                 </div>
               </Card>
