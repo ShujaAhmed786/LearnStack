@@ -1,1 +1,327 @@
-aW1wb3J0IFJlYWN0LCB7IHVzZUVmZmVjdCwgdXNlU3RhdGUgfSBmcm9tICdyZWFjdCc7CmltcG9ydCB7IHVzZVBhcmFtcywgTGluayB9IGZyb20gJ3JlYWN0LXJvdXRlci1kb20nOwppbXBvcnQgeyBMYXlvdXQgfSBmcm9tICcuLi9jb21wb25lbnRzL0xheW91dCc7CmltcG9ydCB7IENhcmQgfSBmcm9tICcuLi9jb21wb25lbnRzL0NhcmQnOwppbXBvcnQgeyBCdXR0b24gfSBmcm9tICcuLi9jb21wb25lbnRzL0J1dHRvbic7CmltcG9ydCB7IFNrZWxldG9uIH0gZnJvbSAnLi4vY29tcG9uZW50cy9Ta2VsZXRvbic7CmltcG9ydCB7IEJyZWFkY3J1bWJzIH0gZnJvbSAnLi4vY29tcG9uZW50cy9CcmVhZGNydW1icyc7CmltcG9ydCB7IHVzZUF1dGggfSBmcm9tICcuLi9saWIvYXV0aC1jb250ZXh0JzsKaW1wb3J0IHsgYXBpIH0gZnJvbSAnLi4vbGliL2FwaSc7CmltcG9ydCB7IExpdmVTZXNzaW9uLCBKb2luTGl2ZVNlc3Npb25SZXNwb25zZSB9IGZyb20gJ0BsZWFybnN0YWNrL3NoYXJlZCc7CmltcG9ydCB7IHVzZVRvYXN0IH0gZnJvbSAnLi4vY29udGV4dC9Ub2FzdENvbnRleHQnOwppbXBvcnQgewogIFZpZGVvLAogIFJhZGlvLAogIENsb2NrLAogIEFycm93TGVmdCwKICBDaGVja0NpcmNsZTIsCiAgUGxheSwKICBTcXVhcmUsCiAgU2hpZWxkQ2hlY2ssCiAgRXh0ZXJuYWxMaW5rLAp9IGZyb20gJ2x1Y2lkZS1yZWFjdCc7CgpleHBvcnQgY29uc3QgTGl2ZVNlc3Npb25Sb29tOiBSZWFjdC5GQyA9ICgpID0+IHsKICBjb25zdCB7IHNob3dUb2FzdCB9ID0gdXNlVG9hc3QoKTsKICBjb25zdCB7IGlkIH0gPSB1c2VQYXJhbXM8eyBpZDogc3RyaW5nIH0+KCk7CiAgY29uc3QgeyB1c2VyIH0gPSB1c2VBdXRoKCk7CgogIGNvbnN0IFtzZXNzaW9uLCBzZXRTZXNzaW9uXSA9IHVzZVN0YXRlPExpdmVTZXNzaW9uIHwgbnVsbD4obnVsbCk7CiAgY29uc3QgW2pvaW5EYXRhLCBzZXRKb2luRGF0YV0gPSB1c2VTdGF0ZTxKb2luTGl2ZVNlc3Npb25SZXNwb25zZSB8IG51bGw+KG51bGwpOwogIGNvbnN0IFtsb2FkaW5nLCBzZXRMb2FkaW5nXSA9IHVzZVN0YXRlKHRydWUpOwogIGNvbnN0IFtlcnJvciwgc2V0RXJyb3JdID0gdXNlU3RhdGU8c3RyaW5nIHwgbnVsbD4obnVsbCk7CiAgY29uc3QgW25lZWRzUmVnaXN0cmF0aW9uLCBzZXROZWVkc1JlZ2lzdHJhdGlvbl0gPSB1c2VTdGF0ZShmYWxzZSk7CiAgY29uc3QgW3JlZ2lzdGVyaW5nLCBzZXRSZWdpc3RlcmluZ10gPSB1c2VTdGF0ZShmYWxzZSk7CiAgY29uc3QgW3N0YXR1c1VwZGF0aW5nLCBzZXRTdGF0dXNVcGRhdGluZ10gPSB1c2VTdGF0ZShmYWxzZSk7CiAgY29uc3QgW3RpbWVMZWZ0U3RyaW5nLCBzZXRUaW1lTGVmdFN0cmluZ10gPSB1c2VTdGF0ZTxzdHJpbmc+KCcnKTsKCiAgY29uc3QgaXNTdGFmZiA9CiAgICB1c2VyPy5yb2xlID09PSAnSU5TVFJVQ1RPUicgfHwKICAgIHVzZXI/LnJvbGUgPT09ICdPUkdfQURNSU4nIHx8CiAgICB1c2VyPy5yb2xlID09PSAnU1VQRVJfQURNSU4nOwoKICBjb25zdCBmZXRjaFNlc3Npb25BbmRKb2luID0gYXN5bmMgKCkgPT4gewogICAgaWYgKCFpZCkgcmV0dXJuOwogICAgdHJ5IHsKICAgICAgc2V0TG9hZGluZyh0cnVlKTsKICAgICAgc2V0RXJyb3IobnVsbCk7CiAgICAgIHNldE5lZWRzUmVnaXN0cmF0aW9uKGZhbHNlKTsKCiAgICAgIGNvbnN0IHNlc3MgPSBhd2FpdCBhcGkuZ2V0PExpdmVTZXNzaW9uPihgL3YxL2xpdmUtc2Vzc2lvbnMvJHtpZH1gKTsKICAgICAgc2V0U2Vzc2lvbihzZXNzKTsKCiAgICAgIC8vIEF0dGVtcHQgdG8gam9pbgogICAgICB0cnkgewogICAgICAgIGNvbnN0IGpvaW4gPSBhd2FpdCBhcGkuZ2V0PEpvaW5MaXZlU2Vzc2lvblJlc3BvbnNlPihgL3YxL2xpdmUtc2Vzc2lvbnMvJHtpZH0vam9pbmApOwogICAgICAgIHNldEpvaW5EYXRhKGpvaW4pOwogICAgICB9IGNhdGNoIChqb2luRXJyOiBhbnkpIHsKICAgICAgICBpZiAoam9pbkVyci5zdGF0dXMgPT09IDQwMyB8fCBqb2luRXJyLm1lc3NhZ2U/LmluY2x1ZGVzKCdyZWdpc3RlcicpKSB7CiAgICAgICAgICBzZXROZWVkc1JlZ2lzdHJhdGlvbih0cnVlKTsKICAgICAgICB9IGVsc2UgewogICAgICAgICAgc2V0RXJyb3Ioam9pbkVyci5tZXNzYWdlIHx8ICdVbmFibGUgdG8gam9pbiBzZXNzaW9uIGF0IHRoaXMgdGltZScpOwogICAgICAgIH0KICAgICAgfQogICAgfSBjYXRjaCAoZXJyOiBhbnkpIHsKICAgICAgc2V0RXJyb3IoZXJyLm1lc3NhZ2UgfHwgJ1Nlc3Npb24gbm90IGZvdW5kJyk7CiAgICB9IGZpbmFsbHkgewogICAgICBzZXRMb2FkaW5nKGZhbHNlKTsKICAgIH0KICB9OwoKICB1c2VFZmZlY3QoKCkgPT4gewogICAgZmV0Y2hTZXNzaW9uQW5kSm9pbigpOwogIH0sIFtpZF0pOwoKICAvLyBMaXZlIGNvdW50ZG93biB0aW1lcgogIHVzZUVmZmVjdCgoKSA9PiB7CiAgICBpZiAoIXNlc3Npb24gfHwgam9pbkRhdGEpIHJldHVybjsKCiAgICBjb25zdCBpbnRlcnZhbCA9IHNldEludGVydmFsKCgpID0+IHsKICAgICAgY29uc3QgZGlmZk1zID0gbmV3IERhdGUoc2Vzc2lvbi5zY2hlZHVsZWRBdCkuZ2V0VGltZSgpIC0gRGF0ZS5ub3coKTsKICAgICAgaWYgKGRpZmZNcyA8PSAwKSB7CiAgICAgICAgc2V0VGltZUxlZnRTdHJpbmcoJ1N0YXJ0aW5nIG5vdy4uLicpOwogICAgICAgIGZldGNoU2Vzc2lvbkFuZEpvaW4oKTsKICAgICAgfSBlbHNlIHsKICAgICAgICBjb25zdCBtaW51dGVzID0gTWF0aC5mbG9vcihkaWZmTXMgLyAoNjAgKiAxMDAwKSk7CiAgICAgICAgY29uc3Qgc2Vjb25kcyA9IE1hdGguZmxvb3IoKGRpZmZNcyAlICg2MCAqIDEwMDApKSAvIDEwMDApOwogICAgICAgIHNldFRpbWVMZWZ0U3RyaW5nKGAke21pbnV0ZXN9bSAke3NlY29uZHN9c2ApOwogICAgICB9CiAgICB9LCAxMDAwKTsKCiAgICByZXR1cm4gKCkgPT4gY2xlYXJJbnRlcnZhbChpbnRlcnZhbCk7CiAgfSwgW3Nlc3Npb24sIGpvaW5EYXRhXSk7CgogIGNvbnN0IGhhbmRsZVJlZ2lzdGVyID0gYXN5bmMgKCkgPT4gewogICAgaWYgKCFpZCkgcmV0dXJuOwogICAgdHJ5IHsKICAgICAgc2V0UmVnaXN0ZXJpbmcodHJ1ZSk7CiAgICAgIGF3YWl0IGFwaS5wb3N0KGAvdjEvbGl2ZS1zZXNzaW9ucy8ke2lkfS9yZWdpc3RlcmApOwogICAgICBhd2FpdCBmZXRjaFNlc3Npb25BbmRKb2luKCk7CiAgICB9IGNhdGNoIChlcnI6IGFueSkgewogICAgICBzaG93VG9hc3QoZXJyLm1lc3NhZ2UgfHwgJ0ZhaWxlZCB0byByZWdpc3RlcicsICdlcnJvcicpOwogICAgfSBmaW5hbGx5IHsKICAgICAgc2V0UmVnaXN0ZXJpbmcoZmFsc2UpOwogICAgfQogIH07CgogIGNvbnN0IGhhbmRsZVVwZGF0ZVN0YXR1cyA9IGFzeW5jIChuZXdTdGF0dXM6ICdMSVZFJyB8ICdFTkRFRCcpID0+IHsKICAgIGlmICghaWQpIHJldHVybjsKICAgIHRyeSB7CiAgICAgIHNldFN0YXR1c1VwZGF0aW5nKHRydWUpOwogICAgICBhd2FpdCBhcGkucGF0Y2goYC92MS9saXZlLXNlc3Npb25zLyR7aWR9L3N0YXR1c2AsIHsgc3RhdHVzOiBuZXdTdGF0dXMgfSk7CiAgICAgIGF3YWl0IGZldGNoU2Vzc2lvbkFuZEpvaW4oKTsKICAgIH0gY2F0Y2ggKGVycjogYW55KSB7CiAgICAgIHNob3dUb2FzdChlcnIubWVzc2FnZSB8fCAnRmFpbGVkIHRvIHVwZGF0ZSBzZXNzaW9uIHN0YXR1cycsICdlcnJvcicpOwogICAgfSBmaW5hbGx5IHsKICAgICAgc2V0U3RhdHVzVXBkYXRpbmcoZmFsc2UpOwogICAgfQogIH07CgogIGlmIChsb2FkaW5nKSB7CiAgICByZXR1cm4gKAogICAgICA8TGF5b3V0PgogICAgICAgIDxkaXYgY2xhc3NOYW1lPSJtYXgtdy02eGwgbXgtYXV0byBwLTYgc3BhY2UteS02Ij4KICAgICAgICAgIDxTa2VsZXRvbiBoZWlnaHQ9IjMycHgiIGNsYXNzTmFtZT0idy00OCIgLz4KICAgICAgICAgIDxTa2VsZXRvbiBoZWlnaHQ9IjE0MHB4IiBjbGFzc05hbWU9InJvdW5kZWQteGwiIC8+CiAgICAgICAgICA8U2tlbGV0b24gaGVpZ2h0PSI1MDBweCIgY2xhc3NOYW1lPSJyb3VuZGVkLXhsIiAvPgogICAgICAgIDwvZGl2PgogICAgICA8L0xheW91dD4KICAgICk7CiAgfQoKICBpZiAoZXJyb3IgJiYgIXNlc3Npb24pIHsKICAgIHJldHVybiAoCiAgICAgIDxMYXlvdXQ+CiAgICAgICAgPGRpdiBjbGFzc05hbWU9Im1heC13LW1kIG14LWF1dG8gcC04IGJnLXN1cmZhY2UgYm9yZGVyIGJvcmRlci1ib3JkZXIgcm91bmRlZC14bCB0ZXh0LWNlbnRlciBzcGFjZS15LTQgc2hhZG93LXNtIj4KICAgICAgICAgIDxwIGNsYXNzTmFtZT0idGV4dC1kYW5nZXIgZm9udC1tZWRpdW0iPntlcnJvciB8fCAnU2Vzc2lvbiBub3QgZm91bmQnfTwvcD4KICAgICAgICAgIDxMaW5rCiAgICAgICAgICAgIHRvPSIvbGl2ZSIKICAgICAgICAgICAgY2xhc3NOYW1lPSJpbmxpbmUtZmxleCBpdGVtcy1jZW50ZXIgZ2FwLTIgdGV4dC1wcmltYXJ5IGhvdmVyOnVuZGVybGluZSB0ZXh0LTE0IGZvbnQtbWVkaXVtIgogICAgICAgICAgPgogICAgICAgICAgICA8QXJyb3dMZWZ0IHNpemU9ezE2fSAvPiBCYWNrIHRvIExpdmUgQ2xhc3NlcwogICAgICAgICAgPC9MaW5rPgogICAgICAgIDwvZGl2PgogICAgICA8L0xheW91dD4KICAgICk7CiAgfQoKICBjb25zdCBpc0xpdmUgPSBzZXNzaW9uPy5zdGF0dXMgPT09ICdMSVZFJzsKICBjb25zdCBpc0VuZGVkID0gc2Vzc2lvbj8uc3RhdHVzID09PSAnRU5ERUQnIHx8IHNlc3Npb24/LnN0YXR1cyA9PT0gJ0NBTkNFTExFRCc7CgogIC8vIENvbnN0cnVjdCBKaXRzaSBpZnJhbWUgVVJMIHdpdGggY2xlYW4gcGFyYW1zCiAgY29uc3Qgaml0c2lVcmwgPSBqb2luRGF0YT8ubWVldGluZ1VybAogICAgPyBgJHtqb2luRGF0YS5tZWV0aW5nVXJsfSNjb25maWcucHJlam9pblBhZ2VFbmFibGVkPWZhbHNlJnVzZXJJbmZvLmRpc3BsYXlOYW1lPSR7ZW5jb2RlVVJJQ29tcG9uZW50KAogICAgICAgIHVzZXI/Lm5hbWUgfHwgJ0xlYXJuU3RhY2sgU3R1ZGVudCcKICAgICAgKX1gCiAgICA6IG51bGw7CgogIHJldHVybiAoCiAgICA8TGF5b3V0PgogICAgICA8ZGl2IGNsYXNzTmFtZT0ibWF4LXctNnhsIG14LWF1dG8gcC02IHNwYWNlLXktNiI+CiAgICAgICAgPEJyZWFkY3J1bWJzCiAgICAgICAgICBpdGVtcz17WwogICAgICAgICAgICB7IGxhYmVsOiAnTGl2ZSBDbGFzc2VzJywgdG86ICcvbGl2ZScgfSwKICAgICAgICAgICAgeyBsYWJlbDogc2Vzc2lvbj8udGl0bGUgfHwgJ1Nlc3Npb24gUm9vbScgfSwKICAgICAgICAgIF19CiAgICAgICAgLz4KCiAgICAgICAgey8qIFRvcCBTZXNzaW9uIENvbnRyb2wgSGVhZGVyICovfQogICAgICAgIDxDYXJkIGNsYXNzTmFtZT0icC02IGJnLXN1cmZhY2UgYm9yZGVyLWJvcmRlciBmbGV4IGZsZXgtY29sIG1kOmZsZXgtcm93IG1kOml0ZW1zLWNlbnRlciBqdXN0aWZ5LWJldHdlZW4gZ2FwLTQgc2hhZG93LXNtIj4KICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSJzcGFjZS15LTEuNSI+CiAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSJmbGV4IGl0ZW1zLWNlbnRlciBnYXAtMi41Ij4KICAgICAgICAgICAgICB7aXNMaXZlID8gKAogICAgICAgICAgICAgICAgPHNwYW4gY2xhc3NOYW1lPSJpbmxpbmUtZmxleCBpdGVtcy1jZW50ZXIgZ2FwLTEuNSBweC0zIHB5LTEgcm91bmRlZC1mdWxsIGJnLWRhbmdlci8xNSB0ZXh0LWRhbmdlciBmb250LWJvbGQgdGV4dC0xMSBib3JkZXIgYm9yZGVyLWRhbmdlci8zMCBhbmltYXRlLXB1bHNlIj4KICAgICAgICAgICAgICAgICAgPFJhZGlvIHNpemU9ezEzfSBjbGFzc05hbWU9ImFuaW1hdGUtc3BpbiIgLz4KICAgICAgICAgICAgICAgICAgPHNwYW4+U1RSRUFNSU5HIExJVkUgTk9XPC9zcGFuPgogICAgICAgICAgICAgICAgPC9zcGFuPgogICAgICAgICAgICAgICkgOiBpc0VuZGVkID8gKAogICAgICAgICAgICAgICAgPHNwYW4gY2xhc3NOYW1lPSJpbmxpbmUtZmxleCBpdGVtcy1jZW50ZXIgZ2FwLTEuNSBweC0yLjUgcHktMSByb3VuZGVkLWZ1bGwgYmctc3VyZmFjZS1ob3ZlciB0ZXh0LXRleHQtbXV0ZWQgZm9udC1zZW1pYm9sZCB0ZXh0LTExIGJvcmRlciBib3JkZXItYm9yZGVyIj4KICAgICAgICAgICAgICAgICAgPHNwYW4+U0VTU0lPTiBDT05DTFVERUQ8L3NwYW4+CiAgICAgICAgICAgICAgICA8L3NwYW4+CiAgICAgICAgICAgICAgKSA6ICgKICAgICAgICAgICAgICAgIDxzcGFuIGNsYXNzTmFtZT0iaW5saW5lLWZsZXggaXRlbXMtY2VudGVyIGdhcC0xLjUgcHgtMi41IHB5LTEgcm91bmRlZC1mdWxsIGJnLXRlYWwtNTAwLzEwIHRleHQtdGVhbC02MDAgZGFyazp0ZXh0LXRlYWwtNDAwIGZvbnQtc2VtaWJvbGQgdGV4dC0xMSBib3JkZXIgYm9yZGVyLXRlYWwtNTAwLzIwIj4KICAgICAgICAgICAgICAgICAgPENsb2NrIHNpemU9ezEyfSAvPgogICAgICAgICAgICAgICAgICA8c3Bhbj5TQ0hFRFVMRUQ8L3NwYW4+CiAgICAgICAgICAgICAgICA8L3NwYW4+CiAgICAgICAgICAgICAgKX0KCiAgICAgICAgICAgICAge3Nlc3Npb24/LmNvdXJzZSAmJiAoCiAgICAgICAgICAgICAgICA8c3BhbiBjbGFzc05hbWU9InRleHQtMTIgZm9udC1tZWRpdW0gdGV4dC10ZXh0LW11dGVkIj4KICAgICAgICAgICAgICAgICAg4oCiIHtzZXNzaW9uLmNvdXJzZS50aXRsZX0KICAgICAgICAgICAgICAgIDwvc3Bhbj4KICAgICAgICAgICAgICApfQogICAgICAgICAgICA8L2Rpdj4KCiAgICAgICAgICAgIDxoMSBjbGFzc05hbWU9InRleHQtMjIgZm9udC1ib2xkIHRleHQtdGV4dCI+e3Nlc3Npb24/LnRpdGxlfTwvaDE+CiAgICAgICAgICAgIHtzZXNzaW9uPy5kZXNjcmlwdGlvbiAmJiAoCiAgICAgICAgICAgICAgPHAgY2xhc3NOYW1lPSJ0ZXh0LTEzIHRleHQtdGV4dC1tdXRlZCBtYXgtdy0yeGwiPntzZXNzaW9uLmRlc2NyaXB0aW9ufTwvcD4KICAgICAgICAgICAgKX0KICAgICAgICAgIDwvZGl2PgoKICAgICAgICAgIHsvKiBJbnN0cnVjdG9yIENvbnRyb2xzICovfQogICAgICAgICAge2lzU3RhZmYgJiYgKAogICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0iZmxleCBpdGVtcy1jZW50ZXIgZ2FwLTIuNSBzaHJpbmstMCI+CiAgICAgICAgICAgICAge3Nlc3Npb24/LnN0YXR1cyA9PT0gJ1NDSEVEVUxFRCcgJiYgKAogICAgICAgICAgICAgICAgPEJ1dHRvbgogICAgICAgICAgICAgICAgICBvbkNsaWNrPXsoKSA9PiBoYW5kbGVVcGRhdGVTdGF0dXMoJ0xJVkUnKX0KICAgICAgICAgICAgICAgICAgZGlzYWJsZWQ9e3N0YXR1c1VwZGF0aW5nfQogICAgICAgICAgICAgICAgICBjbGFzc05hbWU9ImJnLWRhbmdlciBob3ZlcjpiZy1kYW5nZXIvOTAgdGV4dC13aGl0ZSBmb250LWJvbGQgZmxleCBpdGVtcy1jZW50ZXIgZ2FwLTIgc2hhZG93LXNtIgogICAgICAgICAgICAgICAgPgogICAgICAgICAgICAgICAgICA8UGxheSBzaXplPXsxNX0gLz4KICAgICAgICAgICAgICAgICAgPHNwYW4+U3RhcnQgTGl2ZSBTZXNzaW9uPC9zcGFuPgogICAgICAgICAgICAgICAgPC9CdXR0b24+CiAgICAgICAgICAgICAgKX0KICAgICAgICAgICAgICB7c2Vzc2lvbj8uc3RhdHVzID09PSAnTElWRScgJiYgKAogICAgICAgICAgICAgICAgPEJ1dHRvbgogICAgICAgICAgICAgICAgICBvbkNsaWNrPXsoKSA9PiBoYW5kbGVVcGRhdGVTdGF0dXMoJ0VOREVEJyl9CiAgICAgICAgICAgICAgICAgIGRpc2FibGVkPXtzdGF0dXNVcGRhdGluZ30KICAgICAgICAgICAgICAgICAgY2xhc3NOYW1lPSJiZy1zdXJmYWNlIGJvcmRlciBib3JkZXItYm9yZGVyIHRleHQtdGV4dCBob3ZlcjpiZy1zdXJmYWNlLWhvdmVyIGZvbnQtc2VtaWJvbGQgZmxleCBpdGVtcy1jZW50ZXIgZ2FwLTIiCiAgICAgICAgICAgICAgICA+CiAgICAgICAgICAgICAgICAgIDxTcXVhcmUgc2l6ZT17MTV9IGNsYXNzTmFtZT0idGV4dC1kYW5nZXIiIC8+CiAgICAgICAgICAgICAgICAgIDxzcGFuPkVuZCBMaXZlIFNlc3Npb248L3NwYW4+CiAgICAgICAgICAgICAgICA8L0J1dHRvbj4KICAgICAgICAgICAgICApfQogICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICl9CiAgICAgICAgPC9DYXJkPgoKICAgICAgICB7LyogTGl2ZSBWaWRlbyBFbWJlZCBvciBDb3VudGRvd24gU2NyZWVuICovfQogICAgICAgIHtqaXRzaVVybCA/ICgKICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSJzcGFjZS15LTMiPgogICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0icmVsYXRpdmUgdy1mdWxsIGFzcGVjdC12aWRlbyByb3VuZGVkLTJ4bCBvdmVyZmxvdy1oaWRkZW4gYmctYmxhY2sgYm9yZGVyLTIgYm9yZGVyLWJvcmRlciBzaGFkb3ctMnhsIj4KICAgICAgICAgICAgICA8aWZyYW1lCiAgICAgICAgICAgICAgICBzcmM9e2ppdHNpVXJsfQogICAgICAgICAgICAgICAgdGl0bGU9e3Nlc3Npb24/LnRpdGxlfQogICAgICAgICAgICAgICAgYWxsb3c9ImNhbWVyYTsgbWljcm9waG9uZTsgZGlzcGxheS1jYXB0dXJlOyBmdWxsc2NyZWVuOyBhdXRvcGxheSIKICAgICAgICAgICAgICAgIGNsYXNzTmFtZT0idy1mdWxsIGgtZnVsbCBib3JkZXItMCIKICAgICAgICAgICAgICAvPgogICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9ImZsZXggaXRlbXMtY2VudGVyIGp1c3RpZnktYmV0d2VlbiB0ZXh0LTEyIHRleHQtdGV4dC1tdXRlZCBweC0yIj4KICAgICAgICAgICAgICA8c3BhbiBjbGFzc05hbWU9ImZsZXggaXRlbXMtY2VudGVyIGdhcC0xIj4KICAgICAgICAgICAgICAgIDxTaGllbGRDaGVjayBzaXplPXsxNH0gY2xhc3NOYW1lPSJ0ZXh0LXByaW1hcnkiIC8+CiAgICAgICAgICAgICAgICA8c3Bhbj5FbmNyeXB0ZWQgV2ViUlRDIHZpYSBKaXRzaSBNZWV0PC9zcGFuPgogICAgICAgICAgICAgIDwvc3Bhbj4KICAgICAgICAgICAgICA8YQogICAgICAgICAgICAgICAgaHJlZj17am9pbkRhdGE/Lm1lZXRpbmdVcmx9CiAgICAgICAgICAgICAgICB0YXJnZXQ9Il9ibGFuayIKICAgICAgICAgICAgICAgIHJlbD0ibm9yZWZlcnJlciIKICAgICAgICAgICAgICAgIGNsYXNzTmFtZT0iaG92ZXI6dGV4dC1wcmltYXJ5IHRyYW5zaXRpb24tY29sb3JzIGZsZXggaXRlbXMtY2VudGVyIGdhcC0xIGZvbnQtbWVkaXVtIgogICAgICAgICAgICAgID4KICAgICAgICAgICAgICAgIDxzcGFuPk9wZW4gaW4gc3RhbmRhbG9uZSB3aW5kb3c8L3NwYW4+CiAgICAgICAgICAgICAgICA8RXh0ZXJuYWxMaW5rIHNpemU9ezEyfSAvPgogICAgICAgICAgICAgIDwvYT4KICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICA8L2Rpdj4KICAgICAgICApIDogbmVlZHNSZWdpc3RyYXRpb24gPyAoCiAgICAgICAgICA8Q2FyZCBjbGFzc05hbWU9InAtMTAgYmctc3VyZmFjZSBib3JkZXItYm9yZGVyIHRleHQtY2VudGVyIG1heC13LW1kIG14LWF1dG8gc3BhY2UteS01IHNoYWRvdy1tZCI+CiAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSJ3LTE2IGgtMTYgcm91bmRlZC0yeGwgYmctcHJpbWFyeS8xMCB0ZXh0LXByaW1hcnkgbXgtYXV0byBmbGV4IGl0ZW1zLWNlbnRlciBqdXN0aWZ5LWNlbnRlciBib3JkZXIgYm9yZGVyLXByaW1hcnkvMjAiPgogICAgICAgICAgICAgIDxWaWRlbyBzaXplPXszMn0gLz4KICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSJzcGFjZS15LTEuNSI+CiAgICAgICAgICAgICAgPGgzIGNsYXNzTmFtZT0idGV4dC0yMCBmb250LWJvbGQgdGV4dC10ZXh0Ij5TZXNzaW9uIFJlZ2lzdHJhdGlvbiBSZXF1aXJlZDwvaDM+CiAgICAgICAgICAgICAgPHAgY2xhc3NOYW1lPSJ0ZXh0LTEzIHRleHQtdGV4dC1tdXRlZCBsZWFkaW5nLXJlbGF4ZWQiPgogICAgICAgICAgICAgICAgVG8gYXR0ZW5kIHRoaXMgbGl2ZSBjbGFzcyBhbmQgYWNjZXNzIHRoZSBpbnRlcmFjdGl2ZSB2aWRlbyByb29tLCB5b3UgbXVzdCByZWdpc3RlciBmb3IgdGhlIHNlc3Npb24uCiAgICAgICAgICAgICAgPC9wPgogICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgPEJ1dHRvbgogICAgICAgICAgICAgIG9uQ2xpY2s9e2hhbmRsZVJlZ2lzdGVyfQogICAgICAgICAgICAgIGRpc2FibGVkPXtyZWdpc3RlcmluZ30KICAgICAgICAgICAgICBjbGFzc05hbWU9InctZnVsbCBiZy1wcmltYXJ5IHRleHQtWyMwQTE2MjhdIGhvdmVyOmJnLXByaW1hcnktaG92ZXIgZm9udC1ib2xkIHNoYWRvdy1zbSIKICAgICAgICAgICAgPgogICAgICAgICAgICAgIHtyZWdpc3RlcmluZyA/ICdSZWdpc3RlcmluZy4uLicgOiAnUmVnaXN0ZXIgTm93IHRvIEpvaW4nfQogICAgICAgICAgICA8L0J1dHRvbj4KICAgICAgICAgIDwvQ2FyZD4KICAgICAgICApIDogaXNFbmRlZCA/ICgKICAgICAgICAgIDxDYXJkIGNsYXNzTmFtZT0icC0xMiBiZy1zdXJmYWNlIGJvcmRlci1ib3JkZXIgdGV4dC1jZW50ZXIgbWF4LXctbWQgbXgtYXV0byBzcGFjZS15LTQgc2hhZG93LXNtIj4KICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9InctMTQgaC0xNCByb3VuZGVkLTJ4bCBiZy1zdXJmYWNlLWhvdmVyIHRleHQtdGV4dC1tdXRlZCBteC1hdXRvIGZsZXggaXRlbXMtY2VudGVyIGp1c3RpZnktY2VudGVyIGJvcmRlciBib3JkZXItYm9yZGVyIj4KICAgICAgICAgICAgICA8U3F1YXJlIHNpemU9ezI2fSAvPgogICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9InNwYWNlLXktMSI+CiAgICAgICAgICAgICAgPGgzIGNsYXNzTmFtZT0idGV4dC0xOCBmb250LWJvbGQgdGV4dC10ZXh0Ij5UaGlzIExpdmUgQ2xhc3MgSGFzIEVuZGVkPC9oMz4KICAgICAgICAgICAgICA8cCBjbGFzc05hbWU9InRleHQtMTMgdGV4dC10ZXh0LW11dGVkIj4KICAgICAgICAgICAgICAgIFRoYW5rIHlvdSBmb3IgcGFydGljaXBhdGluZyEgQ2hlY2sgdXBjb21pbmcgbGl2ZSBjbGFzc2VzIG9uIHRoZSBjYWxlbmRhci4KICAgICAgICAgICAgICA8L3A+CiAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICA8TGluawogICAgICAgICAgICAgIHRvPSIvbGl2ZSIKICAgICAgICAgICAgICBjbGFzc05hbWU9ImlubGluZS1mbGV4IGl0ZW1zLWNlbnRlciBqdXN0aWZ5LWNlbnRlciBmb250LW1lZGl1bSByb3VuZGVkLWxnIHRyYW5zaXRpb24tY29sb3JzIHB4LTUgcHktMi41IHRleHQtMTQgYmctc3VyZmFjZSBib3JkZXIgYm9yZGVyLWJvcmRlciB0ZXh0LXRleHQgaG92ZXI6Ymctc3VyZmFjZS1ob3ZlciBzaGFkb3ctc20gbXQtMiIKICAgICAgICAgICAgPgogICAgICAgICAgICAgIFZpZXcgQWxsIExpdmUgQ2xhc3NlcwogICAgICAgICAgICA8L0xpbms+CiAgICAgICAgICA8L0NhcmQ+CiAgICAgICAgKSA6ICgKICAgICAgICAgIC8qIFdhaXRpbmcgLyBDb3VudGRvd24gc3RhdGUgKi8KICAgICAgICAgIDxDYXJkIGNsYXNzTmFtZT0icC0xMiBzbTpwLTE2IGJnLXN1cmZhY2UgYm9yZGVyLWJvcmRlciB0ZXh0LWNlbnRlciBtYXgtdy14bCBteC1hdXRvIHNwYWNlLXktNiBzaGFkb3ctbWQiPgogICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0idy0xNiBoLTE2IHJvdW5kZWQtMnhsIGJnLXRlYWwtNTAwLzEwIHRleHQtdGVhbC02MDAgZGFyazp0ZXh0LXRlYWwtNDAwIG14LWF1dG8gZmxleCBpdGVtcy1jZW50ZXIganVzdGlmeS1jZW50ZXIgYm9yZGVyIGJvcmRlci10ZWFsLTUwMC8yMCI+CiAgICAgICAgICAgICAgPENsb2NrIHNpemU9ezMyfSAvPgogICAgICAgICAgICA8L2Rpdj4KCiAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSJzcGFjZS15LTIiPgogICAgICAgICAgICAgIDxzcGFuIGNsYXNzTmFtZT0idGV4dC0xMiBmb250LWJvbGQgdXBwZXJjYXNlIHRyYWNraW5nLXdpZGVyIHRleHQtcHJpbWFyeSI+CiAgICAgICAgICAgICAgICBMaXZlIENsYXNzIFNjaGVkdWxlZAogICAgICAgICAgICAgIDwvc3Bhbj4KICAgICAgICAgICAgICA8aDIgY2xhc3NOYW1lPSJ0ZXh0LTI0IGZvbnQtYm9sZCB0ZXh0LXRleHQiPkNsYXNzIFN0YXJ0cyBTb29uPC9oMj4KICAgICAgICAgICAgICA8cCBjbGFzc05hbWU9InRleHQtMTQgdGV4dC10ZXh0LW11dGVkIG1heC13LW1kIG14LWF1dG8gbGVhZGluZy1yZWxheGVkIj4KICAgICAgICAgICAgICAgIFRoZSB2aWRlbyBtZWV0aW5nIHJvb20gb3BlbnMgYXV0b21hdGljYWxseSA8c3Ryb25nIGNsYXNzTmFtZT0idGV4dC10ZXh0Ij4xNSBtaW51dGVzPC9zdHJvbmc+IHByaW9yIHRvIHRoZSBzY2hlZHVsZWQgc3RhcnQgdGltZS4KICAgICAgICAgICAgICA8L3A+CiAgICAgICAgICAgIDwvZGl2PgoKICAgICAgICAgICAge3RpbWVMZWZ0U3RyaW5nICYmICgKICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0icC00IHJvdW5kZWQteGwgYmctc3VyZmFjZS1ob3ZlciBib3JkZXIgYm9yZGVyLWJvcmRlciBpbmxpbmUtYmxvY2sgbWluLXctWzIwMHB4XSI+CiAgICAgICAgICAgICAgICA8c3BhbiBjbGFzc05hbWU9InRleHQtMTEgdGV4dC10ZXh0LW11dGVkIHVwcGVyY2FzZSB0cmFja2luZy13aWRlciBmb250LXNlbWlib2xkIGJsb2NrIG1iLTAuNSI+CiAgICAgICAgICAgICAgICAgIFRpbWUgUmVtYWluaW5nCiAgICAgICAgICAgICAgICA8L3NwYW4+CiAgICAgICAgICAgICAgICA8c3BhbiBjbGFzc05hbWU9InRleHQtMjggZm9udC1tb25vIGZvbnQtYm9sZCB0ZXh0LXRleHQiPnt0aW1lTGVmdFN0cmluZ308L3NwYW4+CiAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgICl9CgogICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0icHQtMiB0ZXh0LTEyIHRleHQtdGV4dC1tdXRlZCBmbGV4IGl0ZW1zLWNlbnRlciBqdXN0aWZ5LWNlbnRlciBnYXAtMSI+CiAgICAgICAgICAgICAgPENoZWNrQ2lyY2xlMiBzaXplPXsxNH0gY2xhc3NOYW1lPSJ0ZXh0LWVtZXJhbGQtNTAwIiAvPgogICAgICAgICAgICAgIDxzcGFuPllvdSBhcmUgcmVnaXN0ZXJlZCEgVGhpcyBwYWdlIHdpbGwgcmVmcmVzaCB3aGVuIHRoZSBzZXNzaW9uIG9wZW5zLjwvc3Bhbj4KICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICA8L0NhcmQ+CiAgICAgICAgKX0KICAgICAgPC9kaXY+CiAgICA8L0xheW91dD4KICApOwp9Owo=
+import React, { useEffect, useState } from 'react';
+import { useParams, Link } from 'react-router-dom';
+import { Layout } from '../components/Layout';
+import { Card } from '../components/Card';
+import { Button } from '../components/Button';
+import { Skeleton } from '../components/Skeleton';
+import { Breadcrumbs } from '../components/Breadcrumbs';
+import { useAuth } from '../lib/auth-context';
+import { api } from '../lib/api';
+import { LiveSession, JoinLiveSessionResponse } from '@learnstack/shared';
+import { useToast } from '../context/ToastContext';
+import {
+  Video,
+  Radio,
+  Clock,
+  ArrowLeft,
+  CheckCircle2,
+  Play,
+  Square,
+  ShieldCheck,
+  ExternalLink,
+} from 'lucide-react';
+
+export const LiveSessionRoom: React.FC = () => {
+  const { showToast } = useToast();
+  const { id } = useParams<{ id: string }>();
+  const { user } = useAuth();
+
+  const [session, setSession] = useState<LiveSession | null>(null);
+  const [joinData, setJoinData] = useState<JoinLiveSessionResponse | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [needsRegistration, setNeedsRegistration] = useState(false);
+  const [registering, setRegistering] = useState(false);
+  const [statusUpdating, setStatusUpdating] = useState(false);
+  const [timeLeftString, setTimeLeftString] = useState<string>('');
+
+  const isStaff =
+    user?.role === 'INSTRUCTOR' ||
+    user?.role === 'ORG_ADMIN' ||
+    user?.role === 'SUPER_ADMIN';
+
+  const fetchSessionAndJoin = async () => {
+    if (!id) return;
+    try {
+      setLoading(true);
+      setError(null);
+      setNeedsRegistration(false);
+
+      const sess = await api.get<LiveSession>(`/v1/live-sessions/${id}`);
+      setSession(sess);
+
+      // Attempt to join
+      try {
+        const join = await api.get<JoinLiveSessionResponse>(`/v1/live-sessions/${id}/join`);
+        setJoinData(join);
+      } catch (joinErr: any) {
+        if (joinErr.status === 403 || joinErr.message?.includes('register')) {
+          setNeedsRegistration(true);
+        } else {
+          setError(joinErr.message || 'Unable to join session at this time');
+        }
+      }
+    } catch (err: any) {
+      setError(err.message || 'Session not found');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchSessionAndJoin();
+  }, [id]);
+
+  // Live countdown timer
+  useEffect(() => {
+    if (!session || joinData) return;
+
+    const interval = setInterval(() => {
+      const diffMs = new Date(session.scheduledAt).getTime() - Date.now();
+      if (diffMs <= 0) {
+        setTimeLeftString('Starting now...');
+        fetchSessionAndJoin();
+      } else {
+        const minutes = Math.floor(diffMs / (60 * 1000));
+        const seconds = Math.floor((diffMs % (60 * 1000)) / 1000);
+        setTimeLeftString(`${minutes}m ${seconds}s`);
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [session, joinData]);
+
+  const handleRegister = async () => {
+    if (!id) return;
+    try {
+      setRegistering(true);
+      await api.post(`/v1/live-sessions/${id}/register`);
+      await fetchSessionAndJoin();
+    } catch (err: any) {
+      showToast(err.message || 'Failed to register', 'error');
+    } finally {
+      setRegistering(false);
+    }
+  };
+
+  const handleUpdateStatus = async (newStatus: 'LIVE' | 'ENDED') => {
+    if (!id) return;
+    try {
+      setStatusUpdating(true);
+      await api.patch(`/v1/live-sessions/${id}/status`, { status: newStatus });
+      await fetchSessionAndJoin();
+    } catch (err: any) {
+      showToast(err.message || 'Failed to update session status', 'error');
+    } finally {
+      setStatusUpdating(false);
+    }
+  };
+
+  if (loading) {
+    return (
+      <Layout>
+        <div className="max-w-6xl mx-auto p-6 space-y-6">
+          <Skeleton height="32px" className="w-48" />
+          <Skeleton height="140px" className="rounded-xl" />
+          <Skeleton height="500px" className="rounded-xl" />
+        </div>
+      </Layout>
+    );
+  }
+
+  if (error && !session) {
+    return (
+      <Layout>
+        <div className="max-w-md mx-auto p-8 bg-surface border border-border rounded-xl text-center space-y-4 shadow-sm">
+          <p className="text-danger font-medium">{error || 'Session not found'}</p>
+          <Link
+            to="/live"
+            className="inline-flex items-center gap-2 text-primary hover:underline text-14 font-medium"
+          >
+            <ArrowLeft size={16} /> Back to Live Classes
+          </Link>
+        </div>
+      </Layout>
+    );
+  }
+
+  const isLive = session?.status === 'LIVE';
+  const isEnded = session?.status === 'ENDED' || session?.status === 'CANCELLED';
+
+  // Construct Jitsi iframe URL with clean params
+  const jitsiUrl = joinData?.meetingUrl
+    ? `${joinData.meetingUrl}#config.prejoinPageEnabled=false&userInfo.displayName=${encodeURIComponent(
+        user?.name || 'LearnStack Student'
+      )}`
+    : null;
+
+  return (
+    <Layout>
+      <div className="max-w-6xl mx-auto p-6 space-y-6">
+        <Breadcrumbs
+          items={[
+            { label: 'Live Classes', to: '/live' },
+            { label: session?.title || 'Session Room' },
+          ]}
+        />
+
+        {/* Top Session Control Header */}
+        <Card className="p-6 bg-surface border-border flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-sm">
+          <div className="space-y-1.5">
+            <div className="flex items-center gap-2.5">
+              {isLive ? (
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-danger/15 text-danger font-bold text-11 border border-danger/30 animate-pulse">
+                  <Radio size={13} className="animate-spin" />
+                  <span>STREAMING LIVE NOW</span>
+                </span>
+              ) : isEnded ? (
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-hover text-text-muted font-semibold text-11 border border-border">
+                  <span>SESSION CONCLUDED</span>
+                </span>
+              ) : (
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-teal-500/10 text-teal-600 dark:text-teal-400 font-semibold text-11 border border-teal-500/20">
+                  <Clock size={12} />
+                  <span>SCHEDULED</span>
+                </span>
+              )}
+
+              {session?.course && (
+                <span className="text-12 font-medium text-text-muted">
+                  • {session.course.title}
+                </span>
+              )}
+            </div>
+
+            <h1 className="text-22 font-bold text-text">{session?.title}</h1>
+            {session?.description && (
+              <p className="text-13 text-text-muted max-w-2xl">{session.description}</p>
+            )}
+          </div>
+
+          {/* Instructor Controls */}
+          {isStaff && (
+            <div className="flex items-center gap-2.5 shrink-0">
+              {session?.status === 'SCHEDULED' && (
+                <Button
+                  onClick={() => handleUpdateStatus('LIVE')}
+                  disabled={statusUpdating}
+                  className="bg-danger hover:bg-danger/90 text-white font-bold flex items-center gap-2 shadow-sm"
+                >
+                  <Play size={15} />
+                  <span>Start Live Session</span>
+                </Button>
+              )}
+              {session?.status === 'LIVE' && (
+                <Button
+                  onClick={() => handleUpdateStatus('ENDED')}
+                  disabled={statusUpdating}
+                  className="bg-surface border border-border text-text hover:bg-surface-hover font-semibold flex items-center gap-2"
+                >
+                  <Square size={15} className="text-danger" />
+                  <span>End Live Session</span>
+                </Button>
+              )}
+            </div>
+          )}
+        </Card>
+
+        {/* Live Video Embed or Countdown Screen */}
+        {jitsiUrl ? (
+          <div className="space-y-3">
+            <div className="relative w-full aspect-video rounded-2xl overflow-hidden bg-black border-2 border-border shadow-2xl">
+              <iframe
+                src={jitsiUrl}
+                title={session?.title}
+                allow="camera; microphone; display-capture; fullscreen; autoplay"
+                className="w-full h-full border-0"
+              />
+            </div>
+            <div className="flex items-center justify-between text-12 text-text-muted px-2">
+              <span className="flex items-center gap-1">
+                <ShieldCheck size={14} className="text-primary" />
+                <span>Encrypted WebRTC via Jitsi Meet</span>
+              </span>
+              <a
+                href={joinData?.meetingUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="hover:text-primary transition-colors flex items-center gap-1 font-medium"
+              >
+                <span>Open in standalone window</span>
+                <ExternalLink size={12} />
+              </a>
+            </div>
+          </div>
+        ) : needsRegistration ? (
+          <Card className="p-10 bg-surface border-border text-center max-w-md mx-auto space-y-5 shadow-md">
+            <div className="w-16 h-16 rounded-2xl bg-primary/10 text-primary mx-auto flex items-center justify-center border border-primary/20">
+              <Video size={32} />
+            </div>
+            <div className="space-y-1.5">
+              <h3 className="text-20 font-bold text-text">Session Registration Required</h3>
+              <p className="text-13 text-text-muted leading-relaxed">
+                To attend this live class and access the interactive video room, you must register for the session.
+              </p>
+            </div>
+            <Button
+              onClick={handleRegister}
+              disabled={registering}
+              className="w-full bg-primary text-[#0A1628] hover:bg-primary-hover font-bold shadow-sm"
+            >
+              {registering ? 'Registering...' : 'Register Now to Join'}
+            </Button>
+          </Card>
+        ) : isEnded ? (
+          <Card className="p-12 bg-surface border-border text-center max-w-md mx-auto space-y-4 shadow-sm">
+            <div className="w-14 h-14 rounded-2xl bg-surface-hover text-text-muted mx-auto flex items-center justify-center border border-border">
+              <Square size={26} />
+            </div>
+            <div className="space-y-1">
+              <h3 className="text-18 font-bold text-text">This Live Class Has Ended</h3>
+              <p className="text-13 text-text-muted">
+                Thank you for participating! Check upcoming live classes on the calendar.
+              </p>
+            </div>
+            <Link
+              to="/live"
+              className="inline-flex items-center justify-center font-medium rounded-lg transition-colors px-5 py-2.5 text-14 bg-surface border border-border text-text hover:bg-surface-hover shadow-sm mt-2"
+            >
+              View All Live Classes
+            </Link>
+          </Card>
+        ) : (
+          /* Waiting / Countdown state */
+          <Card className="p-12 sm:p-16 bg-surface border-border text-center max-w-xl mx-auto space-y-6 shadow-md">
+            <div className="w-16 h-16 rounded-2xl bg-teal-500/10 text-teal-600 dark:text-teal-400 mx-auto flex items-center justify-center border border-teal-500/20">
+              <Clock size={32} />
+            </div>
+
+            <div className="space-y-2">
+              <span className="text-12 font-bold uppercase tracking-wider text-primary">
+                Live Class Scheduled
+              </span>
+              <h2 className="text-24 font-bold text-text">Class Starts Soon</h2>
+              <p className="text-14 text-text-muted max-w-md mx-auto leading-relaxed">
+                The video meeting room opens automatically <strong className="text-text">15 minutes</strong> prior to the scheduled start time.
+              </p>
+            </div>
+
+            {timeLeftString && (
+              <div className="p-4 rounded-xl bg-surface-hover border border-border inline-block min-w-[200px]">
+                <span className="text-11 text-text-muted uppercase tracking-wider font-semibold block mb-0.5">
+                  Time Remaining
+                </span>
+                <span className="text-28 font-mono font-bold text-text">{timeLeftString}</span>
+              </div>
+            )}
+
+            <div className="pt-2 text-12 text-text-muted flex items-center justify-center gap-1">
+              <CheckCircle2 size={14} className="text-emerald-500" />
+              <span>You are registered! This page will refresh when the session opens.</span>
+            </div>
+          </Card>
+        )}
+      </div>
+    </Layout>
+  );
+};
