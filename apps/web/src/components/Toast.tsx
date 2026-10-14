@@ -1,1 +1,27 @@
-aW1wb3J0IFJlYWN0LCB7IHVzZUVmZmVjdCB9IGZyb20gJ3JlYWN0JzsKaW1wb3J0IHsgQ2hlY2tDaXJjbGUyLCBBbGVydENpcmNsZSwgSW5mbywgWCB9IGZyb20gJ2x1Y2lkZS1yZWFjdCc7CgpleHBvcnQgdHlwZSBUb2FzdFR5cGUgPSAnc3VjY2VzcycgfCAnZXJyb3InIHwgJ2luZm8nOwoKZXhwb3J0IGludGVyZmFjZSBUb2FzdERhdGEgewogIGlkOiBudW1iZXI7CiAgbWVzc2FnZTogc3RyaW5nOwogIHR5cGU6IFRvYXN0VHlwZTsKfQoKY29uc3QgaWNvbnM6IFJlY29yZDxUb2FzdFR5cGUsIFJlYWN0LlJlYWN0Tm9kZT4gPSB7CiAgc3VjY2VzczogPENoZWNrQ2lyY2xlMiBzaXplPXsxOH0gY2xhc3NOYW1lPSJzaHJpbmstMCIgLz4sCiAgZXJyb3I6IDxBbGVydENpcmNsZSBzaXplPXsxOH0gY2xhc3NOYW1lPSJzaHJpbmstMCIgLz4sCiAgaW5mbzogPEluZm8gc2l6ZT17MTh9IGNsYXNzTmFtZT0ic2hyaW5rLTAiIC8+LAp9OwoKY29uc3Qgc3R5bGVzOiBSZWNvcmQ8VG9hc3RUeXBlLCBzdHJpbmc+ID0gewogIHN1Y2Nlc3M6ICdiZy10ZWFsLTUwMC8xMCBib3JkZXItdGVhbC01MDAvMzAgdGV4dC10ZWFsLTYwMCBkYXJrOnRleHQtdGVhbC00MDAnLAogIGVycm9yOiAnYmctZGFuZ2VyLzEwIGJvcmRlci1kYW5nZXIvMzAgdGV4dC1kYW5nZXInLAogIGluZm86ICdiZy1wcmltYXJ5LzEwIGJvcmRlci1wcmltYXJ5LzMwIHRleHQtcHJpbWFyeScsCn07CgpleHBvcnQgY29uc3QgVG9hc3Q6IFJlYWN0LkZDPHsgdG9hc3Q6IFRvYXN0RGF0YTsgb25EaXNtaXNzOiAoaWQ6IG51bWJlcikgPT4gdm9pZCB9PiA9ICh7CiAgdG9hc3QsCiAgb25EaXNtaXNzLAp9KSA9PiB7CiAgdXNlRWZmZWN0KCgpID0+IHsKICAgIGNvbnN0IHRpbWVyID0gc2V0VGltZW91dCgoKSA9PiBvbkRpc21pc3ModG9hc3QuaWQpLCA0MDAwKTsKICAgIHJldHVybiAoKSA9PiBjbGVhclRpbWVvdXQodGltZXIpOwogIH0sIFt0b2FzdC5pZCwgb25EaXNtaXNzXSk7CgogIHJldHVybiAoCiAgICA8ZGl2CiAgICAgIGNsYXNzTmFtZT17YGZsZXggaXRlbXMtc3RhcnQgZ2FwLTIuNSBweC00IHB5LTMgcm91bmRlZC1sZyBib3JkZXIgc2hhZG93LWxnIHRleHQtMTQgZm9udC1tZWRpdW0gYW5pbWF0ZS1zbGlkZS1pbiAke3N0eWxlc1t0b2FzdC50eXBlXX1gfQogICAgICByb2xlPSJhbGVydCIKICAgID4KICAgICAge2ljb25zW3RvYXN0LnR5cGVdfQogICAgICA8c3BhbiBjbGFzc05hbWU9ImZsZXgtMSI+e3RvYXN0Lm1lc3NhZ2V9PC9zcGFuPgogICAgICA8YnV0dG9uCiAgICAgICAgb25DbGljaz17KCkgPT4gb25EaXNtaXNzKHRvYXN0LmlkKX0KICAgICAgICBjbGFzc05hbWU9InNocmluay0wIG9wYWNpdHktNjAgaG92ZXI6b3BhY2l0eS0xMDAgdHJhbnNpdGlvbi1vcGFjaXR5IgogICAgICAgIGFyaWEtbGFiZWw9IkRpc21pc3MiCiAgICAgID4KICAgICAgICA8WCBzaXplPXsxNH0gLz4KICAgICAgPC9idXR0b24+CiAgICA8L2Rpdj4KICApOwp9OwoKZXhwb3J0IGNvbnN0IFRvYXN0Q29udGFpbmVyOiBSZWFjdC5GQzx7IHRvYXN0czogVG9hc3REYXRhW107IG9uRGlzbWlzczogKGlkOiBudW1iZXIpID0+IHZvaWQgfT4gPSAoewogIHRvYXN0cywKICBvbkRpc21pc3MsCn0pID0+IHsKICBpZiAodG9hc3RzLmxlbmd0aCA9PT0gMCkgcmV0dXJuIG51bGw7CiAgcmV0dXJuICgKICAgIDxkaXYgY2xhc3NOYW1lPSJmaXhlZCBib3R0b20tNCByaWdodC00IHotWzEwMF0gZmxleCBmbGV4LWNvbCBnYXAtMiBtYXgtdy1bY2FsYygxMDB2dy0ycmVtKV0gdy05NiI+CiAgICAgIHt0b2FzdHMubWFwKCh0KSA9PiAoCiAgICAgICAgPFRvYXN0IGtleT17dC5pZH0gdG9hc3Q9e3R9IG9uRGlzbWlzcz17b25EaXNtaXNzfSAvPgogICAgICApKX0KICAgIDwvZGl2PgogICk7Cn07Cg==
+import React from 'react';
+
+export type ToastType = 'success' | 'error' | 'info';
+
+interface ToastProps {
+  message: string;
+  type: ToastType;
+  onClose: () => void;
+}
+
+export default function Toast({ message, type, onClose }: ToastProps) {
+  const bgColor = type === 'success' ? 'bg-green-600' : type === 'error' ? 'bg-red-600' : 'bg-blue-600';
+
+  React.useEffect(() => {
+    const timer = setTimeout(onClose, 4000);
+    return () => clearTimeout(timer);
+  }, [onClose]);
+
+  return (
+    <div className={`fixed bottom-4 right-4 ${bgColor} text-white px-4 py-3 rounded-lg shadow-lg z-50 max-w-sm animate-slide-in`}>
+      <div className="flex items-center justify-between gap-3">
+        <span className="text-sm">{message}</span>
+        <button onClick={onClose} className="text-white/80 hover:text-white text-lg leading-none">&times;</button>
+      </div>
+    </div>
+  );
+}
