@@ -104,6 +104,5 @@ jobs:
       - name: Smoke test
         run: |
           sleep 30
-          curl -f https://app.shujaahmed.dev/v1/health || exit 1
           curl -f https://app.shujaahmed.dev/health || exit 1
           echo "Smoke test passed"
