@@ -141,7 +141,30 @@ const authPlugin: FastifyPluginAsync = async (fastify) => {
       });
 
       if (!user) {
+        // The session cookie is validly signed but no active user matches the
+        // (userId, orgId) pair. Check whether the user still exists under a
+        // different org (e.g. moved orgs) so the client can prompt a clean
+        // re-login instead of showing a confusing error.
+        const userById = await prisma.user.findFirst({
+          where: {
+            id: data.userId,
+            active: true,
+            deletedAt: null,
+          },
+          select: { orgId: true },
+        });
+
         clearSessionCookie(reply);
+
+        if (userById && userById.orgId !== data.orgId) {
+          return reply.status(401).send({
+            error: {
+              message: 'Your session expired, please log in again',
+              code: 'SESSION_ORG_MISMATCH',
+            },
+          });
+        }
+
         return reply.status(401).send({
           error: {
             message: 'User or organization not found',

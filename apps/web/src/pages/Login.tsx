@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../lib/auth-context';
 import { Button } from '../components/Button';
@@ -14,6 +14,20 @@ export const Login: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [isUnverified, setIsUnverified] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Show a notice when redirected here after a stale session (e.g. the
+  // user's organization changed server-side and the old session was cleared).
+  useEffect(() => {
+    try {
+      const msg = sessionStorage.getItem('session_expired_message');
+      if (msg) {
+        sessionStorage.removeItem('session_expired_message');
+        setError(msg);
+      }
+    } catch {
+      // storage unavailable; ignore
+    }
+  }, []);
 
   const { login } = useAuth();
   const navigate = useNavigate();

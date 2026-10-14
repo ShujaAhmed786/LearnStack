@@ -51,6 +51,26 @@ export async function apiFetch<T>(
     const message =
       errorData?.error?.message || response.statusText || 'Request failed';
     const code = errorData?.error?.code || 'UNKNOWN_ERROR';
+
+    // Stale session (e.g. the user's org changed server-side): the cookie is
+    // already cleared by the API, so force a clean re-login with a message
+    // instead of leaving the user on a broken page.
+    if (code === 'SESSION_ORG_MISMATCH' && typeof window !== 'undefined') {
+      const path = window.location.pathname;
+      const loginPath = path.startsWith('/admin') ? '/admin/login' : '/login';
+      if (path !== loginPath) {
+        try {
+          sessionStorage.setItem(
+            'session_expired_message',
+            'Your session expired, please log in again'
+          );
+        } catch {
+          // storage unavailable; still redirect
+        }
+        window.location.href = loginPath;
+      }
+    }
+
     throw new ApiRequestError(message, code, response.status);
   }
 

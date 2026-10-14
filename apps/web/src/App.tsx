@@ -36,6 +36,7 @@ import { AdminTactics } from './pages/AdminTactics';
 import { AdminSettings } from './pages/AdminSettings';
 import { AdminAnalytics } from './pages/AdminAnalytics';
 import { Skeleton } from './components/Skeleton';
+import { ErrorBoundary } from './components/ErrorBoundary';
 import { Role } from '@learnstack/shared';
 
 function ProtectedRoute({
@@ -114,7 +115,8 @@ function RoadmapSlugRedirect() {
 
 export function App() {
   return (
-    <Routes>
+    <ErrorBoundary>
+      <Routes>
       <Route path="/" element={<RootRedirect />} />
       <Route
         path="/login"
@@ -403,7 +405,8 @@ export function App() {
       />
 
       <Route path="*" element={<RootRedirect />} />
-    </Routes>
+      </Routes>
+    </ErrorBoundary>
   );
 }
 

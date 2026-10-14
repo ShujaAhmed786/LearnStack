@@ -26,6 +26,9 @@ import { analyticsRoutes } from './routes/analytics.js';
 
 async function bootstrap() {
   const app = fastify({
+    // Behind the ALB: trust X-Forwarded-For so request.ip (and rate limiting)
+    // see the real client IP instead of the load balancer's.
+    trustProxy: true,
     logger: {
       level: env.NODE_ENV === 'production' ? 'info' : 'debug',
       redact: [

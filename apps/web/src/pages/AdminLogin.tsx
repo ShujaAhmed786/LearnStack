@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../lib/auth-context';
 import { Card } from '../components/Card';
@@ -13,6 +13,20 @@ export const AdminLogin: React.FC = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+
+  // Show a notice when redirected here after a stale session (e.g. the
+  // user's organization changed server-side and the old session was cleared).
+  useEffect(() => {
+    try {
+      const msg = sessionStorage.getItem('session_expired_message');
+      if (msg) {
+        sessionStorage.removeItem('session_expired_message');
+        setError(msg);
+      }
+    } catch {
+      // storage unavailable; ignore
+    }
+  }, []);
 
   const { login, logout } = useAuth();
   const navigate = useNavigate();
