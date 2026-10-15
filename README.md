@@ -35,6 +35,27 @@ Everything is free. No payments, no SSO. Email/password authentication only.
 - **[User Guide](docs/USER_GUIDE.md)** - Step-by-step learner and admin walkthroughs
 - **[Screenshots](docs/screenshots/README.md)** - Visual page reference for evaluators
 
+## Screenshots
+
+Dark mode preview of the learner and admin experience. Full gallery in [docs/screenshots](docs/screenshots/).
+
+### Learner
+
+![Learner Dashboard](docs/screenshots/dark/learner/learner-dashboard-dark.png)
+![Courses](docs/screenshots/dark/learner/learner-courses-dark.png)
+![Course Detail](docs/screenshots/dark/learner/learner-course-detail-dark.png)
+![Lesson Expanded](docs/screenshots/dark/learner/learner-lesson-expanded-dark.png)
+![Quizzes](docs/screenshots/dark/learner/learner-quizzes-dark.png)
+
+### Admin
+
+![Admin Dashboard](docs/screenshots/dark/admin/admin-dashboard-dark.png)
+![Admin Users](docs/screenshots/dark/admin/admin-users-dark.png)
+
+## Workflow
+
+Interactive workflow diagram: [view here] — the diagram artifact will be linked here once published.
+
 ## Run It Yourself
 
 ### Prerequisites
