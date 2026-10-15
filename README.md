@@ -2,28 +2,38 @@
 
 A multi-tenant, white-label learning platform. Organizations get their own branded learning portal with courses, quizzes, discussion forums, live sessions, certificates, and analytics.
 
+**Live:** https://app.shujaahmed.dev
+
 ## Features
 
-- **Courses**: Modules, lessons, video embeds, file uploads, search
-- **Quizzes**: 10-question quizzes per lesson, 70% pass required, auto-grading, timer
-- **Discussion Forums**: Per-lesson threads, accepted answers, instructor badges
-- **Live Sessions**: Jitsi Meet integration, registration, scheduling, countdown
+- **Courses**: Modules, lessons, YouTube video embeds, search
+- **Quizzes**: 10-question quizzes per lesson, 70% pass required, auto-grading, unlimited retakes
+- **Discussion Forums**: Per-lesson Q&A threads
+- **Live Sessions**: Scheduling, registration, countdown
 - **Certificates**: PDF generation on course completion, public verification URL
-- **Payments**: Stripe Checkout integration, test mode supported
-- **SSO**: Google and Microsoft one-click login
 - **Analytics**: Lesson funnels, quiz difficulty analysis, at-risk learner alerts
-- **Admin Panel**: User management, course management, pricing controls
-- **Multi-tenant**: Organizations with custom branding, role-based access (Super Admin, Org Admin, Instructor, Learner)
+- **Admin Panel**: User management, course/quiz/guide/tactic management
+- **Multi-tenant**: Organizations with role-based access (Super Admin, Org Admin, Instructor, Learner)
 - **Themes**: Light and dark mode
+- **Password Reset**: Email-based password recovery
+- **Toast Notifications**: Non-blocking UI feedback
+
+Everything is free. No payments, no SSO. Email/password authentication only.
 
 ## Tech Stack
 
 - **Frontend**: React, TypeScript, Vite, Tailwind CSS, Lucide icons
 - **Backend**: Node.js, TypeScript, Fastify, Zod validation
-- **Database**: PostgreSQL with Prisma ORM
-- **Auth**: Argon2id password hashing, session cookies, OAuth 2.0
+- **Database**: PostgreSQL (RDS Multi-AZ) with Prisma ORM
+- **Auth**: Argon2id password hashing, session cookies, rate limiting
+- **Email**: Nodemailer (Gmail) for verification and password reset
 - **Monorepo**: pnpm workspaces
-- **Deployment**: Docker, GitHub Actions, GHCR, Kubernetes, ArgoCD, Terraform
+- **Deployment**: Docker, GitHub Actions, ECR, ECS (Fargate), ALB, ACM, Route 53, Secrets Manager, Terraform
+
+## Documentation
+
+- **[User Guide](docs/USER_GUIDE.md)** - Step-by-step learner and admin walkthroughs
+- **[Screenshots](docs/screenshots/README.md)** - Visual page reference for evaluators
 
 ## Run It Yourself
 
@@ -46,7 +56,7 @@ A multi-tenant, white-label learning platform. Organizations get their own brand
    ```bash
    docker compose up -d
    ```
-   This starts PostgreSQL on port 5432 with default credentials.
+   This starts PostgreSQL on port 5432.
 
 3. **Install dependencies**
    ```bash
@@ -57,28 +67,20 @@ A multi-tenant, white-label learning platform. Organizations get their own brand
    ```bash
    cp apps/api/.env.example apps/api/.env
    ```
-   Edit `apps/api/.env` with your values:
+   Edit `apps/api/.env`:
    - `DATABASE_URL`: PostgreSQL connection string
    - `SESSION_SECRET`: Random string for session signing
    - `EMAIL_USER` / `EMAIL_PASS`: Gmail credentials for verification emails (optional)
-   - `STRIPE_SECRET_KEY`: Stripe test key for payments (optional, test mode)
-   - `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET`: For Google SSO (optional)
-   - `MICROSOFT_CLIENT_ID` / `MICROSOFT_CLIENT_SECRET`: For Microsoft SSO (optional)
 
 5. **Run database migrations**
    ```bash
    pnpm --filter db exec prisma migrate dev
    ```
 
-6. **Seed demo data** (optional, for testing)
+6. **Seed data** (optional)
    ```bash
    pnpm --filter db exec prisma db seed
    ```
-   This creates demo users, courses, quizzes, forum threads, and analytics data.
-   Demo logins (password: `demo123` for all):
-   - Admin: `admin@acme-corp.com`
-   - Instructor: `maria@acme-corp.com`
-   - Learner: `alex@acme-corp.com`
 
 7. **Start the dev servers**
    ```bash
@@ -87,58 +89,35 @@ A multi-tenant, white-label learning platform. Organizations get their own brand
    - Frontend: http://localhost:5173
    - API: http://localhost:3001
 
-### Production Deployment (Docker)
+### Production Deployment (AWS)
 
-1. **Build images**
-   ```bash
-   docker build -f infra/docker/Dockerfile.api -t learnstack-api .
-   docker build -f infra/docker/Dockerfile.web -t learnstack-web .
-   ```
+Infrastructure is managed with Terraform in `infra/terraform/`:
 
-2. **Run with Docker Compose** (production-like)
-   ```bash
-   docker compose -f docker-compose.yml up -d
-   ```
+- **Compute**: ECS with 2 tasks per service (API + Web)
+- **Database**: RDS PostgreSQL Multi-AZ
+- **Load Balancer**: Application Load Balancer with ACM TLS
+- **DNS**: Route 53 (`app.shujaahmed.dev`)
+- **Secrets**: AWS Secrets Manager (DB URL, session secret, email credentials)
+- **Networking**: VPC with private subnets, NAT instance
+- **CI/CD**: GitHub Actions → ECR → ECS rolling deploy with circuit breaker and auto-rollback
 
-### Production Deployment (Kubernetes + Terraform)
+**Deploy:**
+```bash
+cd infra/terraform
+terraform init
+terraform plan
+terraform apply
+```
 
-Full production setup on AWS with K3s:
+Pushing to `main` triggers the GitHub Actions Deploy workflow automatically.
 
-1. **Configure AWS credentials**
-   ```bash
-   aws configure
-   ```
-
-2. **Deploy infrastructure**
-   ```bash
-   cd infra/terraform-full
-   terraform init
-   terraform plan
-   terraform apply
-   ```
-   This creates: VPC, NAT instance, 2x K3s nodes (t4g.small), PostgreSQL server, security groups. All software (K3s, ingress-nginx, ArgoCD, PostgreSQL) installs automatically via user_data.
-
-3. **Run database migrations** against the production database
-   ```bash
-   DATABASE_URL="<from terraform output>" pnpm --filter db exec prisma migrate deploy
-   ```
-
-4. **Deploy via ArgoCD**
-   ```bash
-   kubectl apply -f infra/k8s/argocd-app.yaml
-   ```
-   ArgoCD syncs from GitHub and deploys automatically on every push to main.
-
-See `infra/terraform-full/` for infrastructure details.
+See `infra/terraform/` for infrastructure details.
 
 ### CI/CD
 
-GitHub Actions (`.github/workflows/ci.yml`) runs on every push:
-- TypeScript type checking
-- Linting
-- Tests
-- Trivy security scan
-- Docker build and push to GHCR
+GitHub Actions (`.github/workflows/`):
+- **CI**: TypeScript type checking, linting, tests, Trivy security scan, Semgrep SAST
+- **Deploy**: Docker builds (no-cache), push to ECR, ECS rolling deployment, health check smoke test
 
 ## Project Structure
 
@@ -151,10 +130,14 @@ LearnStack/
 │   ├── db/           # Prisma schema, migrations, seeds
 │   └── shared/       # Shared TypeScript types
 ├── infra/
-│   ├── docker/       # Dockerfiles, nginx config
-│   ├── k8s/          # Kubernetes manifests, ArgoCD app
-│   ├── terraform/    # Lightweight TF (existing cluster)
-│   └── terraform-full/ # Full AWS infrastructure
+│   └── terraform/    # AWS infrastructure (ECS, RDS, ALB, etc.)
+├── docs/
+│   ├── USER_GUIDE.md       # Learner and admin walkthroughs
+│   └── screenshots/        # Visual page reference
+│       ├── README.md
+│       ├── learner/
+│       ├── admin/
+│       └── mobile/
 ├── .github/
 │   └── workflows/    # CI/CD pipelines
 └── docker-compose.yml
@@ -162,14 +145,22 @@ LearnStack/
 
 ## API Routes
 
-- `/v1/auth/*` - Authentication (register, login, logout, OAuth)
+- `/v1/auth/*` - Authentication (register, login, logout, forgot/reset password)
 - `/v1/courses/*` - Course browsing and enrollment
 - `/v1/quizzes/*` - Quiz attempts and results
 - `/v1/discussions/*` - Forum threads and posts
 - `/v1/live-sessions/*` - Live session management
 - `/v1/certificates/*` - Certificate generation and verification
-- `/v1/payments/*` - Stripe checkout and webhooks
-- `/v1/admin/*` - Admin operations (users, courses, analytics)
+- `/v1/admin/*` - Admin operations (users, courses, quizzes, analytics)
+
+## Security
+
+- Argon2id password hashing
+- Session cookies (httpOnly, secure, sameSite)
+- Rate limiting on auth endpoints (5/min login, 3/min register)
+- Security headers (X-Frame-Options, X-Content-Type-Options, Referrer-Policy)
+- React Error Boundaries for graceful failure handling
+- Zod input validation on all endpoints
 
 ## License
 
