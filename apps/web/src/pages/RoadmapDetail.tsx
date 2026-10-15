@@ -58,6 +58,345 @@ function getYouTubeEmbedUrl(url?: string | null): string | null {
   return url;
 }
 
+// Lesson detail panel content (video, quiz, discussion) - used in both
+// the desktop sidebar and the mobile inline expansion.
+function LessonDetailContent({
+  selectedLesson,
+  course,
+  slug,
+  drawerTab,
+  setDrawerTab,
+  lessonDiscussions,
+  loadingDiscussions,
+  newQuestionTitle,
+  setNewQuestionTitle,
+  newQuestionContent,
+  setNewQuestionContent,
+  postingQuestion,
+  handlePostLessonQuestion,
+  embedUrl,
+  handleToggleComplete,
+  updatingLessonId,
+  setSelectedLesson,
+}: {
+  selectedLesson: { lesson: RoadmapTopic; module: RoadmapStage };
+  course: Roadmap | null;
+  slug: string | undefined;
+  drawerTab: 'content' | 'discussion';
+  setDrawerTab: (t: 'content' | 'discussion') => void;
+  lessonDiscussions: DiscussionThread[];
+  loadingDiscussions: boolean;
+  newQuestionTitle: string;
+  setNewQuestionTitle: (s: string) => void;
+  newQuestionContent: string;
+  setNewQuestionContent: (s: string) => void;
+  postingQuestion: boolean;
+  handlePostLessonQuestion: (e: React.FormEvent) => void;
+  embedUrl: string | null;
+  handleToggleComplete: (lessonId: string, e?: React.MouseEvent) => void;
+  updatingLessonId: string | null;
+  setSelectedLesson: (s: { lesson: RoadmapTopic; module: RoadmapStage } | null) => void;
+}) {
+  return (
+    <>
+{/* Header */}
+<div className="flex items-start justify-between gap-4 pb-4 border-b border-border">
+  <div>
+    <span className="text-11 font-semibold text-primary uppercase tracking-wider flex items-center gap-1">
+      <Layers size={13} />
+      <span>{selectedLesson.module.title}</span>
+    </span>
+    <h2 className="text-18 font-bold text-text mt-1">
+      {selectedLesson.lesson.title}
+    </h2>
+  </div>
+  <button
+    onClick={() => setSelectedLesson(null)}
+    className="p-1.5 rounded-lg text-text-muted hover:text-text hover:bg-surface-hover transition-colors"
+  >
+    <X size={18} />
+  </button>
+</div>
+
+{/* Drawer Tab Switcher */}
+<div className="flex items-center bg-surface-hover/80 p-1 rounded-xl border border-border text-12 font-medium">
+  <button
+    type="button"
+    onClick={() => setDrawerTab('content')}
+    className={`flex-1 py-1.5 px-3 rounded-lg transition-all ${
+      drawerTab === 'content'
+        ? 'bg-surface text-text font-bold shadow-xs'
+        : 'text-text-muted hover:text-text'
+    }`}
+  >
+    Lesson Content
+  </button>
+  <button
+    type="button"
+    onClick={() => setDrawerTab('discussion')}
+    className={`flex-1 py-1.5 px-3 rounded-lg transition-all flex items-center justify-center gap-1.5 ${
+      drawerTab === 'discussion'
+        ? 'bg-surface text-text font-bold shadow-xs'
+        : 'text-text-muted hover:text-text'
+    }`}
+  >
+    <MessageSquare size={13} />
+    <span>Discussion ({lessonDiscussions.length})</span>
+  </button>
+</div>
+
+{/* Lesson Locked State or Content */}
+{selectedLesson.lesson.locked ? (
+  <div className="py-8 px-4 rounded-xl bg-surface-hover/60 border border-border text-center space-y-4">
+    <div className="w-14 h-14 rounded-2xl bg-amber-500/10 text-amber-500 mx-auto flex items-center justify-center border border-amber-500/20">
+      <Lock size={28} />
+    </div>
+    <div className="max-w-xs mx-auto">
+      <h3 className="text-16 font-bold text-text">Lesson Locked</h3>
+      <p className="text-13 text-text-muted mt-1 leading-relaxed">
+        This lesson is part of a premium course. Enroll now to unlock all modules, video lessons, and interactive quizzes.
+      </p>
+    </div>
+  </div>
+) : drawerTab === 'discussion' ? (
+  /* Discussion Tab Content */
+  <div className="space-y-4">
+    <div className="flex items-center justify-between">
+      <h3 className="text-13 font-bold text-text flex items-center gap-1.5">
+        <MessageSquare size={14} className="text-primary" />
+        <span>Lesson Questions & Answers</span>
+      </h3>
+      <Link
+        to={`/discussions?courseId=${course.id}`}
+        className="text-11 text-primary hover:underline font-medium flex items-center gap-0.5"
+      >
+        <span>All Course Discussions</span>
+        <ExternalLink size={10} />
+      </Link>
+    </div>
+
+    {/* Ask Question Form */}
+    <form onSubmit={handlePostLessonQuestion} className="p-3.5 rounded-xl bg-surface-hover/50 border border-border space-y-2.5">
+      <h4 className="text-12 font-bold text-text">Ask a Question on this Lesson</h4>
+      <input
+        type="text"
+        required
+        placeholder="Brief summary of your question..."
+        value={newQuestionTitle}
+        onChange={(e) => setNewQuestionTitle(e.target.value)}
+        className="w-full bg-surface border border-border rounded-lg px-2.5 py-1.5 text-13 text-text focus:outline-none focus:border-primary"
+      />
+      <textarea
+        rows={2}
+        required
+        placeholder="Details or code snippets..."
+        value={newQuestionContent}
+        onChange={(e) => setNewQuestionContent(e.target.value)}
+        className="w-full bg-surface border border-border rounded-lg p-2.5 text-12 text-text focus:outline-none focus:border-primary"
+      />
+      <div className="flex justify-end">
+        <button
+          type="submit"
+          disabled={postingQuestion || !newQuestionTitle.trim() || !newQuestionContent.trim()}
+          className="py-1.5 px-3 rounded-lg bg-primary text-[#0A1628] hover:bg-primary-hover font-bold text-12 flex items-center gap-1 shadow-sm transition-all"
+        >
+          <Send size={12} />
+          <span>{postingQuestion ? 'Posting...' : 'Ask Question'}</span>
+        </button>
+      </div>
+    </form>
+
+    {/* Thread List */}
+    {loadingDiscussions ? (
+      <div className="space-y-2">
+        <Skeleton height="60px" className="rounded-lg" />
+        <Skeleton height="60px" className="rounded-lg" />
+      </div>
+    ) : lessonDiscussions.length === 0 ? (
+      <div className="p-6 rounded-xl bg-surface-hover/30 border border-border text-center space-y-2">
+        <p className="text-13 text-text-muted">No questions asked on this lesson yet.</p>
+        <p className="text-11 text-text-muted">Have a doubt? Ask above and instructors will answer!</p>
+      </div>
+    ) : (
+      <div className="space-y-2.5 max-h-[350px] overflow-y-auto pr-1">
+        {lessonDiscussions.map((t) => (
+          <div
+            key={t.id}
+            className="p-3 rounded-lg bg-surface border border-border hover:border-primary/40 transition-colors space-y-1.5"
+          >
+            <div className="flex items-center justify-between gap-2">
+              <h5 className="text-13 font-bold text-text truncate">{t.title}</h5>
+              {t.hasAcceptedAnswer && (
+                <span className="inline-flex items-center gap-0.5 text-10 font-bold px-1.5 py-0.2 rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/25 shrink-0">
+                  <Check size={10} />
+                  <span>Answered</span>
+                </span>
+              )}
+            </div>
+            <div className="flex items-center justify-between text-11 text-text-muted pt-1 border-t border-border/60">
+              <span>{t.author?.name || 'Student'}</span>
+              <Link
+                to={`/discussions?thread=${t.id}`}
+                className="text-primary hover:underline font-semibold flex items-center gap-1"
+              >
+                <span>{t.postCount || 1} posts</span>
+                <ArrowRight size={11} />
+              </Link>
+            </div>
+          </div>
+        ))}
+      </div>
+    )}
+  </div>
+) : (
+  <>
+    {/* Video Embed */}
+    {embedUrl ? (
+      <div className="space-y-2">
+        <div className="relative w-full aspect-video rounded-lg overflow-hidden bg-black border border-border">
+          <iframe
+            src={embedUrl}
+            title={selectedLesson.lesson.title}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            className="w-full h-full border-0"
+          />
+        </div>
+        {selectedLesson.lesson.youtubeUrl && (
+          <div className="flex justify-end">
+            <a
+              href={selectedLesson.lesson.youtubeUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1 text-12 text-text-muted hover:text-primary transition-colors font-medium"
+            >
+              <span>Open on YouTube</span>
+              <ExternalLink size={12} />
+            </a>
+          </div>
+        )}
+      </div>
+    ) : (
+      <div className="p-8 rounded-lg bg-surface-hover/50 border border-border text-center text-text-muted text-13">
+        No video linked for this lesson.
+      </div>
+    )}
+
+    {/* Description */}
+    {selectedLesson.lesson.description && (
+      <div className="space-y-1.5">
+        <h3 className="text-12 font-semibold text-text-muted uppercase tracking-wider">
+          Lesson Overview
+        </h3>
+        <p className="text-14 text-text leading-relaxed">
+          {selectedLesson.lesson.description}
+        </p>
+      </div>
+    )}
+
+    {/* Quiz Section (Spec 09) */}
+    {selectedLesson.lesson.quizId && (
+      <div className="pt-4 border-t border-border space-y-3">
+        <div className="flex items-center justify-between">
+          <h3 className="text-12 font-semibold text-text-muted uppercase tracking-wider flex items-center gap-1.5">
+            <HelpCircle size={14} className="text-primary" />
+            <span>Lesson Quiz</span>
+          </h3>
+          {selectedLesson.lesson.passed ? (
+            <span className="text-11 font-semibold px-2 py-0.5 rounded-full bg-success/15 text-success border border-success/30 flex items-center gap-1">
+              <CheckCircle2 size={12} />
+              <span>Passed ({selectedLesson.lesson.userBestScore}%)</span>
+            </span>
+          ) : selectedLesson.lesson.userBestScore !== null ? (
+            <span className="text-11 font-semibold px-2 py-0.5 rounded-full bg-warning/15 text-warning border border-warning/30 flex items-center gap-1">
+              <AlertCircle size={12} />
+              <span>Needs 70% (Best: {selectedLesson.lesson.userBestScore}%)</span>
+            </span>
+          ) : (
+            <span className="text-11 font-medium px-2 py-0.5 rounded-full bg-surface-hover text-text-muted border border-border">
+              10 Questions • 70%+ to pass
+            </span>
+          )}
+        </div>
+
+        <div className="p-3.5 rounded-lg bg-surface-hover/60 border border-border space-y-2.5">
+          <div>
+            <p className="font-semibold text-13 text-text">
+              {selectedLesson.lesson.quizTitle || selectedLesson.lesson.title}
+            </p>
+            <p className="text-12 text-text-muted mt-0.5">
+              {selectedLesson.lesson.passed
+                ? `You have passed this quiz with a best score of ${selectedLesson.lesson.userBestScore}%. You can retake it anytime.`
+                : selectedLesson.lesson.userBestScore !== null
+                ? `Your current best score is ${selectedLesson.lesson.userBestScore}%. Pass with 70%+ to unlock completion.`
+                : 'Pass this 10-question quiz (70%+ required) to unlock lesson completion.'}
+            </p>
+          </div>
+
+          <Link
+            to={`/quizzes/${selectedLesson.lesson.quizId}?from=course&courseSlug=${slug}&topicId=${selectedLesson.lesson.id}`}
+            className={`w-full py-2.5 px-3 rounded-lg font-medium text-13 flex items-center justify-center gap-2 transition-colors ${
+              selectedLesson.lesson.passed
+                ? 'bg-surface hover:bg-surface-hover text-text border border-border shadow-sm'
+                : 'bg-primary text-[#0A1628] hover:bg-primary-hover font-semibold shadow-sm'
+            }`}
+          >
+            <HelpCircle size={15} />
+            <span>
+              {selectedLesson.lesson.passed
+                ? 'Retake Quiz'
+                : selectedLesson.lesson.userBestScore !== null
+                ? 'Retake Quiz to Pass'
+                : 'Take Quiz'}
+            </span>
+          </Link>
+        </div>
+      </div>
+    )}
+
+    {/* Actions */}
+    <div className="pt-4 border-t border-border space-y-2">
+      {selectedLesson.lesson.quizId &&
+      !selectedLesson.lesson.passed &&
+      !selectedLesson.lesson.completed ? (
+        <div className="space-y-2">
+          <button
+            disabled
+            className="w-full py-2.5 px-4 rounded-lg font-medium text-14 flex items-center justify-center gap-2 bg-surface-hover text-text-muted/60 border border-border/60 cursor-not-allowed"
+          >
+            <CheckCircle2 size={16} />
+            <span>Mark as Complete (Locked)</span>
+          </button>
+          <p className="text-12 text-center text-warning flex items-center justify-center gap-1.5 font-medium">
+            <AlertCircle size={13} className="shrink-0" />
+            <span>Take quiz to unlock completion</span>
+          </p>
+        </div>
+      ) : (
+        <button
+          onClick={() => handleToggleComplete(selectedLesson.lesson.id)}
+          disabled={updatingLessonId === selectedLesson.lesson.id}
+          className={`w-full py-2.5 px-4 rounded-lg font-semibold text-14 flex items-center justify-center gap-2 transition-colors ${
+            selectedLesson.lesson.completed
+              ? 'bg-surface text-text-muted hover:bg-surface-hover border border-border'
+              : 'bg-primary text-[#0A1628] hover:bg-primary-hover shadow-sm'
+          }`}
+        >
+          <CheckCircle2 size={16} />
+          <span>
+            {selectedLesson.lesson.completed
+              ? 'Completed (Click to undo)'
+              : 'Mark as Complete'}
+          </span>
+        </button>
+      )}
+    </div>
+  </>
+)}
+    </>
+  );
+}
+
 export const RoadmapDetail: React.FC = () => {
   const { showToast } = useToast();
   const { slug } = useParams<{ slug: string }>();
@@ -553,14 +892,19 @@ export const RoadmapDetail: React.FC = () => {
                         const isCompleted = !!lesson.completed;
 
                         return (
+                          <React.Fragment key={lesson.id}>
                           <div
-                            key={lesson.id}
+                            id={`lesson-${lesson.id}`}
                             onClick={() => {
                               setSelectedLesson({ lesson, module });
                               trackEvent('lesson_started', {
                                 courseId: course?.id,
                                 lessonId: lesson.id,
                               });
+                              // Scroll the lesson into view on mobile so the inline panel is visible
+                              setTimeout(() => {
+                                document.getElementById(`lesson-${lesson.id}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                              }, 50);
                             }}
                             className={`group relative flex items-start gap-3 p-3.5 rounded-lg border transition-all cursor-pointer ${
                               isSelected
@@ -637,6 +981,33 @@ export const RoadmapDetail: React.FC = () => {
                               />
                             </div>
                           </div>
+                          {/* Mobile inline detail panel - shows video+quiz right below the tapped lesson */}
+                          {selectedLesson && isSelected && (
+                            <div className="lg:hidden mt-2 mb-1">
+                              <Card className="p-4 bg-surface border-border space-y-4 shadow-md border-primary/30">
+                                <LessonDetailContent
+                                  selectedLesson={selectedLesson}
+                                  course={course}
+                                  slug={slug}
+                                  drawerTab={drawerTab}
+                                  setDrawerTab={setDrawerTab}
+                                  lessonDiscussions={lessonDiscussions}
+                                  loadingDiscussions={loadingDiscussions}
+                                  newQuestionTitle={newQuestionTitle}
+                                  setNewQuestionTitle={setNewQuestionTitle}
+                                  newQuestionContent={newQuestionContent}
+                                  setNewQuestionContent={setNewQuestionContent}
+                                  postingQuestion={postingQuestion}
+                                  handlePostLessonQuestion={handlePostLessonQuestion}
+                                  embedUrl={embedUrl}
+                                  handleToggleComplete={handleToggleComplete}
+                                  updatingLessonId={updatingLessonId}
+                                  setSelectedLesson={setSelectedLesson}
+                                />
+                              </Card>
+                            </div>
+                          )}
+                          </React.Fragment>
                         );
                       })}
                     </div>
@@ -648,302 +1019,27 @@ export const RoadmapDetail: React.FC = () => {
 
           {/* Sticky Side Panel / Drawer */}
           {selectedLesson && (
-            <div className="w-full lg:w-[42%] lg:sticky lg:top-20 shrink-0">
+            <div className="hidden lg:block lg:w-[42%] lg:sticky lg:top-20 shrink-0">
               <Card className="p-6 bg-surface border-border space-y-5 shadow-lg">
-                {/* Header */}
-                <div className="flex items-start justify-between gap-4 pb-4 border-b border-border">
-                  <div>
-                    <span className="text-11 font-semibold text-primary uppercase tracking-wider flex items-center gap-1">
-                      <Layers size={13} />
-                      <span>{selectedLesson.module.title}</span>
-                    </span>
-                    <h2 className="text-18 font-bold text-text mt-1">
-                      {selectedLesson.lesson.title}
-                    </h2>
-                  </div>
-                  <button
-                    onClick={() => setSelectedLesson(null)}
-                    className="p-1.5 rounded-lg text-text-muted hover:text-text hover:bg-surface-hover transition-colors"
-                  >
-                    <X size={18} />
-                  </button>
-                </div>
-
-                {/* Drawer Tab Switcher */}
-                <div className="flex items-center bg-surface-hover/80 p-1 rounded-xl border border-border text-12 font-medium">
-                  <button
-                    type="button"
-                    onClick={() => setDrawerTab('content')}
-                    className={`flex-1 py-1.5 px-3 rounded-lg transition-all ${
-                      drawerTab === 'content'
-                        ? 'bg-surface text-text font-bold shadow-xs'
-                        : 'text-text-muted hover:text-text'
-                    }`}
-                  >
-                    Lesson Content
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setDrawerTab('discussion')}
-                    className={`flex-1 py-1.5 px-3 rounded-lg transition-all flex items-center justify-center gap-1.5 ${
-                      drawerTab === 'discussion'
-                        ? 'bg-surface text-text font-bold shadow-xs'
-                        : 'text-text-muted hover:text-text'
-                    }`}
-                  >
-                    <MessageSquare size={13} />
-                    <span>Discussion ({lessonDiscussions.length})</span>
-                  </button>
-                </div>
-
-                {/* Lesson Locked State or Content */}
-                {selectedLesson.lesson.locked ? (
-                  <div className="py-8 px-4 rounded-xl bg-surface-hover/60 border border-border text-center space-y-4">
-                    <div className="w-14 h-14 rounded-2xl bg-amber-500/10 text-amber-500 mx-auto flex items-center justify-center border border-amber-500/20">
-                      <Lock size={28} />
-                    </div>
-                    <div className="max-w-xs mx-auto">
-                      <h3 className="text-16 font-bold text-text">Lesson Locked</h3>
-                      <p className="text-13 text-text-muted mt-1 leading-relaxed">
-                        This lesson is part of a premium course. Enroll now to unlock all modules, video lessons, and interactive quizzes.
-                      </p>
-                    </div>
-                  </div>
-                ) : drawerTab === 'discussion' ? (
-                  /* Discussion Tab Content */
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between">
-                      <h3 className="text-13 font-bold text-text flex items-center gap-1.5">
-                        <MessageSquare size={14} className="text-primary" />
-                        <span>Lesson Questions & Answers</span>
-                      </h3>
-                      <Link
-                        to={`/discussions?courseId=${course.id}`}
-                        className="text-11 text-primary hover:underline font-medium flex items-center gap-0.5"
-                      >
-                        <span>All Course Discussions</span>
-                        <ExternalLink size={10} />
-                      </Link>
-                    </div>
-
-                    {/* Ask Question Form */}
-                    <form onSubmit={handlePostLessonQuestion} className="p-3.5 rounded-xl bg-surface-hover/50 border border-border space-y-2.5">
-                      <h4 className="text-12 font-bold text-text">Ask a Question on this Lesson</h4>
-                      <input
-                        type="text"
-                        required
-                        placeholder="Brief summary of your question..."
-                        value={newQuestionTitle}
-                        onChange={(e) => setNewQuestionTitle(e.target.value)}
-                        className="w-full bg-surface border border-border rounded-lg px-2.5 py-1.5 text-13 text-text focus:outline-none focus:border-primary"
-                      />
-                      <textarea
-                        rows={2}
-                        required
-                        placeholder="Details or code snippets..."
-                        value={newQuestionContent}
-                        onChange={(e) => setNewQuestionContent(e.target.value)}
-                        className="w-full bg-surface border border-border rounded-lg p-2.5 text-12 text-text focus:outline-none focus:border-primary"
-                      />
-                      <div className="flex justify-end">
-                        <button
-                          type="submit"
-                          disabled={postingQuestion || !newQuestionTitle.trim() || !newQuestionContent.trim()}
-                          className="py-1.5 px-3 rounded-lg bg-primary text-[#0A1628] hover:bg-primary-hover font-bold text-12 flex items-center gap-1 shadow-sm transition-all"
-                        >
-                          <Send size={12} />
-                          <span>{postingQuestion ? 'Posting...' : 'Ask Question'}</span>
-                        </button>
-                      </div>
-                    </form>
-
-                    {/* Thread List */}
-                    {loadingDiscussions ? (
-                      <div className="space-y-2">
-                        <Skeleton height="60px" className="rounded-lg" />
-                        <Skeleton height="60px" className="rounded-lg" />
-                      </div>
-                    ) : lessonDiscussions.length === 0 ? (
-                      <div className="p-6 rounded-xl bg-surface-hover/30 border border-border text-center space-y-2">
-                        <p className="text-13 text-text-muted">No questions asked on this lesson yet.</p>
-                        <p className="text-11 text-text-muted">Have a doubt? Ask above and instructors will answer!</p>
-                      </div>
-                    ) : (
-                      <div className="space-y-2.5 max-h-[350px] overflow-y-auto pr-1">
-                        {lessonDiscussions.map((t) => (
-                          <div
-                            key={t.id}
-                            className="p-3 rounded-lg bg-surface border border-border hover:border-primary/40 transition-colors space-y-1.5"
-                          >
-                            <div className="flex items-center justify-between gap-2">
-                              <h5 className="text-13 font-bold text-text truncate">{t.title}</h5>
-                              {t.hasAcceptedAnswer && (
-                                <span className="inline-flex items-center gap-0.5 text-10 font-bold px-1.5 py-0.2 rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/25 shrink-0">
-                                  <Check size={10} />
-                                  <span>Answered</span>
-                                </span>
-                              )}
-                            </div>
-                            <div className="flex items-center justify-between text-11 text-text-muted pt-1 border-t border-border/60">
-                              <span>{t.author?.name || 'Student'}</span>
-                              <Link
-                                to={`/discussions?thread=${t.id}`}
-                                className="text-primary hover:underline font-semibold flex items-center gap-1"
-                              >
-                                <span>{t.postCount || 1} posts</span>
-                                <ArrowRight size={11} />
-                              </Link>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                ) : (
-                  <>
-                    {/* Video Embed */}
-                    {embedUrl ? (
-                      <div className="space-y-2">
-                        <div className="relative w-full aspect-video rounded-lg overflow-hidden bg-black border border-border">
-                          <iframe
-                            src={embedUrl}
-                            title={selectedLesson.lesson.title}
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowFullScreen
-                            className="w-full h-full border-0"
-                          />
-                        </div>
-                        {selectedLesson.lesson.youtubeUrl && (
-                          <div className="flex justify-end">
-                            <a
-                              href={selectedLesson.lesson.youtubeUrl}
-                              target="_blank"
-                              rel="noreferrer"
-                              className="inline-flex items-center gap-1 text-12 text-text-muted hover:text-primary transition-colors font-medium"
-                            >
-                              <span>Open on YouTube</span>
-                              <ExternalLink size={12} />
-                            </a>
-                          </div>
-                        )}
-                      </div>
-                    ) : (
-                      <div className="p-8 rounded-lg bg-surface-hover/50 border border-border text-center text-text-muted text-13">
-                        No video linked for this lesson.
-                      </div>
-                    )}
-
-                    {/* Description */}
-                    {selectedLesson.lesson.description && (
-                      <div className="space-y-1.5">
-                        <h3 className="text-12 font-semibold text-text-muted uppercase tracking-wider">
-                          Lesson Overview
-                        </h3>
-                        <p className="text-14 text-text leading-relaxed">
-                          {selectedLesson.lesson.description}
-                        </p>
-                      </div>
-                    )}
-
-                    {/* Quiz Section (Spec 09) */}
-                    {selectedLesson.lesson.quizId && (
-                      <div className="pt-4 border-t border-border space-y-3">
-                        <div className="flex items-center justify-between">
-                          <h3 className="text-12 font-semibold text-text-muted uppercase tracking-wider flex items-center gap-1.5">
-                            <HelpCircle size={14} className="text-primary" />
-                            <span>Lesson Quiz</span>
-                          </h3>
-                          {selectedLesson.lesson.passed ? (
-                            <span className="text-11 font-semibold px-2 py-0.5 rounded-full bg-success/15 text-success border border-success/30 flex items-center gap-1">
-                              <CheckCircle2 size={12} />
-                              <span>Passed ({selectedLesson.lesson.userBestScore}%)</span>
-                            </span>
-                          ) : selectedLesson.lesson.userBestScore !== null ? (
-                            <span className="text-11 font-semibold px-2 py-0.5 rounded-full bg-warning/15 text-warning border border-warning/30 flex items-center gap-1">
-                              <AlertCircle size={12} />
-                              <span>Needs 70% (Best: {selectedLesson.lesson.userBestScore}%)</span>
-                            </span>
-                          ) : (
-                            <span className="text-11 font-medium px-2 py-0.5 rounded-full bg-surface-hover text-text-muted border border-border">
-                              10 Questions • 70%+ to pass
-                            </span>
-                          )}
-                        </div>
-
-                        <div className="p-3.5 rounded-lg bg-surface-hover/60 border border-border space-y-2.5">
-                          <div>
-                            <p className="font-semibold text-13 text-text">
-                              {selectedLesson.lesson.quizTitle || selectedLesson.lesson.title}
-                            </p>
-                            <p className="text-12 text-text-muted mt-0.5">
-                              {selectedLesson.lesson.passed
-                                ? `You have passed this quiz with a best score of ${selectedLesson.lesson.userBestScore}%. You can retake it anytime.`
-                                : selectedLesson.lesson.userBestScore !== null
-                                ? `Your current best score is ${selectedLesson.lesson.userBestScore}%. Pass with 70%+ to unlock completion.`
-                                : 'Pass this 10-question quiz (70%+ required) to unlock lesson completion.'}
-                            </p>
-                          </div>
-
-                          <Link
-                            to={`/quizzes/${selectedLesson.lesson.quizId}?from=course&courseSlug=${slug}&topicId=${selectedLesson.lesson.id}`}
-                            className={`w-full py-2.5 px-3 rounded-lg font-medium text-13 flex items-center justify-center gap-2 transition-colors ${
-                              selectedLesson.lesson.passed
-                                ? 'bg-surface hover:bg-surface-hover text-text border border-border shadow-sm'
-                                : 'bg-primary text-[#0A1628] hover:bg-primary-hover font-semibold shadow-sm'
-                            }`}
-                          >
-                            <HelpCircle size={15} />
-                            <span>
-                              {selectedLesson.lesson.passed
-                                ? 'Retake Quiz'
-                                : selectedLesson.lesson.userBestScore !== null
-                                ? 'Retake Quiz to Pass'
-                                : 'Take Quiz'}
-                            </span>
-                          </Link>
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Actions */}
-                    <div className="pt-4 border-t border-border space-y-2">
-                      {selectedLesson.lesson.quizId &&
-                      !selectedLesson.lesson.passed &&
-                      !selectedLesson.lesson.completed ? (
-                        <div className="space-y-2">
-                          <button
-                            disabled
-                            className="w-full py-2.5 px-4 rounded-lg font-medium text-14 flex items-center justify-center gap-2 bg-surface-hover text-text-muted/60 border border-border/60 cursor-not-allowed"
-                          >
-                            <CheckCircle2 size={16} />
-                            <span>Mark as Complete (Locked)</span>
-                          </button>
-                          <p className="text-12 text-center text-warning flex items-center justify-center gap-1.5 font-medium">
-                            <AlertCircle size={13} className="shrink-0" />
-                            <span>Take quiz to unlock completion</span>
-                          </p>
-                        </div>
-                      ) : (
-                        <button
-                          onClick={() => handleToggleComplete(selectedLesson.lesson.id)}
-                          disabled={updatingLessonId === selectedLesson.lesson.id}
-                          className={`w-full py-2.5 px-4 rounded-lg font-semibold text-14 flex items-center justify-center gap-2 transition-colors ${
-                            selectedLesson.lesson.completed
-                              ? 'bg-surface text-text-muted hover:bg-surface-hover border border-border'
-                              : 'bg-primary text-[#0A1628] hover:bg-primary-hover shadow-sm'
-                          }`}
-                        >
-                          <CheckCircle2 size={16} />
-                          <span>
-                            {selectedLesson.lesson.completed
-                              ? 'Completed (Click to undo)'
-                              : 'Mark as Complete'}
-                          </span>
-                        </button>
-                      )}
-                    </div>
-                  </>
-                )}
+              <LessonDetailContent
+                selectedLesson={selectedLesson}
+                course={course}
+                slug={slug}
+                drawerTab={drawerTab}
+                setDrawerTab={setDrawerTab}
+                lessonDiscussions={lessonDiscussions}
+                loadingDiscussions={loadingDiscussions}
+                newQuestionTitle={newQuestionTitle}
+                setNewQuestionTitle={setNewQuestionTitle}
+                newQuestionContent={newQuestionContent}
+                setNewQuestionContent={setNewQuestionContent}
+                postingQuestion={postingQuestion}
+                handlePostLessonQuestion={handlePostLessonQuestion}
+                embedUrl={embedUrl}
+                handleToggleComplete={handleToggleComplete}
+                updatingLessonId={updatingLessonId}
+                setSelectedLesson={setSelectedLesson}
+              />
               </Card>
             </div>
           )}
