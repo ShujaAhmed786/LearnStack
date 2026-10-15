@@ -98,7 +98,7 @@ Dark mode preview of the learner and admin experience. Full gallery in [docs/scr
 
 ## Workflow
 
-Interactive workflow diagram: [view here] — the diagram artifact will be linked here once published.
+![LearnStack Workflow](docs/workflow-diagram.png)
 
 ## Run It Yourself
 
