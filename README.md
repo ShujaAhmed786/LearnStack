@@ -20,15 +20,54 @@ A multi-tenant, white-label learning platform. Organizations get their own brand
 
 Everything is free. No payments, no SSO. Email/password authentication only.
 
-## Tech Stack
+## Development Stack
 
-- **Frontend**: React, TypeScript, Vite, Tailwind CSS, Lucide icons
-- **Backend**: Node.js, TypeScript, Fastify, Zod validation
-- **Database**: PostgreSQL (RDS Multi-AZ) with Prisma ORM
-- **Auth**: Argon2id password hashing, session cookies, rate limiting
-- **Email**: Nodemailer (Gmail) for verification and password reset
-- **Monorepo**: pnpm workspaces
-- **Deployment**: Docker, GitHub Actions, ECR, ECS (Fargate), ALB, ACM, Route 53, Secrets Manager, Terraform
+**Frontend:**
+- React 18 with TypeScript
+- Vite (build tool)
+- Tailwind CSS (styling)
+- Lucide icons
+- React Router (navigation)
+- Canvas Confetti (celebrations)
+
+**Backend:**
+- Node.js 20+
+- TypeScript
+- Fastify (web framework)
+- Zod (validation)
+- Prisma ORM
+- Argon2id (password hashing)
+- Nodemailer (Gmail for verification and password reset)
+- Session cookies (auth)
+
+**Database:**
+- PostgreSQL (RDS Multi-AZ in production)
+- Prisma migrations (15 applied)
+
+**Monorepo:**
+- pnpm workspaces
+- apps/web, apps/api, packages/db, packages/shared
+
+## Deployment Stack
+
+**CI/CD:**
+- GitHub Actions (CI: lint, typecheck, test)
+- GitHub Actions (Deploy: Docker build --no-cache, push to ECR, update ECS)
+- Trivy (security scan, non-blocking)
+
+**AWS (us-east-1):**
+- ECR (learnstack/api, learnstack/web)
+- ECS Fargate (learnstack-api: 2 tasks, learnstack-web: 2 tasks)
+- ALB (Application Load Balancer)
+- RDS PostgreSQL Multi-AZ
+- Secrets Manager (db-url, session-secret, email)
+- Route 53 (app.shujaahmed.dev)
+- ACM (TLS certificate)
+- VPC with private subnets, NAT instance
+- Rolling deployment with circuit breaker auto-rollback
+
+**Infrastructure:**
+- Terraform (IaC)
 
 ## Documentation
 
