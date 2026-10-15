@@ -167,7 +167,7 @@ function LessonDetailContent({
         <span>Lesson Questions & Answers</span>
       </h3>
       <Link
-        to={`/discussions?courseId=${course.id}`}
+        to={`/discussions?courseId=${course?.id}`}
         className="text-11 text-primary hover:underline font-medium flex items-center gap-0.5"
       >
         <span>All Course Discussions</span>
