@@ -39,18 +39,23 @@ Everything is free. No payments, no SSO. Email/password authentication only.
 
 Dark mode preview of the learner and admin experience. Full gallery in [docs/screenshots](docs/screenshots/).
 
-### Learner
-
-![Learner Dashboard](docs/screenshots/dark/learner/learner-dashboard-dark.png)
-![Courses](docs/screenshots/dark/learner/learner-courses-dark.png)
-![Course Detail](docs/screenshots/dark/learner/learner-course-detail-dark.png)
-![Lesson Expanded](docs/screenshots/dark/learner/learner-lesson-expanded-dark.png)
-![Quizzes](docs/screenshots/dark/learner/learner-quizzes-dark.png)
-
-### Admin
-
-![Admin Dashboard](docs/screenshots/dark/admin/admin-dashboard-dark.png)
-![Admin Users](docs/screenshots/dark/admin/admin-users-dark.png)
+<table>
+  <tr>
+    <td><img src="docs/screenshots/dark/learner/learner-dashboard-dark.png" width="100%"/><br/>Learner Dashboard</td>
+    <td><img src="docs/screenshots/dark/learner/learner-courses-dark.png" width="100%"/><br/>Courses</td>
+    <td><img src="docs/screenshots/dark/learner/learner-course-detail-dark.png" width="100%"/><br/>Course Detail</td>
+  </tr>
+  <tr>
+    <td><img src="docs/screenshots/dark/learner/learner-lesson-expanded-dark.png" width="100%"/><br/>Lesson Expanded</td>
+    <td><img src="docs/screenshots/dark/learner/learner-quizzes-dark.png" width="100%"/><br/>Quizzes</td>
+    <td><img src="docs/screenshots/dark/admin/admin-dashboard-dark.png" width="100%"/><br/>Admin Dashboard</td>
+  </tr>
+  <tr>
+    <td><img src="docs/screenshots/dark/admin/admin-users-dark.png" width="100%"/><br/>Admin Users</td>
+    <td></td>
+    <td></td>
+  </tr>
+</table>
 
 ## Workflow
 
