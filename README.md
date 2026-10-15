@@ -229,4 +229,8 @@ LearnStack/
 
 ## License
 
-MIT
+Non-commercial. You may use, study, and modify this code for personal or educational purposes. Selling, paid services, for-profit deployment, or use in commercial products is not permitted.
+
+For commercial licensing, contact: shujaahmed198@gmail.com
+
+See LICENSE for full terms.
