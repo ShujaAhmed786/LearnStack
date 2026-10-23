@@ -2,8 +2,6 @@
 
 A multi-tenant, white-label learning platform. Organizations get their own branded learning portal with courses, quizzes, discussion forums, live sessions, certificates, and analytics.
 
-**Live:** https://app.shujaahmed.dev
-
 ## Features
 
 - **Courses**: Modules, lessons, YouTube video embeds, search
